@@ -277,6 +277,9 @@ return require("lazy").setup({
   { "simrat39/rust-tools.nvim", lazy = true },
   { "Saecki/crates.nvim", lazy = true },
 
+  -- Csharp
+  "OrangeT/vim-csharp",
+
   -- python
 
   -- webdev

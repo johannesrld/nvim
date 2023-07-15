@@ -16,6 +16,9 @@ require("mason-tool-installer").setup {
     --rust
     "rust-analyzer",
 
+    -- C-Sharp/NET
+    "omnisharp",
+
     --webdev
     --  css
     "css-lsp",
