@@ -16,9 +16,6 @@ require("mason-tool-installer").setup {
     --rust
     "rust-analyzer",
 
-    --Haskell
-    "haskell-language-server",
-
     --webdev
     --  css
     "css-lsp",
@@ -130,7 +127,7 @@ local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities(
 cmp_capabilities.textDocument.completion.completionItem.snippetSupport = true
 require("mason-lspconfig").setup_handlers {
   function(server_name)
-    if server_name == "hls" or server_name == "html" or server_name == "emmet_ls" then
+    if server_name == "html" or server_name == "emmet_ls" then
       return
     end
     require("lspconfig")[server_name].setup {

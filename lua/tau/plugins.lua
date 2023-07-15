@@ -277,15 +277,6 @@ return require("lazy").setup({
   { "simrat39/rust-tools.nvim", lazy = true },
   { "Saecki/crates.nvim", lazy = true },
 
-  --Haskell
-  {
-    "MrcJkb/haskell-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
-    branch = "1.x.x",
-    lazy = true,
-  },
-  { "itchyny/vim-haskell-indent", ft = "haskell" },
-
   -- python
 
   -- webdev
