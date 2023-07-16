@@ -9,7 +9,9 @@ if not vim.fn.has("wsl") then
   opt.clipboard = "unnamedplus" -- VERY slow using WSL
 end
 
-
+if vim.g.vscode then
+  vim.cmd("set shada=\"NONE\"")
+end
 --[[
 -----------------------
 | GLOBAL CONFIGURATION |
