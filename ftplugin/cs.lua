@@ -1,6 +1,11 @@
-require("lspconfig").omnisharp.setup {
+local lspconfig = require("lspconfig")
+local lsp_comf = vim.lsp.protocol.make_client_capabilities()
+lsp_comf.textDocument.completion.completionItem.snippetSupport = true
+local cmp_cap = require("cmp_nvim_lsp").default_capabilities(lsp_comf)
+
+lspconfig.omnisharp.setup {
+  capabilities = cmp_cap,
   on_attach = function(client, _)
-    -- This is a hack that is needed with omnisharp in it's current state. This the result of a bug in Rosyln.
     client.server_capabilities.semanticTokensProvider.legend = {
       tokenModifiers = { "static" },
       tokenTypes = {

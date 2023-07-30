@@ -1,26 +1,5 @@
 return require("lazy").setup({
   --Plugins
-  {
-    "nvim-neorg/neorg",
-    build = ":Neorg sync-parsers",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require("neorg").setup {
-        load = {
-          ["core.defaults"] = {}, -- Loads default behaviour
-          ["core.concealer"] = {}, -- Adds pretty icons to your documents
-          ["core.dirman"] = { -- Manages Neorg workspaces
-            config = {
-              workspaces = {
-                notes = "~/.local/share/notes/",
-                tasks = "~/.local/share/notes/tasks"
-              },
-            },
-          },
-        },
-      }
-    end,
-  },
   { "nvim-lua/plenary.nvim", lazy = true },
   {
     "jiaoshijie/undotree",
@@ -79,14 +58,17 @@ return require("lazy").setup({
     dependencies = { "nvim-lua/plenary.nvim" },
     init = function() require("todo-comments").setup { signs = false } end,
   },
+
+  -- Secure modelines (at the start of files a comment like "#vim: ft=sh", similar to shebangs)
+  "vim-scripts/securemodelines",
+  -- LSP/DAP
   "mfussenegger/nvim-dap",
-  -- LSP
   {
     "neovim/nvim-lspconfig",
     dependencies = {
       {
         "williamboman/mason.nvim",
-        build = function() require('mason.api.command').MasonUpdate() end,
+        build = function() require("mason.api.command").MasonUpdate() end,
         event = "VeryLazy",
         lazy = true,
       },
