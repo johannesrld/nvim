@@ -158,7 +158,6 @@ return require("lazy").setup({
   },
   { "anuvyklack/hydra.nvim" },
   -- Theming
-  "Mofiqul/vscode.nvim",
   {
     "rebelot/kanagawa.nvim",
     priority = 1000,
