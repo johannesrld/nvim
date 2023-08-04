@@ -2,7 +2,7 @@ vim.loader.enable()
 require("tau.options")
 -- TODO: check for libraries like luajit and libstdc++ etc etc.
 if not vim.g.vscode then
-  local required_commands = { "gcc", "g++", "make", "cargo", "npm", "ghcup", "rg" }
+  local required_commands = { "gcc", "g++", "make", "cargo", "npm", "rg", "node" }
   for _, cmd in ipairs(required_commands) do
     if vim.fn.executable(cmd) ~= 1 then
       print("ERROR: command" .. cmd .. " not found in path, aborting")

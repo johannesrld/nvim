@@ -159,45 +159,30 @@ return require("lazy").setup({
   { "anuvyklack/hydra.nvim" },
   -- Theming
   {
-    "rebelot/kanagawa.nvim",
+    "catppuccin/nvim",
     priority = 1000,
     lazy = false,
-    config = function()
-      vim.opt.background = "dark"
-      vim.diagnostic.config { signs = false, virtual_text = false }
-      require("kanagawa").setup {
-        compile = true, -- enable compiling the colorscheme
-        keywordStyle = { italic = false },
-        statementStyle = { bold = false },
-        overrides = function(colors) -- add/modify highlights
-          local theme = colors.theme
-          return {
-            TelescopeTitle = { fg = theme.ui.special, bold = true },
-            TelescopePromptNormal = { bg = theme.ui.bg_p1 },
-            TelescopePromptBorder = { fg = theme.ui.bg_p1, bg = theme.ui.bg_p1 },
-            TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m1 },
-            TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
-            TelescopePreviewNormal = { bg = theme.ui.bg_dim },
-            TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
-          }
-        end,
-        theme = "dragon",
-        background = { -- map the value of 'background' option to a theme
-          dark = "dragon", -- try "dragon" !
-          light = "lotus",
+    init = function()
+      require("catppuccin").setup {
+        flavour = "mocha", -- latte, frappe, macchiato, mocha
+        background = { -- :h background
+          light = "latte",
+          dark = "mocha",
         },
-        colors = {
-          theme = {
-            all = {
-              ui = {
-                bg_gutter = "#141414",
-                fg_gutter = "#5b5b5b",
-              },
-            },
-          },
+        integrations = {
+          cmp = true,
+          lsp_trouble = true,
+          which_key = true,
+          gitsigns = true,
+          nvimtree = true,
+          treesitter = true,
+          neogit = true,
+          mason = true,
+          harpoon = true
+          -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
         },
       }
-      vim.cmd("colorscheme kanagawa")
+      vim.cmd.colorscheme "catppuccin"
     end,
   },
   "nvim-lualine/lualine.nvim",
@@ -261,11 +246,14 @@ return require("lazy").setup({
 
   -- Csharp
   "OrangeT/vim-csharp",
-
-  -- python
-
-  -- webdev
-
+  -- OCaml
+  {
+    "tjdevries/ocaml.nvim",
+    init = function()
+      require("ocaml").update()
+      require("ocaml").setup()
+    end,
+  },
   -- ruby
   { "vim-ruby/vim-ruby", ft = "ruby" },
 }, {
