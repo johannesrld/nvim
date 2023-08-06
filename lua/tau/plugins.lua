@@ -98,9 +98,9 @@ return require("lazy").setup({
     },
   },
   {"ray-x/lsp_signature.nvim", event = "VeryLazy", init = function ()
-    require("lsp_signature").setup {hint_prefix = "🦭:"}
+    require("lsp_signature").setup {hint_prefix = "🦭 ", handler_opts = {border = "none"}}
   end},
-  {"lvimuser/lsp-inlayhints.nvim"},
+  {"lvimuser/lsp-inlayhints.nvim", event = "VeryLazy"},
   --Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
