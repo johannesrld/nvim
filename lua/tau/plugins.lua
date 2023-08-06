@@ -97,6 +97,10 @@ return require("lazy").setup({
       end,
     },
   },
+  {"ray-x/lsp_signature.nvim", event = "VeryLazy", init = function ()
+    require("lsp_signature").setup {hint_prefix = "🦭:"}
+  end},
+  {"lvimuser/lsp-inlayhints.nvim"},
   --Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
@@ -250,7 +254,6 @@ return require("lazy").setup({
   {
     "tjdevries/ocaml.nvim",
     init = function()
-      require("ocaml").update()
       require("ocaml").setup()
     end,
   },

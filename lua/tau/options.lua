@@ -17,17 +17,20 @@ end
 | GLOBAL CONFIGURATION |
 -----------------------
 ]]
---
+-- Misc
+opt.spelllang = "en_gb"
+opt.spell = true
+vim.opt_local.spelloptions:append("noplainbuffer")
 
 -- UI
 opt.showtabline = 0 -- Never display tabline
 opt.number = true -- Show line numbers
 opt.relativenumber = true -- Show line numbers relative to current cursor position
-opt.wrap = false -- Dont wrap lines when they scroll off the screen
+opt.wrap = false -- Don't wrap lines when they scroll off the screen
 opt.scrolloff = 8 -- Min number of lines that are kept between the cursor and the bottom of the buffer when scrolling
 opt.sidescrolloff = 8 -- Same as above but horizontally
 opt.numberwidth = 3 -- Min number of lines for line number gutter
-opt.showmode = false -- dont show the mode in the command area (e.g. "--INSERT--")
+opt.showmode = false -- don't show the mode in the command area (e.g. "--INSERT--")
 opt.conceallevel = 2 -- Hide concealed chars unless syn-cchar is set
 opt.updatetime = 200 -- Faster completion
 
