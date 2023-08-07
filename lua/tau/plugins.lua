@@ -92,15 +92,18 @@ return require("lazy").setup({
             html = {
               require("formatter.filetypes.html").htmlbeautify,
             },
+            python = {
+              require("formatter.filetypes.python").black
+            }
           },
         }
       end,
     },
   },
-  {"ray-x/lsp_signature.nvim", event = "VeryLazy", init = function ()
+  {"ray-x/lsp_signature.nvim", event = "LspAttach", init = function ()
     require("lsp_signature").setup {hint_prefix = "🦭 ", handler_opts = {border = "none"}}
   end},
-  {"lvimuser/lsp-inlayhints.nvim", event = "VeryLazy"},
+  {"lvimuser/lsp-inlayhints.nvim", event = "LspAttach"},
   --Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
@@ -228,8 +231,9 @@ return require("lazy").setup({
   },
   {
     "sindrets/diffview.nvim",
-    init = function()
-      require("diffview").setup {
+    lazy = true,
+    opts =
+      {
         use_icons = false,
         icons = { -- Only applies when use_icons is true.
           folder_closed = ">",
@@ -240,8 +244,7 @@ return require("lazy").setup({
           fold_open = "v",
           done = "✓",
         },
-      }
-    end,
+      },
   },
 
   --Rust
@@ -253,9 +256,7 @@ return require("lazy").setup({
   -- OCaml
   {
     "tjdevries/ocaml.nvim",
-    init = function()
-      require("ocaml").setup()
-    end,
+    ft = "ocaml",
   },
   -- ruby
   { "vim-ruby/vim-ruby", ft = "ruby" },
