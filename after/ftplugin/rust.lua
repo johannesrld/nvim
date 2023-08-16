@@ -1,25 +1,25 @@
 local rt = require("rust-tools")
 
 rt.setup {
-  tools = {
-    inlay_hints = {
-      auto = false,
-    },
-  },
   server = {
     on_attach = function(_, bufnr)
       vim.keymap.set(
         "n",
-        "<C-space>",
+        "<leader>lh",
         rt.hover_actions.hover_actions,
         { buffer = bufnr }
       )
       vim.keymap.set(
         "n",
-        "<Leader>a",
+        "<Leader>la",
         rt.code_action_group.code_action_group,
         { buffer = bufnr }
       )
     end,
   },
+  tools = {
+    hover_actions = {
+      border = "single",
+    }
+  }
 }

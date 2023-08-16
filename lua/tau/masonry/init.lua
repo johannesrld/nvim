@@ -11,24 +11,24 @@ require("mason-tool-installer").setup {
     "stylua",
 
     --python
-    "pyright",
+    "pyright", -- TODO: replace with pylyzer once it is mature enough
+    "mypy",
+    "debugpy",
+    "ruff-lsp",
+    "black",
 
     --rust
     "rust-analyzer",
-
-    -- C-Sharp/NET
-    "omnisharp",
-
+    "codelldb",
     --webdev
     --  css
     "css-lsp",
-    "stylelint",
-    --  html
+    "stylelint", -- Stylelint lsp server?
     "html-lsp",
-    "emmet-ls",
-    -- javascript
+    "emmet-language-server",
     "typescript-language-server",
     "rome",
+    "json-lsp"
   },
 
   auto_update = false,

@@ -93,17 +93,24 @@ return require("lazy").setup({
               require("formatter.filetypes.html").htmlbeautify,
             },
             python = {
-              require("formatter.filetypes.python").black
-            }
+              require("formatter.filetypes.python").black,
+            },
           },
         }
       end,
     },
   },
-  {"ray-x/lsp_signature.nvim", event = "LspAttach", init = function ()
-    require("lsp_signature").setup {hint_prefix = "🦭 ", handler_opts = {border = "none"}}
-  end},
-  {"lvimuser/lsp-inlayhints.nvim", event = "LspAttach"},
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "LspAttach",
+    init = function()
+      require("lsp_signature").setup {
+        hint_prefix = "🦭 ",
+        handler_opts = { border = "none" },
+      }
+    end,
+  },
+  { "lvimuser/lsp-inlayhints.nvim", event = "LspAttach" },
   --Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
@@ -164,6 +171,17 @@ return require("lazy").setup({
     cmd = "TroubleToggle",
   },
   { "anuvyklack/hydra.nvim" },
+  { "jose-elias-alvarez/null-ls.nvim", init=function ()
+    local null_ls = require("null-ls")
+    null_ls.setup {
+      sources = {
+        null_ls.builtins.diagnostics.stylelint,
+        null_ls.builtins.diagnostics.mypy,
+        null_ls.builtins.diagnostics.markdownlint,
+        null_ls.builtins.formatting.dprint
+      }
+    }
+  end},
   -- Theming
   {
     "catppuccin/nvim",
@@ -183,18 +201,20 @@ return require("lazy").setup({
           gitsigns = true,
           nvimtree = true,
           treesitter = true,
+          telescope = true,
+          indent_blankline = true,
           neogit = true,
           mason = true,
-          harpoon = true
+          harpoon = true,
           -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
         },
       }
-      vim.cmd.colorscheme "catppuccin"
+      vim.cmd.colorscheme("catppuccin")
     end,
   },
   "nvim-lualine/lualine.nvim",
   { "uga-rosa/ccc.nvim", event = "VeryLazy" },
-  { "lukas-reineke/indent-blankline.nvim", event = "VeryLazy", lazy = true },
+  { "lukas-reineke/indent-blankline.nvim" },
   -- Completion
   {
     "hrsh7th/nvim-cmp",
@@ -232,21 +252,21 @@ return require("lazy").setup({
   {
     "sindrets/diffview.nvim",
     lazy = true,
-    opts =
-      {
-        use_icons = false,
-        icons = { -- Only applies when use_icons is true.
-          folder_closed = ">",
-          folder_open = "v",
-        },
-        signs = {
-          fold_closed = ">",
-          fold_open = "v",
-          done = "✓",
-        },
+    opts = {
+      use_icons = false,
+      icons = { -- Only applies when use_icons is true.
+        folder_closed = ">",
+        folder_open = "v",
       },
+      signs = {
+        fold_closed = ">",
+        fold_open = "v",
+        done = "✓",
+      },
+    },
   },
-
+  -- python
+  {"mfussenegger/nvim-dap-python"},
   --Rust
   { "simrat39/rust-tools.nvim", lazy = true },
   { "Saecki/crates.nvim", lazy = true },
@@ -254,10 +274,6 @@ return require("lazy").setup({
   -- Csharp
   "OrangeT/vim-csharp",
   -- OCaml
-  {
-    "tjdevries/ocaml.nvim",
-    ft = "ocaml",
-  },
   -- ruby
   { "vim-ruby/vim-ruby", ft = "ruby" },
 }, {

@@ -2,8 +2,8 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 require("lspconfig").lua_ls.setup {
   capabilities = capabilities,
-  settings = {
-    Lua = {
+  on_init = function(client)
+    client.config.settings = vim.tbl_deep_extend("force", client.config.settings.Lua, {
       runtime = {
         version = "LuaJIT",
       },
@@ -11,12 +11,17 @@ require("lspconfig").lua_ls.setup {
         globals = { "vim" },
       },
       workspace = {
-        library = vim.api.nvim_get_runtime_file("", true),
-        checkThirdParty = false,
+        library = { vim.env.VIMRUNTIME },
       },
       telemetry = {
         enable = false,
       },
-    },
-  },
+    })
+
+    client.notify(
+      "workspace/didChangeConfiguration",
+      { settings = client.config.settings }
+    )
+    return true
+  end,
 }

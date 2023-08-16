@@ -5,20 +5,23 @@ require("ccc").setup {
     lsp = true,
   },
 }
+require("lspconfig.ui.windows").default_options.border = "single"
 
 require("nvim-treesitter.configs").setup {
   ensure_installed = {
     "lua",
     "python",
     "rust",
-    "haskell",
+    "ocaml",
     "bash",
     "html",
     "javascript",
     "css",
+    "ruby",
+    "typescript",
   },
 
-  indent = { enable = true, disable = { "python", "html" } },
+  indent = { enable = true, disable = { "html" } },
 
   auto_install = true,
   highlight = { enable = true },

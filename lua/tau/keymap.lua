@@ -33,8 +33,6 @@ wk.register {
   },
 }
 
-set("n", "<leader>ff", "<cmd>Format<cr>", optMap(mode, opts, { desc = "Format file" }))
-
 set(
   "n",
   "<leader>fw",
@@ -88,11 +86,36 @@ hydra {
     on_exit = slew_hydra,
   },
 }
-
-local dap = require("dap")
+local builtin = require("telescope.builtin")
+wk.register {
+  ["<leader>t"] = {
+    name = "+Telescope",
+  },
+}
+set("n", "<leader>tf", builtin.fd)
+set("n", "<leader>tg", builtin.live_grep)
+set("n", "<leader>tb", builtin.buffers)
+set("n", "<leader>th", builtin.help_tags)
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
   callback = function(ev)
+    local dap = require("dap")
+    function FormatBuilder()
+      local client = vim.lsp.get_active_clients({ bufnr = 0 })[1]
+      if client and client.supports_method("textDocument/formatting") then
+        return function()
+          vim.lsp.buf.format()
+          print("Formatter: LSP")
+        end
+      else
+        return function()
+          vim.cmd("Format")
+          print("Formatter: Other")
+        end
+      end
+    end
+
+    local Format = FormatBuilder()
     wk.register {
       ["<leader>l"] = {
         name = "+lsp",
@@ -141,5 +164,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     set("n", "<F9>", dap.step_out, { desc = "DAP: Step Out" })
     set("n", "<F12>", dap.close, { desc = "DAP: Close" })
     set("n", "<leader>b", dap.toggle_breakpoint, { desc = "DAP: Toggle Breakpoint" })
+    set("n", "<leader>ff", Format, optMap(mode, opts, { desc = "Format file" }))
   end,
 })
