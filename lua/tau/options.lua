@@ -5,8 +5,8 @@ local stdpath = vim.fn.stdpath
 
 
 -- If we are not using WSL/Windows then yanking (e.g. with "y") will yank to the system clipboard
-if not vim.fn.has("wsl") then
-  opt.clipboard = "unnamedplus" -- VERY slow using WSL
+if vim.fn.has("wsl") == 0 then
+  vim.opt.clipboard = "unnamedplus" -- VERY slow using WSL
 end
 
 if vim.g.vscode then
