@@ -3,7 +3,6 @@ local g = vim.g
 local indentWidth = 4
 local stdpath = vim.fn.stdpath
 
-
 -- If we are not using WSL/Windows then yanking (e.g. with "y") will yank to the system clipboard
 if vim.fn.has("wsl") == 0 then
   vim.opt.clipboard = "unnamedplus" -- VERY slow using WSL
@@ -22,7 +21,11 @@ opt.spelllang = "en_gb"
 opt.spell = true
 vim.opt_local.spelloptions:append("noplainbuffer")
 
+vim.opt.clipboard:append("unnamedplus")
 -- UI
+opt.spelllang = "en_gb"
+opt.spell = true
+vim.opt_local.spelloptions:append("noplainbuffer")
 opt.showtabline = 0 -- Never display tabline
 opt.number = true -- Show line numbers
 opt.relativenumber = true -- Show line numbers relative to current cursor position

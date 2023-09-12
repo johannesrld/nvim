@@ -1,5 +1,6 @@
 require("mason-tool-installer").setup {
   ensure_installed = {
+    "dprint",
     -- shell
     "shellcheck",
     "shellharden",
@@ -26,8 +27,7 @@ require("mason-tool-installer").setup {
     "stylelint", -- Stylelint lsp server?
     "html-lsp",
     "emmet-language-server",
-    "typescript-language-server",
-    "rome",
+    "eslint-lsp",
     "json-lsp"
   },
 

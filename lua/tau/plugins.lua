@@ -1,6 +1,6 @@
 return require("lazy").setup({
   --Plugins
-  { "nvim-lua/plenary.nvim", lazy = true },
+  { "nvim-lua/plenary.nvim",        lazy = true },
   {
     "jiaoshijie/undotree",
     lazy = true,
@@ -32,8 +32,6 @@ return require("lazy").setup({
           showcmd = false,
         },
       },
-      on_open = function() vim.opt.laststatus = 0 end,
-      on_close = function() vim.opt.laststatus = 3 end,
     },
     lazy = true,
     cmd = "ZenMode",
@@ -72,7 +70,7 @@ return require("lazy").setup({
         event = "VeryLazy",
         lazy = true,
       },
-      { "williamboman/mason-lspconfig.nvim", event = "VeryLazy", lazy = true },
+      { "williamboman/mason-lspconfig.nvim",         event = "VeryLazy", lazy = true },
       { "WhoIsSethDaniel/mason-tool-installer.nvim", event = "VeryLazy", lazy = true },
     },
     event = "VeryLazy",
@@ -90,7 +88,10 @@ return require("lazy").setup({
               require("formatter.filetypes.lua").stylua,
             },
             html = {
-              require("formatter.filetypes.html").htmlbeautify,
+              require("formatter.filetypes.html").prettierd,
+            },
+            css = {
+              require("formatter.filetypes.css").prettierd,
             },
             python = {
               require("formatter.filetypes.python").black,
@@ -127,7 +128,7 @@ return require("lazy").setup({
       options = {
         custom_commentstring = function()
           return require("ts_context_commentstring.internal").calculate_commentstring()
-            or vim.bo.commentstring
+              or vim.bo.commentstring
         end,
       },
     },
@@ -156,8 +157,8 @@ return require("lazy").setup({
     "folke/trouble.nvim",
     opts = {
       icons = false,
-      fold_open = "v", -- icon used for open folds
-      fold_closed = ">", -- icon used for closed folds
+      fold_open = "v",      -- icon used for open folds
+      fold_closed = ">",    -- icon used for closed folds
       indent_lines = false, -- add an indent guide below the fold icons
       signs = {
         error = "X",
@@ -171,50 +172,82 @@ return require("lazy").setup({
     cmd = "TroubleToggle",
   },
   { "anuvyklack/hydra.nvim" },
-  { "jose-elias-alvarez/null-ls.nvim", init=function ()
-    local null_ls = require("null-ls")
-    null_ls.setup {
-      sources = {
-        null_ls.builtins.diagnostics.stylelint,
-        null_ls.builtins.diagnostics.mypy,
-        null_ls.builtins.diagnostics.markdownlint,
-        null_ls.builtins.formatting.dprint
-      }
-    }
-  end},
-  -- Theming
   {
-    "catppuccin/nvim",
+    "jose-elias-alvarez/null-ls.nvim",
+    init = function()
+      local null_ls = require("null-ls")
+      null_ls.setup {
+        sources = {
+          null_ls.builtins.diagnostics.stylelint,
+          null_ls.builtins.diagnostics.mypy,
+          null_ls.builtins.diagnostics.markdownlint,
+          null_ls.builtins.formatting.dprint
+        }
+      }
+    end
+  },
+  {
+    'rose-pine/neovim',
     priority = 1000,
     lazy = false,
     init = function()
-      require("catppuccin").setup {
-        flavour = "mocha", -- latte, frappe, macchiato, mocha
-        background = { -- :h background
-          light = "latte",
-          dark = "mocha",
-        },
-        integrations = {
-          cmp = true,
-          lsp_trouble = true,
-          which_key = true,
-          gitsigns = true,
-          nvimtree = true,
-          treesitter = true,
-          telescope = true,
-          indent_blankline = true,
-          neogit = true,
-          mason = true,
-          harpoon = true,
-          -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
-        },
+      require("rose-pine").setup {
+        disable_italics = true,
       }
-      vim.cmd.colorscheme("catppuccin")
+      vim.cmd("colorscheme rose-pine")
     end,
+    name = 'rose-pine'
   },
+  -- Theming
+  -- {
+  --   "catppuccin/nvim",
+  --   priority = 1000,
+  --   lazy = false,
+  --   init = function()
+  --     require("catppuccin").setup {
+  --       flavour = "mocha",
+  --       background = {
+  --         light = "latte",
+  --         dark = "mocha",
+  --       },
+  --       integrations = {
+  --         cmp = true,
+  --         lsp_trouble = true,
+  --         which_key = true,
+  --         gitsigns = true,
+  --         nvimtree = true,
+  --         treesitter = true,
+  --         telescope = true,
+  --         indent_blankline = true,
+  --         neogit = true,
+  --         mason = true,
+  --         harpoon = true,
+  --       },
+  --     }
+  --     vim.cmd.colorscheme("catppuccin")
+  --   end,
+  -- },
   "nvim-lualine/lualine.nvim",
   { "uga-rosa/ccc.nvim", event = "VeryLazy" },
-  { "lukas-reineke/indent-blankline.nvim" },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    branch = "v3",
+    event = "VeryLazy",
+    init = function()
+      local highlight = {
+        "CursorColumn",
+        "Whitespace",
+      }
+      require("ibl").setup {
+        indent = { highlight = highlight, char = "" },
+        whitespace = {
+          highlight = highlight,
+          remove_blankline_trail = false,
+        },
+        scope = { enabled = false },
+      }
+    end
+  },
   -- Completion
   {
     "hrsh7th/nvim-cmp",
@@ -228,7 +261,7 @@ return require("lazy").setup({
     },
   },
 
-  { "L3MON4D3/LuaSnip", version = "1.*", build = "make install_jsregexp" },
+  { "L3MON4D3/LuaSnip",  version = "1.*",   build = "make install_jsregexp" },
   "saadparwaiz1/cmp_luasnip",
 
   --Git
@@ -265,17 +298,18 @@ return require("lazy").setup({
       },
     },
   },
+  { "wintermute-cell/gitignore.nvim", dependencies = { "nvim-telescope/telescope.nvim" } },
+  -- Webdev
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {},
+  },
   -- python
-  {"mfussenegger/nvim-dap-python"},
+  { "mfussenegger/nvim-dap-python" },
   --Rust
-  { "simrat39/rust-tools.nvim", lazy = true },
-  { "Saecki/crates.nvim", lazy = true },
-
-  -- Csharp
-  "OrangeT/vim-csharp",
-  -- OCaml
-  -- ruby
-  { "vim-ruby/vim-ruby", ft = "ruby" },
+  { "simrat39/rust-tools.nvim",       lazy = true },
+  { "Saecki/crates.nvim",             lazy = true },
 }, {
   performance = {
     cache = {
