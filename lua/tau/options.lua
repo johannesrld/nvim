@@ -3,10 +3,7 @@ local g = vim.g
 local indentWidth = 4
 local stdpath = vim.fn.stdpath
 
--- If we are not using WSL/Windows then yanking (e.g. with "y") will yank to the system clipboard
-if vim.fn.has("wsl") == 0 then
-  vim.opt.clipboard = "unnamedplus" -- VERY slow using WSL
-end
+vim.opt.clipboard:append("unnamedplus")
 
 if vim.g.vscode then
   vim.cmd("set shada=\"NONE\"")
