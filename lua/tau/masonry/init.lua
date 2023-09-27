@@ -28,7 +28,7 @@ require("mason-tool-installer").setup {
     "html-lsp",
     "emmet-language-server",
     "eslint-lsp",
-    "json-lsp"
+    "json-lsp",
   },
 
   auto_update = false,
@@ -130,21 +130,58 @@ local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities(
 cmp_capabilities.textDocument.completion.completionItem.snippetSupport = true
 require("mason-lspconfig").setup_handlers {
   function(server_name)
-    if server_name == "html" or server_name == "emmet_ls" then
-      return
+    if server_name == "html" or server_name == "emmet_ls" then return end
+    if server_name == "lua_ls" then
+      require("lspconfig")[server_name].setup {
+        capabilities = cmp_capabilities,
+        on_init = function(client)
+          local path = client.workspace_folders[1].name
+          if
+            not vim.loop.fs_stat(path .. "/.luarc.json")
+            and not vim.loop.fs_stat(path .. "/.luarc.jsonc")
+          then
+            client.config.settings =
+              vim.tbl_deep_extend("force", client.config.settings, {
+                Lua = {
+                  runtime = {
+                    -- Tell the language server which version of Lua you're using
+                    -- (most likely LuaJIT in the case of Neovim)
+                    version = "LuaJIT",
+                  },
+                  -- Make the server aware of Neovim runtime files
+                  workspace = {
+                    checkThirdParty = false,
+                    library = {
+                      vim.env.VIMRUNTIME,
+                      -- "${3rd}/luv/library"
+                      -- "${3rd}/busted/library",
+                    },
+                    -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+                    -- library = vim.api.nvim_get_runtime_file("", true)
+                  },
+                },
+              })
+
+            client.notify(
+              "workspace/didChangeConfiguration",
+              { settings = client.config.settings }
+            )
+          end
+          return true
+        end,
+      }
+    else
+      require("lspconfig")[server_name].setup {
+        capabilities = cmp_capabilities,
+      }
     end
-    require("lspconfig")[server_name].setup {
-      capabilities = cmp_capabilities,
-    }
   end,
 }
 vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
 vim.api.nvim_create_autocmd("LspAttach", {
   group = "LspAttach_inlayhints",
   callback = function(args)
-    if not (args.data and args.data.client_id) then
-      return
-    end
+    if not (args.data and args.data.client_id) then return end
 
     local bufnr = args.buf
     local client = vim.lsp.get_client_by_id(args.data.client_id)
