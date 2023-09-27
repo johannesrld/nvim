@@ -1,16 +1,16 @@
 local lualine = require("lualine")
 -- stylua: ignore
 local colors = {
-  bg       = "#1f1d2e",
-  fg       = '#e0def4',
-  yellow   = '#f6c177',
-  cyan     = '#9ccfd8',
-  darkblue = '#6e6a86',
-  violet   = '#c4a7e7',
-  blue     = '#31748f',
-  green    = '#31748f',
-  orange   = '#f7c177',
-  red      = '#eb6f92',
+  bg       = "#181818",
+  fg       = '#e4e4ef',
+  yellow   = '#ffdd33',
+  cyan     = '#96a6c8',
+  violet   = '#9e95c7',
+  blue     = '#565f73',
+  darkblue = '#303540',
+  green    = '#73c936',
+  orange   = '#cc8c3c',
+  red      = '#f43841',
 }
 
 local conditions = {
@@ -25,7 +25,6 @@ local conditions = {
 -- Config
 local config = {
   options = {
-    theme = "rose-pine",
     icons_enabled = false,
     component_separators = "",
     section_separators = "",

@@ -1,10 +1,4 @@
 vim.opt.termguicolors = true
-require("ccc").setup {
-  highlighter = {
-    auto_enable = true,
-    lsp = true,
-  },
-}
 require("lspconfig.ui.windows").default_options.border = "single"
 
 require("nvim-treesitter.configs").setup {

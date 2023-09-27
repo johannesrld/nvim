@@ -1,15 +1,18 @@
 return require("lazy").setup({
   --Plugins
-  { "nvim-lua/plenary.nvim",        lazy = true },
+  { "nvim-lua/plenary.nvim", lazy = true },
   {
     "jiaoshijie/undotree",
     lazy = true,
+    event = "VeryLazy",
     opts = {
       float_diff = false,
     },
   },
   {
     "folke/zen-mode.nvim",
+    lazy = true,
+    cmd = "ZenMode",
     opts = {
       window = {
         backdrop = 1,
@@ -33,8 +36,6 @@ return require("lazy").setup({
         },
       },
     },
-    lazy = true,
-    cmd = "ZenMode",
   },
   {
     "folke/which-key.nvim",
@@ -54,13 +55,15 @@ return require("lazy").setup({
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
-    init = function() require("todo-comments").setup { signs = false } end,
+    config = function() require("todo-comments").setup { signs = false } end,
+    lazy = true,
+    event = "VeryLazy",
   },
 
   -- Secure modelines (at the start of files a comment like "#vim: ft=sh", similar to shebangs)
-  "vim-scripts/securemodelines",
+  {"vim-scripts/securemodelines", lazy = false, priority = 1},
   -- LSP/DAP
-  "mfussenegger/nvim-dap",
+  {"mfussenegger/nvim-dap", lazy = true, event = "VeryLazy"},
   {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -70,7 +73,7 @@ return require("lazy").setup({
         event = "VeryLazy",
         lazy = true,
       },
-      { "williamboman/mason-lspconfig.nvim",         event = "VeryLazy", lazy = true },
+      { "williamboman/mason-lspconfig.nvim", event = "VeryLazy", lazy = true },
       { "WhoIsSethDaniel/mason-tool-installer.nvim", event = "VeryLazy", lazy = true },
     },
     event = "VeryLazy",
@@ -81,7 +84,7 @@ return require("lazy").setup({
       "mhartington/formatter.nvim",
       lazy = true,
       cmd = { "Format", "FormatWrite", "FormatLock", "FormatWriteLock" },
-      init = function()
+      config = function()
         require("formatter").setup {
           filetype = {
             lua = {
@@ -104,7 +107,7 @@ return require("lazy").setup({
   {
     "ray-x/lsp_signature.nvim",
     event = "LspAttach",
-    init = function()
+    config = function()
       require("lsp_signature").setup {
         hint_prefix = "🦭 ",
         handler_opts = { border = "none" },
@@ -128,12 +131,12 @@ return require("lazy").setup({
       options = {
         custom_commentstring = function()
           return require("ts_context_commentstring.internal").calculate_commentstring()
-              or vim.bo.commentstring
+            or vim.bo.commentstring
         end,
       },
     },
   },
-  { "andymass/vim-matchup" },
+  { "andymass/vim-matchup", lazy = true, event = "VeryLazy" },
   {
     "RRethy/nvim-treesitter-textsubjects",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
@@ -141,24 +144,26 @@ return require("lazy").setup({
   { "windwp/nvim-ts-autotag", ft = "html" },
   {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    init = function() require("lsp_lines").setup() end,
+    config = function() require("lsp_lines").setup() end,
     lazy = true,
-    event = "VeryLazy",
+    event = "LspAttach",
   },
   {
     "nmac427/guess-indent.nvim",
     init = function() require("guess-indent").setup {} end,
   },
   {
-    "windwp/nvim-autopairs",
-    init = function() require("nvim-autopairs").setup {} end,
+    "altermo/ultimate-autopair.nvim",
+    branch = "v0.6",
+    event = "InsertEnter",
+    config = function() require("ultimate-autopair").setup {} end,
   },
   {
     "folke/trouble.nvim",
     opts = {
       icons = false,
-      fold_open = "v",      -- icon used for open folds
-      fold_closed = ">",    -- icon used for closed folds
+      fold_open = "v", -- icon used for open folds
+      fold_closed = ">", -- icon used for closed folds
       indent_lines = false, -- add an indent guide below the fold icons
       signs = {
         error = "X",
@@ -181,61 +186,33 @@ return require("lazy").setup({
           null_ls.builtins.diagnostics.stylelint,
           null_ls.builtins.diagnostics.mypy,
           null_ls.builtins.diagnostics.markdownlint,
-          null_ls.builtins.formatting.dprint
-        }
+          null_ls.builtins.formatting.dprint,
+        },
       }
-    end
-  },
-  {
-    'rose-pine/neovim',
-    priority = 1000,
-    lazy = false,
-    init = function()
-      require("rose-pine").setup {
-        disable_italics = true,
-      }
-      vim.cmd("colorscheme rose-pine")
     end,
-    name = 'rose-pine'
   },
   -- Theming
-  -- {
-  --   "catppuccin/nvim",
-  --   priority = 1000,
-  --   lazy = false,
-  --   init = function()
-  --     require("catppuccin").setup {
-  --       flavour = "mocha",
-  --       background = {
-  --         light = "latte",
-  --         dark = "mocha",
-  --       },
-  --       integrations = {
-  --         cmp = true,
-  --         lsp_trouble = true,
-  --         which_key = true,
-  --         gitsigns = true,
-  --         nvimtree = true,
-  --         treesitter = true,
-  --         telescope = true,
-  --         indent_blankline = true,
-  --         neogit = true,
-  --         mason = true,
-  --         harpoon = true,
-  --       },
-  --     }
-  --     vim.cmd.colorscheme("catppuccin")
-  --   end,
-  -- },
   "nvim-lualine/lualine.nvim",
-  { "uga-rosa/ccc.nvim", event = "VeryLazy" },
+  {
+    "uga-rosa/ccc.nvim",
+    lazy = true,
+    event = "BufRead",
+    config = function()
+      require("ccc").setup {
+        highlighter = {
+          auto_enable = true,
+          lsp = true,
+        },
+      }
+    end,
+  },
   {
     "lukas-reineke/indent-blankline.nvim",
     branch = "v3",
     event = "VeryLazy",
-    init = function()
+    config = function()
       local highlight = {
-        "CursorColumn",
+        "StatusLine",
         "Whitespace",
       }
       require("ibl").setup {
@@ -246,7 +223,20 @@ return require("lazy").setup({
         },
         scope = { enabled = false },
       }
-    end
+    end,
+  },
+  {
+    "johannesrld/gruber-darker.nvim",
+    lazy = false,
+    priority = 1000,
+    init = function() vim.cmd("colorscheme gruber-darker") end,
+    opts = {
+      bold = true,
+      italic = {
+        strings = false,
+        comments = false,
+      },
+    },
   },
   -- Completion
   {
@@ -261,7 +251,11 @@ return require("lazy").setup({
     },
   },
 
-  { "L3MON4D3/LuaSnip",  version = "1.*",   build = "make install_jsregexp" },
+  {
+    "L3MON4D3/LuaSnip",
+    version = "1.*",
+    build = "make install_jsregexp",
+  },
   "saadparwaiz1/cmp_luasnip",
 
   --Git
@@ -278,7 +272,7 @@ return require("lazy").setup({
   },
   {
     "lewis6991/gitsigns.nvim",
-    init = function() require("gitsigns").setup() end,
+    config = function() require("gitsigns").setup() end,
     lazy = true,
     event = "VeryLazy",
   },
@@ -298,18 +292,31 @@ return require("lazy").setup({
       },
     },
   },
-  { "wintermute-cell/gitignore.nvim", dependencies = { "nvim-telescope/telescope.nvim" } },
+  {
+    "wintermute-cell/gitignore.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    lazy = true,
+  },
   -- Webdev
   {
     "pmizio/typescript-tools.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    opts = {},
+    lazy = true,
+    ft = { "ts", "js", "tsx", "jsx" },
+    config = function()
+      require("typescript-tools").setup {}
+      require("lspconfig")["typescript-tools"].launch()
+    end,
   },
   -- python
-  { "mfussenegger/nvim-dap-python" },
+  { "mfussenegger/nvim-dap-python", ft = "py" },
+  {
+    "chrisgrieser/nvim-puppeteer",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+  },
   --Rust
-  { "simrat39/rust-tools.nvim",       lazy = true },
-  { "Saecki/crates.nvim",             lazy = true },
+  { "simrat39/rust-tools.nvim", lazy = true },
+  { "Saecki/crates.nvim", lazy = true },
 }, {
   performance = {
     cache = {
