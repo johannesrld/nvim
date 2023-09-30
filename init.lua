@@ -25,6 +25,19 @@ if not vim.g.vscode then
   require("tau.plugins")
   require("tau.term-conf")
   require("tau.keymap")
+
+require("lspconfig").emmet_language_server.setup({
+  capabilities = cmp_cap,
+  init_options = {
+    showExpandedAbbreviation = "always",
+    showAbbreviationSuggestions = true,
+    showSuggestionsAsSnippets = true,
+  },
+  on_attach = function(client, _)
+      vim.print("Woah")
+  end
+  
+})
 else
   vim.g.mapleader = ","
 end

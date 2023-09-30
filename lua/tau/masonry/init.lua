@@ -50,8 +50,16 @@ require("mason-lspconfig").setup()
 local cmp = require("cmp")
 local luasnips = require("luasnip")
 require("luasnip.loaders.from_vscode").lazy_load()
-
+local cmp_border = vim.tbl_deep_extend(
+  "force",
+  cmp.config.window.bordered(),
+  { border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" } }
+)
 cmp.setup {
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
   view = {
     entries = { name = "custom", selection_order = "near_cursor" },
   },
@@ -70,6 +78,7 @@ cmp.setup {
     { name = "function" },
     { name = "luasnip" },
     { name = "buffer" },
+    { name = "html-css" },
   }, {
     { name = "buffer" },
   }),
@@ -100,7 +109,8 @@ cmp.setup {
     ghost_test = true,
   },
 }
-
+local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 cmp.setup.filetype("gitcommit", {
   sources = cmp.config.sources({
     { name = "git" },
@@ -124,49 +134,53 @@ cmp.setup.cmdline(":", {
     { name = "cmdline" },
   }),
 })
+local lsp_border = {
+  { "┌", "FloatBorder" },
+  { "─", "FloatBorder" },
+  { "┐", "FloatBorder" },
+  { "│", "FloatBorder" },
+  { "┘", "FloatBorder" },
+  { "─", "FloatBorder" },
+  { "└", "FloatBorder" },
+  { "│", "FloatBorder" },
+}
 local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities(
   vim.lsp.protocol.make_client_capabilities()
 )
 cmp_capabilities.textDocument.completion.completionItem.snippetSupport = true
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+  opts = opts or {}
+  opts.border = opts.border or lsp_border
+  return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
+
 require("mason-lspconfig").setup_handlers {
   function(server_name)
-    if server_name == "html" or server_name == "emmet_ls" then return end
+    if server_name == "hls" then return end
     if server_name == "lua_ls" then
       require("lspconfig")[server_name].setup {
         capabilities = cmp_capabilities,
         on_init = function(client)
-          local path = client.workspace_folders[1].name
-          if
-            not vim.loop.fs_stat(path .. "/.luarc.json")
-            and not vim.loop.fs_stat(path .. "/.luarc.jsonc")
-          then
-            client.config.settings =
+          client.config.settings =
               vim.tbl_deep_extend("force", client.config.settings, {
                 Lua = {
                   runtime = {
-                    -- Tell the language server which version of Lua you're using
-                    -- (most likely LuaJIT in the case of Neovim)
                     version = "LuaJIT",
                   },
-                  -- Make the server aware of Neovim runtime files
                   workspace = {
                     checkThirdParty = false,
                     library = {
                       vim.env.VIMRUNTIME,
-                      -- "${3rd}/luv/library"
-                      -- "${3rd}/busted/library",
                     },
-                    -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-                    -- library = vim.api.nvim_get_runtime_file("", true)
                   },
                 },
               })
 
-            client.notify(
-              "workspace/didChangeConfiguration",
-              { settings = client.config.settings }
-            )
-          end
+          client.notify(
+            "workspace/didChangeConfiguration",
+            { settings = client.config.settings }
+          )
           return true
         end,
       }
