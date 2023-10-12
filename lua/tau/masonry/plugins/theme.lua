@@ -35,7 +35,7 @@ return {
         "johannesrld/gruber-darker.nvim",
         lazy = false,
         priority = 1000,
-        init = function() vim.cmd("colorscheme gruber-darker") end,
+        -- init = function() vim.cmd("colorscheme gruber-darker") end,
         opts = {
             bold = true,
             italic = {
