@@ -5,7 +5,7 @@ if not vim.g.vscode then
   local required_commands = { "gcc", "g++", "make", "cargo", "npm", "rg", "node" }
   for _, cmd in ipairs(required_commands) do
     if vim.fn.executable(cmd) ~= 1 then
-      print("ERROR: command" .. cmd .. " not found in path, aborting")
+      print("ERROR: command \"" .. cmd .. "\" not found in path, aborting")
       return
     end
   end
@@ -23,7 +23,7 @@ if not vim.g.vscode then
   end
   vim.opt.rtp:prepend(lazypath)
   require("tau.plugins")
-  require("tau.term-conf")
+  require("tau.masonry")
   require("tau.keymap")
 
 require("lspconfig").emmet_language_server.setup({

@@ -103,7 +103,6 @@ set("n", "<leader>th", builtin().help_tags)
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
   callback = function(ev)
-    local dap = require("dap")
     function FormatBuilder()
       local client = vim.lsp.get_active_clients({ bufnr = 0 })[1]
       if client and client.supports_method("textDocument/formatting") then
@@ -162,12 +161,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.lsp.buf.code_action,
       optMap(mode, lspopts, { desc = "Code Action" })
     )
-    set("n", "<F5>", dap.continue, { desc = "DAP: Continue" })
-    set("n", "<F7>", dap.step_into, { desc = "DAP: Step Into" })
-    set("n", "<F8>", dap.step_over, { desc = "DAP: Step Over" })
-    set("n", "<F9>", dap.step_out, { desc = "DAP: Step Out" })
-    set("n", "<F12>", dap.close, { desc = "DAP: Close" })
-    set("n", "<leader>b", dap.toggle_breakpoint, { desc = "DAP: Toggle Breakpoint" })
     set("n", "<leader>ff", Format, optMap(mode, opts, { desc = "Format file" }))
   end,
 })

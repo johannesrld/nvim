@@ -1,6 +1,5 @@
 require("mason-tool-installer").setup {
   ensure_installed = {
-    "dprint",
     -- shell
     "shellcheck",
     "shellharden",
@@ -18,9 +17,6 @@ require("mason-tool-installer").setup {
     "ruff-lsp",
     "black",
 
-    --rust
-    "rust-analyzer",
-    "codelldb",
     --webdev
     --  css
     "css-lsp",

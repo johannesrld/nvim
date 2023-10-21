@@ -1,16 +1,6 @@
 return {
     --Plugins
     { "nvim-lua/plenary.nvim" },
-    {"kdheepak/monochrome.nvim"},
-    {"WIttyJudge/gruvbox-material.nvim"},
-    {
-    'AlexvZyl/nordic.nvim',
-    lazy = false,
-    priority = 1000,
-    config = function()
-        require 'nordic' .load()
-    end
-},
     {
         "jiaoshijie/undotree",
         lazy = true,
@@ -34,38 +24,9 @@ return {
         cmd = "Telescope",
         dependencies = { "nvim-lua/plenary.nvim" },
     },
-    {
-        "folke/todo-comments.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        config = function() require("todo-comments").setup { signs = false } end,
-        lazy = true,
-        event = "VeryLazy",
-    },
-
     -- -- Secure modelines (at the start of files a comment like "#vim: ft=sh", similar to shebangs)
     { "vim-scripts/securemodelines", lazy = false, priority = 1 },
     -- -- LSP/DAP
-    { "mfussenegger/nvim-dap",       lazy = true,  event = "VeryLazy" },
-    {
-        "mhartington/formatter.nvim",
-        lazy = true,
-        cmd = { "Format", "FormatWrite", "FormatLock", "FormatWriteLock" },
-        config = function()
-            require("formatter").setup {
-                filetype = {
-                    html = {
-                        require("formatter.filetypes.html").prettierd,
-                    },
-                    css = {
-                        require("formatter.filetypes.css").prettierd,
-                    },
-                    python = {
-                        require("formatter.filetypes.python").black,
-                    },
-                },
-            }
-        end,
-    },
     --Treesitter
     {
         "nvim-treesitter/nvim-treesitter",
@@ -116,22 +77,6 @@ return {
         cmd = "TroubleToggle",
     },
     { "anuvyklack/hydra.nvim" },
-    {
-        "jose-elias-alvarez/null-ls.nvim",
-        init = function()
-            local null_ls = require("null-ls")
-            null_ls.setup {
-                sources = {
-                    null_ls.builtins.diagnostics.stylelint,
-                    null_ls.builtins.diagnostics.mypy,
-                    null_ls.builtins.diagnostics.markdownlint,
-                    null_ls.builtins.formatting.dprint,
-                    null_ls.builtins.formatting.stylua,
-                    null_ls.builtins.diagnostics.markuplint,
-                },
-            }
-        end,
-    },
     -- Completion
     {
         "hrsh7th/nvim-cmp",
@@ -152,12 +97,6 @@ return {
     },
     "saadparwaiz1/cmp_luasnip",
     { "windwp/nvim-autopairs",        event = "InsertEnter", opts = {} },
-
-    -- {
-    --     "Jezda1337/nvim-html-css",
-    --     config = function() require("html-css"):setup() end,
-    --     ft = { "html", "css" },
-    -- },
 
     -- Git
     -- Webdev
@@ -182,31 +121,8 @@ return {
         end,
     },
     --python
-    { "mfussenegger/nvim-dap-python", ft = "py" },
     {
         "chrisgrieser/nvim-puppeteer",
         dependencies = "nvim-treesitter/nvim-treesitter",
-    },
-    --Rust
-    { "simrat39/rust-tools.nvim", lazy = true },
-    { "Saecki/crates.nvim",       lazy = true },
-    -- Haskell
-    {
-        "mrcjkb/haskell-tools.nvim",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
-        config = function ()
-            vim.g.haskell_tools = {
-                hls = {
-                    auto_attach = true,
-                    on_attack = function (client, bufnr, ht)
-                        vim.print("Hello Haskell")
-                    end
-                }
-            }
-        end,
-        version = "2.x.x",
-        ft = { "haskell", "lhaskell", "cabal", "cabalproject" },
     },
 }

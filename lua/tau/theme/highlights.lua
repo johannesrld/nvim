@@ -5,13 +5,10 @@ require("nvim-treesitter.configs").setup {
   ensure_installed = {
     "lua",
     "python",
-    "rust",
-    "ocaml",
     "bash",
     "html",
     "javascript",
     "css",
-    "ruby",
     "typescript",
   },
 

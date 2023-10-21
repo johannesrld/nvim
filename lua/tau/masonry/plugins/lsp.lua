@@ -33,10 +33,4 @@ return {
     end,
   },
   { "lvimuser/lsp-inlayhints.nvim", event = "LspAttach" },
-  {
-    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    config = function() require("lsp_lines").setup() end,
-    lazy = true,
-    event = "LspAttach",
-  },
 }
