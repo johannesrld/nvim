@@ -48,12 +48,11 @@ return {
             },
         },
     },
-    { "andymass/vim-matchup",                        lazy = true, event = "VeryLazy" },
     {
         "RRethy/nvim-treesitter-textsubjects",
         dependencies = { "nvim-treesitter/nvim-treesitter" },
     },
-    { "windwp/nvim-ts-autotag" },
+    { "windwp/nvim-ts-autotag", lazy = true, event = "InsertEnter" },
     {
         "nmac427/guess-indent.nvim",
         init = function() require("guess-indent").setup {} end,
@@ -119,10 +118,13 @@ return {
                 require("nvim-emmet").wrap_with_abbreviation
             )
         end,
+        ft = {"html", "css"}
     },
     --python
     {
         "chrisgrieser/nvim-puppeteer",
         dependencies = "nvim-treesitter/nvim-treesitter",
+        lazy = true,
+        event = "InsertEnter"
     },
 }

@@ -6,8 +6,6 @@ return require("lazy").setup("tau.masonry.plugins", {
     rtp = {
       disabled_plugins = {
         "gzip",
-        "matchit",
-        "matchparen",
         "tarPlugin",
         "tohtml",
         "tutor",

@@ -1,48 +1,3 @@
-require("mason-tool-installer").setup {
-  ensure_installed = {
-    -- shell
-    "shellcheck",
-    "shellharden",
-    "shfmt",
-    "bash-language-server",
-
-    --lua
-    "lua-language-server",
-    "stylua",
-
-    --python
-    "pyright", -- TODO: replace with pylyzer once it is mature enough
-    "mypy",
-    "debugpy",
-    "ruff-lsp",
-    "black",
-
-    --webdev
-    --  css
-    "css-lsp",
-    "stylelint", -- Stylelint lsp server?
-    "html-lsp",
-    "emmet-language-server",
-    "eslint-lsp",
-    "json-lsp",
-  },
-
-  auto_update = false,
-  run_on_start = true,
-  start_delay = 3000,
-  debounce_hours = 5,
-}
-require("mason").setup {
-  ui = {
-    icons = {
-      package_installed = "●",
-      package_pending = "◔",
-      package_uninstalled = "◯",
-    },
-  },
-}
-require("mason-lspconfig").setup()
-
 local cmp = require("cmp")
 local luasnips = require("luasnip")
 require("luasnip.loaders.from_vscode").lazy_load()
@@ -105,8 +60,13 @@ cmp.setup {
     ghost_test = true,
   },
 }
-local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+vim.api.nvim_create_autocmd("InsertEnter", {
+  group = vim.api.nvim_create_augroup("Autopair_cmp", {}),
+  callback = function(_)
+    local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+    cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+  end
+})
 cmp.setup.filetype("gitcommit", {
   sources = cmp.config.sources({
     { name = "git" },

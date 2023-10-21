@@ -103,22 +103,6 @@ set("n", "<leader>th", builtin().help_tags)
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
   callback = function(ev)
-    function FormatBuilder()
-      local client = vim.lsp.get_active_clients({ bufnr = 0 })[1]
-      if client and client.supports_method("textDocument/formatting") then
-        return function()
-          vim.lsp.buf.format()
-          print("Formatter: LSP")
-        end
-      else
-        return function()
-          vim.cmd("Format")
-          print("Formatter: Other")
-        end
-      end
-    end
-
-    local Format = FormatBuilder()
     wk.register {
       ["<leader>l"] = {
         name = "+lsp",
@@ -161,6 +145,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.lsp.buf.code_action,
       optMap(mode, lspopts, { desc = "Code Action" })
     )
-    set("n", "<leader>ff", Format, optMap(mode, opts, { desc = "Format file" }))
+    set("n", "<leader>ff", vim.lsp.buf.format, optMap(mode, opts, { desc = "Format file" }))
   end,
 })
