@@ -4,12 +4,15 @@ require("luasnip.loaders.from_vscode").lazy_load()
 local cmp_border = vim.tbl_deep_extend(
   "force",
   cmp.config.window.bordered(),
-  { border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" }, scrollbar = false }
+  {
+    border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
+    scrollbar = false,
+  }
 )
 cmp.setup {
   window = {
     completion = cmp_border,
-    documentation = cmp_border
+    documentation = cmp_border,
   },
   view = {
     entries = { name = "custom", selection_order = "near_cursor" },
@@ -30,6 +33,7 @@ cmp.setup {
     { name = "luasnip" },
     { name = "buffer" },
     { name = "html-css" },
+    { name = "conjure" }
   }, {
     { name = "buffer" },
   }),
@@ -65,7 +69,8 @@ vim.api.nvim_create_autocmd("InsertEnter", {
   callback = function(_)
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
     cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-  end
+  end,
+  once = true
 })
 cmp.setup.filetype("gitcommit", {
   sources = cmp.config.sources({
@@ -114,6 +119,19 @@ end
 require("mason-lspconfig").setup_handlers {
   function(server_name)
     if server_name == "hls" then return end
+    if server_name == "tsserver" then
+      return
+    end
+    if server_name == "emmet_language_server" then
+      require("lspconfig").emmet_language_server.setup {
+        capabilities = cmp_cap,
+        init_options = {
+          showExpandedAbbreviation = "always",
+          showAbbreviationSuggestions = true,
+          showSuggestionsAsSnippets = true,
+        },
+      }
+    end
     if server_name == "lua_ls" then
       require("lspconfig")[server_name].setup {
         capabilities = cmp_capabilities,
@@ -157,4 +175,5 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local client = vim.lsp.get_client_by_id(args.data.client_id)
     require("lsp-inlayhints").on_attach(client, bufnr)
   end,
+  once = true
 })

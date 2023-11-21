@@ -5,9 +5,7 @@ local stdpath = vim.fn.stdpath
 
 vim.opt.clipboard:append("unnamedplus")
 
-if vim.g.vscode then
-  vim.cmd("set shada=\"NONE\"")
-end
+if vim.g.vscode then vim.cmd('set shada="NONE"') end
 --[[
 -----------------------
 | GLOBAL CONFIGURATION |
@@ -15,7 +13,7 @@ end
 ]]
 -- Misc
 opt.spelllang = "en_gb"
-opt.spell = true
+opt.spell = not vim.g.vscode and true or false
 vim.opt_local.spelloptions:append("noplainbuffer")
 
 vim.opt.clipboard:append("unnamedplus")

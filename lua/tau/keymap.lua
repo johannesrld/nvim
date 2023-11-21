@@ -9,18 +9,14 @@ local optMap = vim.tbl_extend
 set(
   "n",
   "<leader>x",
-  function()
-    require("trouble").toggle()
-  end,
+  function() require("trouble").toggle() end,
   optMap(mode, opts, { desc = "View Probelms" })
 )
 
 set(
   "n",
   "<leader>z",
-  function ()
-    require("zen-mode").toggle()
-  end,
+  function() require("zen-mode").toggle() end,
   optMap(mode, opts, { desc = "Zen Mode" })
 )
 
@@ -145,6 +141,5 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.lsp.buf.code_action,
       optMap(mode, lspopts, { desc = "Code Action" })
     )
-    set("n", "<leader>ff", vim.lsp.buf.format, optMap(mode, opts, { desc = "Format file" }))
   end,
 })
