@@ -116,12 +116,14 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
   return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
+local blacklisted_servers = {
+  ["hls"] = true,
+  ["tsserver"] = true,
+  ["rust_analyzer"] = true
+}
 require("mason-lspconfig").setup_handlers {
   function(server_name)
-    if server_name == "hls" then return end
-    if server_name == "tsserver" then
-      return
-    end
+    if blacklisted_servers[server_name] then return end
     if server_name == "emmet_language_server" then
       require("lspconfig").emmet_language_server.setup {
         capabilities = cmp_cap,

@@ -30,8 +30,10 @@ opt.sidescrolloff = 8 -- Same as above but horizontally
 opt.numberwidth = 3 -- Min number of lines for line number gutter
 opt.showmode = false -- don't show the mode in the command area (e.g. "--INSERT--")
 opt.conceallevel = 2 -- Hide concealed chars unless syn-cchar is set
-opt.updatetime = 200 -- Faster completion
+opt.updatetime = 300 -- Faster completion
 opt.colorcolumn = "88"
+opt.completeopt = { "menuone", "noselect", "noinsert" }
+opt.shortmess = opt.shortmess + { c = true}
 
 --Tab configuration
 opt.autoindent = true -- Copy indent from the above line when starting a new line

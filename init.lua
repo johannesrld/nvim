@@ -25,10 +25,10 @@ if not vim.g.vscode then
   end
   vim.opt.rtp:prepend(lazypath)
   require "tau.plugins"
-  require "tau.masonry" 
+  require "tau.masonry"
   require "tau.keymap"
   require "tau.theme.highlights"
-  require "tau.theme.line" 
+  require "tau.theme.line"
 
 else
   vim.g.mapleader = ","
