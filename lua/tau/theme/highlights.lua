@@ -5,6 +5,7 @@ require("nvim-treesitter.configs").setup {
   ensure_installed = {
     "lua",
     "python",
+    "org",
     "bash",
     "html",
     "javascript",
@@ -15,7 +16,7 @@ require("nvim-treesitter.configs").setup {
   indent = { enable = true, disable = { "html" } },
 
   auto_install = true,
-  highlight = { enable = true },
+  highlight = { enable = true, additional_vim_regex_highlighting = { "org" } },
   incremental_selection = {
     enable = true,
     keymaps = {

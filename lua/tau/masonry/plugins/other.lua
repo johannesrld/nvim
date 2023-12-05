@@ -8,6 +8,28 @@ return {
     opts = {
       float_diff = false,
     },
+    {
+      'nvim-orgmode/orgmode',
+      config = function()
+        -- Load treesitter grammar for org
+        require('orgmode').setup_ts_grammar()
+
+        -- Setup treesitter
+        -- require('nvim-treesitter.configs').setup({
+        --   highlight = {
+        --     enable = true,
+        --     additional_vim_regex_highlighting = { 'org' },
+        --   },
+        --   ensure_installed = { 'org' },
+        -- })
+
+        -- Setup orgmode
+        require('orgmode').setup({
+          org_agenda_files = '~/orgfiles/**/*',
+          org_default_notes_file = '~/orgfiles/refile.org',
+        })
+      end,
+    }
   },
   {
     "folke/which-key.nvim",
@@ -43,7 +65,7 @@ return {
       options = {
         custom_commentstring = function()
           return require("ts_context_commentstring.internal").calculate_commentstring()
-            or vim.bo.commentstring
+              or vim.bo.commentstring
         end,
       },
     },
@@ -60,12 +82,12 @@ return {
     },
   },
   { "PaterJason/cmp-conjure" },
-  { "hiphish/rainbow-delimiters.nvim", lazy = true, ft = { "fennel", "lisp", "racket", "clojure", "guile" } },
+  { "hiphish/rainbow-delimiters.nvim",             lazy = true, ft = { "fennel", "lisp", "racket", "clojure", "guile" } },
   {
     "eraserhd/parinfer-rust",
     build = "cargo build --release",
     lazy = true,
-    ft = {"fennel", "lisp", "racket", "guile"},
+    ft = { "fennel", "lisp", "racket", "guile" },
   },
   {
     "RRethy/nvim-treesitter-textsubjects",
@@ -80,8 +102,8 @@ return {
     "folke/trouble.nvim",
     opts = {
       icons = false,
-      fold_open = "v", -- icon used for open folds
-      fold_closed = ">", -- icon used for closed folds
+      fold_open = "v",      -- icon used for open folds
+      fold_closed = ">",    -- icon used for closed folds
       indent_lines = false, -- add an indent guide below the fold icons
       signs = {
         error = "X",
