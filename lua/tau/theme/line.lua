@@ -1,6 +1,10 @@
 local function gitBranch()
   if vim.loop.fs_stat(vim.loop.cwd() .. "/.git") then
-    return "[" .. vim.trim(vim.fn.system({"git", "rev-parse", "--abbrev-ref", "HEAD"})) .. "]"
+    local git_str =
+    "[" .. vim.trim(vim.fn.system({"git", "symbolic-ref", "--short", "HEAD"})) .. "]"
+    if git_str ~= "[]" then
+      return git_str
+    end
   end
   return ""
 end

@@ -1,10 +1,9 @@
 return {
   {
-    "rose-pine/neovim",
-    name = "rose-pine",
+    "Mofiqul/vscode.nvim",
     priority = 1000,
-    opts = { disable_italics = true, disable_background = true },
-    init = function() vim.cmd("colorscheme rose-pine") end,
+    opts = { transparent = false },
+    init = function () vim.cmd("colorscheme vscode") end
   },
   {
     "uga-rosa/ccc.nvim",

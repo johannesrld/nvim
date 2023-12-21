@@ -1,4 +1,5 @@
 return {
+  "joerdav/templ.vim",
   {
     "neovim/nvim-lspconfig",
     dependencies = {

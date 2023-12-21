@@ -126,13 +126,14 @@ require("mason-lspconfig").setup_handlers {
     if blacklisted_servers[server_name] then return end
     if server_name == "emmet_language_server" then
       require("lspconfig").emmet_language_server.setup {
-        capabilities = cmp_cap,
+        capabilities = cmp_capabilities,
         init_options = {
           showExpandedAbbreviation = "always",
           showAbbreviationSuggestions = true,
           showSuggestionsAsSnippets = true,
         },
       }
+      return true
     end
     if server_name == "lua_ls" then
       require("lspconfig")[server_name].setup {
