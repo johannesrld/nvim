@@ -13,7 +13,7 @@ require("nvim-treesitter.configs").setup {
     "typescript",
   },
 
-  indent = { enable = true, disable = { "html" } },
+  indent = { enable = true, disable = { "html", "ocaml" } },
 
   auto_install = true,
   highlight = { enable = true, additional_vim_regex_highlighting = { "org" } },

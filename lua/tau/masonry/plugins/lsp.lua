@@ -1,5 +1,4 @@
 return {
-  "joerdav/templ.vim",
   {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -53,6 +52,9 @@ return {
             "emmet-language-server",
             "eslint-lsp",
             "json-lsp",
+            -- Other
+            "ocaml-lsp",
+            "ocamlformat"
           },
 
           auto_update = false,
@@ -67,6 +69,10 @@ return {
   },
   {
     "nvimtools/none-ls.nvim",
+  },
+  {
+    "tjdevries/ocaml.nvim",
+    ft = "ocaml"
   },
   {
     "ray-x/lsp_signature.nvim",

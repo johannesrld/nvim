@@ -1,9 +1,9 @@
 return {
   {
-    "Mofiqul/vscode.nvim",
+    "miikanissi/modus-themes.nvim",
     priority = 1000,
-    opts = { transparent = false },
-    init = function () vim.cmd("colorscheme vscode") end
+    opts = { styles = { keywords = { italic = false } } },
+    init = function () vim.cmd [[colorscheme modus]] end
   },
   {
     "uga-rosa/ccc.nvim",
