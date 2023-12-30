@@ -16,7 +16,7 @@ if not bootstrap.success then
   end
   local err_msg = 'Failed to bootstrap neovim\n[\nYou have missing commands:'
       .. missing_command_str
-      .. '\n]\nAborting Setup'
+      .. ']\nAborting Setup'
   print(err_msg)
 end
 require 'tau.masonry'
