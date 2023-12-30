@@ -1,6 +1,6 @@
 return {
   {
-    "tjdevries/ocaml.nvim",
-    ft = "ocaml"
-  }
- }
+    'tjdevries/ocaml.nvim',
+    ft = 'ocaml',
+  },
+}

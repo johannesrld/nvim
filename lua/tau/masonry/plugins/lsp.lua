@@ -1,62 +1,62 @@
 return {
-  { "Vigemus/iron.nvim", },
+  { 'Vigemus/iron.nvim' },
   {
-    "neovim/nvim-lspconfig",
+    'neovim/nvim-lspconfig',
     dependencies = {
       {
-        "williamboman/mason.nvim",
-        build = function() require("mason.api.command").MasonUpdate() end,
-        event = "VeryLazy",
+        'williamboman/mason.nvim',
+        build = function() require('mason.api.command').MasonUpdate() end,
+        event = 'VeryLazy',
         lazy = true,
         opts = {
           ui = {
             icons = {
-              package_installed = "+",
-              package_pending = "#",
-              package_uninstalled = "-",
+              package_installed = '+',
+              package_pending = '#',
+              package_uninstalled = '-',
             },
           },
         },
       },
       {
-        "williamboman/mason-lspconfig.nvim",
-        event = "VeryLazy",
+        'williamboman/mason-lspconfig.nvim',
+        event = 'VeryLazy',
         lazy = true,
       },
       {
-        "WhoIsSethDaniel/mason-tool-installer.nvim",
-        event = "VeryLazy",
+        'WhoIsSethDaniel/mason-tool-installer.nvim',
+        event = 'VeryLazy',
         lazy = true,
         opts = {
           ensure_installed = {
             -- shell
-            "shellcheck",
-            "shellharden",
-            "shfmt",
-            "bash-language-server",
+            'shellcheck',
+            'shellharden',
+            'shfmt',
+            'bash-language-server',
 
             --lua
-            "lua-language-server",
-            "stylua",
+            'lua-language-server',
+            'stylua',
 
             --python
-            "pyright", -- TODO: replace with pylyzer once it is mature enough
-            "mypy",
-            "debugpy",
-            "ruff-lsp",
-            "black",
+            'pyright', -- TODO: replace with pylyzer once it is mature enough
+            'mypy',
+            'debugpy',
+            'ruff-lsp',
+            'black',
 
             --webdev
-            "css-lsp",
-            "stylelint", -- Stylelint lsp server?
-            "html-lsp",
-            "emmet-language-server",
-            "eslint-lsp",
-            "json-lsp",
+            'css-lsp',
+            'stylelint', -- Stylelint lsp server?
+            'html-lsp',
+            'emmet-language-server',
+            'eslint-lsp',
+            'json-lsp',
             -- Other
-            "ocaml-lsp",
-            "ocamlformat",
-            "haskell"
+            'ocaml-lsp',
+            'ocamlformat',
+            'haskell-language-server',
           },
 
           auto_update = false,
@@ -66,19 +66,27 @@ return {
         },
       },
     },
-    event = "VeryLazy",
+    event = 'VeryLazy',
     lazy = true,
   },
   {
-    "nvimtools/none-ls.nvim",
+    'nvimtools/none-ls.nvim',
+    config = function()
+      local null_ls = require 'null-ls'
+      null_ls.setup {
+        sources = {
+          null_ls.builtins.formatting.stylua,
+        },
+      }
+    end,
   },
   {
-    "ray-x/lsp_signature.nvim",
-    event = "LspAttach",
+    'ray-x/lsp_signature.nvim',
+    event = 'LspAttach',
     opts = {
-      hint_prefix = "🦭 ",
-      handler_opts = { border = "none" },
-    }
+      hint_prefix = '🦭 ',
+      handler_opts = { border = 'none' },
+    },
   },
-  { "lvimuser/lsp-inlayhints.nvim", event = "LspAttach" },
+  { 'lvimuser/lsp-inlayhints.nvim', event = 'LspAttach' },
 }

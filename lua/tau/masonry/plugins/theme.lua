@@ -1,21 +1,21 @@
 return {
   {
-    "sainnhe/gruvbox-material",
+    'sainnhe/gruvbox-material',
     priority = 1000,
     init = function()
-      vim.g.gruvbox_material_background = "hard"
+      vim.g.gruvbox_material_background = 'hard'
       vim.cmd [[colorscheme gruvbox-material]]
-    end
+    end,
   },
   {
-    "uga-rosa/ccc.nvim",
+    'uga-rosa/ccc.nvim',
     lazy = true,
-    event = "BufRead",
+    event = 'BufRead',
     opts = {
       highlighter = {
         auto_enable = true,
         lsp = true,
       },
-    }
+    },
   },
 }

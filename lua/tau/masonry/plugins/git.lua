@@ -1,9 +1,9 @@
 return {
   {
-    "NeogitOrg/neogit",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    'NeogitOrg/neogit',
+    dependencies = { 'nvim-lua/plenary.nvim' },
     lazy = true,
-    cmd = "Neogit",
+    cmd = 'Neogit',
     opts = {
       integrations = {
         diffview = true,
@@ -11,24 +11,24 @@ return {
     },
   },
   {
-    "lewis6991/gitsigns.nvim",
+    'lewis6991/gitsigns.nvim',
     lazy = true,
-    event = "VeryLazy",
-    cmd = "Gitsigns"
+    event = 'VeryLazy',
+    cmd = 'Gitsigns',
   },
   {
-    "sindrets/diffview.nvim",
+    'sindrets/diffview.nvim',
     lazy = true,
     opts = {
       use_icons = false,
       icons = { -- Only applies when use_icons is true.
-        folder_closed = ">",
-        folder_open = "v",
+        folder_closed = '>',
+        folder_open = 'v',
       },
       signs = {
-        fold_closed = ">",
-        fold_open = "v",
-        done = "✓",
+        fold_closed = '>',
+        fold_open = 'v',
+        done = '✓',
       },
     },
   },

@@ -5,9 +5,9 @@ return {
     ft = { 'haskell', 'lhaskell', 'cabal', 'cabalproject' },
   },
   {
-    "itchyny/vim-haskell-indent",
+    'itchyny/vim-haskell-indent',
     ft = { 'haskell', 'lhaskell', 'cabal', 'cabalproject' },
     lazy = true,
-    event = "LspAttach"
-  }
+    event = 'LspAttach',
+  },
 }
