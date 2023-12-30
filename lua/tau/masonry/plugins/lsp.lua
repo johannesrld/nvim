@@ -1,4 +1,5 @@
 return {
+  { "Vigemus/iron.nvim", },
   {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -54,7 +55,8 @@ return {
             "json-lsp",
             -- Other
             "ocaml-lsp",
-            "ocamlformat"
+            "ocamlformat",
+            "haskell"
           },
 
           auto_update = false,
@@ -71,18 +73,12 @@ return {
     "nvimtools/none-ls.nvim",
   },
   {
-    "tjdevries/ocaml.nvim",
-    ft = "ocaml"
-  },
-  {
     "ray-x/lsp_signature.nvim",
     event = "LspAttach",
-    config = function()
-      require("lsp_signature").setup {
-        hint_prefix = "🦭 ",
-        handler_opts = { border = "none" },
-      }
-    end,
+    opts = {
+      hint_prefix = "🦭 ",
+      handler_opts = { border = "none" },
+    }
   },
   { "lvimuser/lsp-inlayhints.nvim", event = "LspAttach" },
 }

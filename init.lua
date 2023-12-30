@@ -1,35 +1,24 @@
 vim.loader.enable()
-require("tau.options")
--- TODO: check for libraries like luajit and libstdc++ etc etc.
-if not vim.g.vscode then
-  local required_commands =
-    { "gcc", "g++", "make", "cargo", "npm", "rg", "node", "tar", "gzip", "unzip" }
-  for _, cmd in ipairs(required_commands) do
-    if vim.fn.executable(cmd) ~= 1 then
-      print('ERROR: command "' .. cmd .. '" not found in path, aborting')
-      return
-    end
-  end
-  vim.g.mapleader = " "
-  vim.g.maplocalleader = " "
-  local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-  if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system {
-      "git",
-      "clone",
-      "--filter=blob:none",
-      "https://github.com/folke/lazy.nvim.git",
-      "--branch=stable",
-      lazypath,
-    }
-  end
-  vim.opt.rtp:prepend(lazypath)
-  require "tau.plugins"
-  require "tau.masonry"
-  require "tau.keymap"
-  require "tau.theme.highlights"
-  require "tau.theme.line"
-
-else
-  vim.g.mapleader = ","
+require "tau.options"
+local ok, bootstrap = pcall(require, 'tau.bootstrap')
+if not ok then
+  print [[
+  Failed to bootstrap neovim
+  [Failed at requiring lua/tau/bootstrap]
+  Aborting Setup
+  ]]
+  return
 end
+if not bootstrap.success then
+  local missing_command_str = ""
+  for _, cmd in ipairs(bootstrap.missing_commands) do
+    missing_command_str = missing_command_str .. cmd .. "\n"
+  end
+  local err_msg = "Failed to bootstrap neovim\n[\nYou have missing commands:" ..
+  missing_command_str .. "\n]\nAborting Setup"
+  print(err_msg)
+end
+require "tau.masonry"
+require "tau.keymap"
+require "tau.theme.highlights"
+require "tau.theme.line"

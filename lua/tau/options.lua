@@ -3,24 +3,18 @@ local g = vim.g
 local indentWidth = 4
 local stdpath = vim.fn.stdpath
 
-vim.opt.clipboard:append("unnamedplus")
-
-if vim.g.vscode then vim.cmd('set shada="NONE"') end
---[[
------------------------
-| GLOBAL CONFIGURATION |
------------------------
-]]
 -- Misc
 opt.spelllang = "en_gb"
 opt.spell = not vim.g.vscode and true or false
-vim.opt_local.spelloptions:append("noplainbuffer")
+vim.opt_local.spelloptions:append "noplainbuffer"
+vim.g.mapleader = " "
+vim.g.maplocalleader = ","
 
-vim.opt.clipboard:append("unnamedplus")
+vim.opt.clipboard:append "unnamedplus"
 -- UI
 opt.spelllang = "en_gb"
 opt.spell = true
-vim.opt_local.spelloptions:append("noplainbuffer")
+vim.opt_local.spelloptions:append "noplainbuffer"
 opt.showtabline = 0 -- Never display tabline
 opt.number = true -- Show line numbers
 opt.relativenumber = true -- Show line numbers relative to current cursor position

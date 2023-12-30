@@ -5,19 +5,17 @@ return {
     "jiaoshijie/undotree",
     lazy = true,
     event = "VeryLazy",
-    opts = {
-      float_diff = false,
-    },
-    {
-      'nvim-orgmode/orgmode',
-      config = function()
-        require('orgmode').setup_ts_grammar()
-        require('orgmode').setup({
-          org_agenda_files = '~/orgfiles/**/*',
-          org_default_notes_file = '~/orgfiles/refile.org',
-        })
-      end,
-    }
+    opts = { float_diff = false, },
+  },
+  {
+    'nvim-orgmode/orgmode',
+    config = function()
+      require('orgmode').setup_ts_grammar()
+      require('orgmode').setup {
+        org_agenda_files = '~/orgfiles/**/*',
+        org_default_notes_file = '~/orgfiles/refile.org',
+      }
+    end,
   },
   {
     "folke/which-key.nvim",
@@ -34,10 +32,7 @@ return {
     cmd = "Telescope",
     dependencies = { "nvim-lua/plenary.nvim" },
   },
-  -- -- Secure modelines (at the start of files a comment like "#vim: ft=sh", similar to shebangs)
   { "vim-scripts/securemodelines", lazy = false, priority = 1 },
-  -- -- LSP/DAP
-  --Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
@@ -58,18 +53,22 @@ return {
       },
     },
   },
-  { "hiphish/rainbow-delimiters.nvim",             lazy = true, ft = { "fennel", "lisp", "racket", "clojure", "guile" } },
+  {
+    "hiphish/rainbow-delimiters.nvim",
+    lazy = true,
+    ft = { "fennel", "lisp", "racket", "clojure", "guile" }
+  },
   {
     "eraserhd/parinfer-rust",
     build = "cargo build --release",
     lazy = true,
+    event = "InsertEnter",
     ft = { "fennel", "lisp", "racket", "guile" },
   },
   {
     "RRethy/nvim-treesitter-textsubjects",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
-  { "windwp/nvim-ts-autotag", lazy = true, event = "InsertEnter" },
   {
     "nmac427/guess-indent.nvim",
     init = function() require("guess-indent").setup {} end,
@@ -116,28 +115,6 @@ return {
 
   -- Git
   -- Webdev
-  {
-    "pmizio/typescript-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    lazy = true,
-    ft = { "typescript", "javascript", "tsx", "jsx" },
-    config = function()
-      require("typescript-tools").setup {}
-      require("lspconfig")["typescript-tools"].launch()
-    end,
-  },
-  {
-    "olrtg/nvim-emmet",
-    config = function()
-      vim.keymap.set(
-        { "n", "v" },
-        "<leader>lwa",
-        require("nvim-emmet").wrap_with_abbreviation
-      )
-    end,
-    ft = { "html", "css" },
-  },
-  --python
   {
     "chrisgrieser/nvim-puppeteer",
     dependencies = "nvim-treesitter/nvim-treesitter",

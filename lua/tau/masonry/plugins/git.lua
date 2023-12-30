@@ -12,16 +12,16 @@ return {
   },
   {
     "lewis6991/gitsigns.nvim",
-    config = function() require("gitsigns").setup() end,
     lazy = true,
     event = "VeryLazy",
+    cmd = "Gitsigns"
   },
   {
     "sindrets/diffview.nvim",
     lazy = true,
     opts = {
       use_icons = false,
-      icons = {       -- Only applies when use_icons is true.
+      icons = { -- Only applies when use_icons is true.
         folder_closed = ">",
         folder_open = "v",
       },

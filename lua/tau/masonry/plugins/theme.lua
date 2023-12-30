@@ -1,21 +1,21 @@
 return {
   {
-    "miikanissi/modus-themes.nvim",
+    "sainnhe/gruvbox-material",
     priority = 1000,
-    opts = { styles = { keywords = { italic = false } } },
-    init = function () vim.cmd [[colorscheme modus]] end
+    init = function()
+      vim.g.gruvbox_material_background = "hard"
+      vim.cmd [[colorscheme gruvbox-material]]
+    end
   },
   {
     "uga-rosa/ccc.nvim",
     lazy = true,
     event = "BufRead",
-    config = function()
-      require("ccc").setup {
-        highlighter = {
-          auto_enable = true,
-          lsp = true,
-        },
-      }
-    end,
+    opts = {
+      highlighter = {
+        auto_enable = true,
+        lsp = true,
+      },
+    }
   },
 }
