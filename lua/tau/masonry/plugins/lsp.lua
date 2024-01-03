@@ -54,8 +54,8 @@ return {
             'eslint-lsp',
             'json-lsp',
             -- Other
-            'ocaml-lsp',
-            'ocamlformat',
+            -- 'ocaml-lsp',
+            -- 'ocamlformat',
             'haskell-language-server',
           },
 
@@ -79,6 +79,16 @@ return {
         },
       }
     end,
+  },
+  {
+    'stevearc/conform.nvim',
+    opts = {
+      formatters_by_ft = {
+        lua = { 'stylua' },
+        markdown = { 'markdownlint', 'dprint' },
+        json = { 'dprint' },
+      },
+    },
   },
   {
     'ray-x/lsp_signature.nvim',

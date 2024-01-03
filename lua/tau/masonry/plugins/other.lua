@@ -56,7 +56,7 @@ return {
   {
     'hiphish/rainbow-delimiters.nvim',
     lazy = true,
-    ft = { 'fennel', 'lisp', 'racket', 'clojure', 'guile' },
+    ft = { 'fennel', 'lisp', 'racket', 'clojure', 'guile', 'haskell' },
   },
   {
     'eraserhd/parinfer-rust',

@@ -1,4 +1,5 @@
 return {
+  "neovimhaskell/haskell-vim",
   {
     'mrcjkb/haskell-tools.nvim',
     version = '^3',
