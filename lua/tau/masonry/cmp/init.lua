@@ -1,14 +1,10 @@
 local cmp = require 'cmp'
 local luasnips = require 'luasnip'
 require('luasnip.loaders.from_vscode').lazy_load()
-local cmp_border = vim.tbl_deep_extend(
-  'force',
-  cmp.config.window.bordered(),
-  {
-    border = { '┌', '─', '┐', '│', '┘', '─', '└', '│' },
-    scrollbar = false,
-  }
-)
+local cmp_border = vim.tbl_deep_extend('force', cmp.config.window.bordered(), {
+  border = { '┌', '─', '┐', '│', '┘', '─', '└', '│' },
+  scrollbar = false,
+})
 cmp.setup {
   window = { completion = cmp_border, documentation = cmp_border },
   view = { entries = { name = 'custom', selection_order = 'near_cursor' } },
