@@ -1,5 +1,9 @@
 return {
-  { 'Vigemus/iron.nvim' },
+  {
+    'Vigemus/iron.nvim',
+    ft = { 'haskell' },
+    lazy = true,
+  },
   {
     'neovim/nvim-lspconfig',
     dependencies = {
