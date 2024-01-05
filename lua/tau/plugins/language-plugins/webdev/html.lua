@@ -12,7 +12,6 @@ return {
   },
   {
     'windwp/nvim-ts-autotag',
-    lazy = true,
-    event = 'InsertEnter',
+    ft = { 'html', 'typescript', 'javascript' },
   },
 }

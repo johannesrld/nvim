@@ -1,6 +1,11 @@
 return {
   --Plugins
   { 'nvim-lua/plenary.nvim' },
+  { 'vim-scripts/securemodelines',                 lazy = false,          priority = 1 },
+  { 'JoosepAlviste/nvim-ts-context-commentstring', lazy = true },
+  { 'anuvyklack/hydra.nvim' },
+  { 'windwp/nvim-autopairs',                       event = 'InsertEnter', opts = {} },
+  { 'L3MON4D3/LuaSnip',                            version = '1.*',       build = 'make install_jsregexp', },
   {
     'jiaoshijie/undotree',
     lazy = true,
@@ -35,7 +40,6 @@ return {
     cmd = 'Telescope',
     dependencies = { 'nvim-lua/plenary.nvim' },
   },
-  { 'vim-scripts/securemodelines', lazy = false, priority = 1 },
   {
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
@@ -43,7 +47,6 @@ return {
       'RRethy/nvim-treesitter-endwise',
     },
   },
-  { 'JoosepAlviste/nvim-ts-context-commentstring', lazy = true },
   {
     'echasnovski/mini.comment',
     event = 'VeryLazy',
@@ -94,7 +97,6 @@ return {
     lazy = true,
     cmd = 'TroubleToggle',
   },
-  { 'anuvyklack/hydra.nvim' },
   -- Completion
   {
     'hrsh7th/nvim-cmp',
@@ -105,23 +107,7 @@ return {
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
+      'saadparwaiz1/cmp_luasnip',
     },
-  },
-
-  {
-    'L3MON4D3/LuaSnip',
-    version = '1.*',
-    build = 'make install_jsregexp',
-  },
-  'saadparwaiz1/cmp_luasnip',
-  { 'windwp/nvim-autopairs', event = 'InsertEnter', opts = {} },
-
-  -- Git
-  -- Webdev
-  {
-    'chrisgrieser/nvim-puppeteer',
-    dependencies = 'nvim-treesitter/nvim-treesitter',
-    lazy = true,
-    event = 'InsertEnter',
   },
 }

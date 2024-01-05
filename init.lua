@@ -19,7 +19,7 @@ if not bootstrap.success then
       .. ']\nAborting Setup'
   print(err_msg)
 end
-require 'tau.masonry'
+require 'tau'
 require 'tau.keymap'
 require 'tau.theme.highlights'
 require 'tau.theme.line'

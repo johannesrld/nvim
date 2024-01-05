@@ -11,12 +11,6 @@ return {
     },
   },
   {
-    'lewis6991/gitsigns.nvim',
-    lazy = true,
-    event = 'VeryLazy',
-    cmd = 'Gitsigns',
-  },
-  {
     'sindrets/diffview.nvim',
     lazy = true,
     opts = {
@@ -32,5 +26,6 @@ return {
       },
     },
   },
+  { 'lewis6991/gitsigns.nvim',   lazy = true,   event = 'VeryLazy', cmd = 'Gitsigns' },
   { 'akinsho/git-conflict.nvim', version = '*', config = true },
 }

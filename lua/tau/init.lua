@@ -1,8 +1,8 @@
 require('lazy').setup {
   spec = {
-    { import = 'tau.masonry.plugins' },
-    { import = 'tau.masonry.plugins.language-plugins' },
-    { import = 'tau.masonry.plugins.language-plugins.webdev' },
+    { import = 'tau.plugins' },
+    { import = 'tau.plugins.language-plugins' },
+    { import = 'tau.plugins.language-plugins.webdev' },
   },
   ui = {
     icons = {
@@ -31,5 +31,5 @@ require('lazy').setup {
   },
 }
 
-require 'tau.masonry.cmp'
-require 'tau.masonry.lsp'
+require 'tau.cmp'
+require 'tau.lsp'

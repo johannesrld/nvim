@@ -1,5 +1,5 @@
-local cmp_capabilities = require 'tau.masonry.lsp.capabilities'
-local server_options = require 'tau.masonry.lsp.server_options'
+local cmp_capabilities = require 'tau.lsp.capabilities'
+local server_options = require 'tau.lsp.server_options'
 
 local blacklisted_servers = { hls = true, tsserver = true, rust_analyzer = true } -- These are handled elsewhere
 require('mason-lspconfig').setup_handlers {

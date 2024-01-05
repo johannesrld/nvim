@@ -1,5 +1,8 @@
 return {
-  'neovimhaskell/haskell-vim',
+  {
+    'neovimhaskell/haskell-vim',
+    ft = { 'haskell', 'lhaskell', 'cabal', 'cabalproject' }
+  },
   {
     'mrcjkb/haskell-tools.nvim',
     version = '^3',
@@ -8,7 +11,5 @@ return {
   {
     'itchyny/vim-haskell-indent',
     ft = { 'haskell', 'lhaskell', 'cabal', 'cabalproject' },
-    lazy = true,
-    event = 'LspAttach',
   },
 }
