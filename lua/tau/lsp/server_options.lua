@@ -1,3 +1,4 @@
+local cmp_capabilities = require 'tau.lsp.capabilities'
 return {
   emmet_language_server = {
     capabilities = cmp_capabilities,
