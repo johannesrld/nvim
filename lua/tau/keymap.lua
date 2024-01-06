@@ -1,50 +1,54 @@
 local set = vim.keymap.set
+---@type function
 local hydra = require 'hydra'
 local wk = require 'which-key'
 
-local opts = { silent = true, noremap = true }
-local mode = 'force'
-local optMap = vim.tbl_extend
+wk.register({
+  t = {
+    name = '+Telescope',
+  },
+  c = {
+    name = '+Code Actions'
+  }
+}, { prefix = "<leader>" })
+
+---@param defaultOpts table
+---@return fun(customOpts: table): table
+local function defaultSetting(defaultOpts)
+  return function(customOpts)
+    return vim.tbl_extend('force', defaultOpts, customOpts)
+  end
+end
+
+local opts = defaultSetting { silent = true, noremap = true }
 
 set(
   'n',
   '<leader>x',
   function() require('trouble').toggle() end,
-  optMap(mode, opts, { desc = 'View Probelms' })
+  opts { desc = 'View Probelms' }
 )
 
 set(
   'n',
   '<leader>z',
   function() require('zen-mode').toggle() end,
-  optMap(mode, opts, { desc = 'Zen Mode' })
+  opts { desc = 'Zen Mode' }
 )
 
 set(
   'n',
   '<leader>m',
   function() require('undotree').toggle() end,
-  optMap(mode, opts, { desc = 'Toggle Undo Tree' })
+  opts { desc = 'Toggle Undo Tree' }
 )
 
-wk.register {
-  ['<leader>f'] = {
-    name = '+formatting',
-  },
-}
-
-set(
-  'n',
-  '<leader>fw',
-  '<cmd>FormatWrite<cr>',
-  optMap(mode, opts, { desc = 'Format & write file' })
-)
 
 set(
   'n',
   '<leader>g',
   function() require('neogit').open {} end,
-  optMap(mode, opts, { desc = 'Open Neogit' })
+  opts { desc = 'Open Neogit' }
 )
 
 local function slew_hydra() print 'Hercules slew the Hydra.' end
@@ -86,66 +90,26 @@ hydra {
     on_exit = slew_hydra,
   },
 }
-local builtin = function() return require 'telescope.builtin' end
-wk.register {
-  ['<leader>t'] = {
-    name = '+Telescope',
-  },
-}
-set('n', '<leader>tf', builtin().fd)
-set('n', '<leader>tg', builtin().live_grep)
-set('n', '<leader>tb', builtin().buffers)
-set('n', '<leader>th', builtin().help_tags)
+---@param module string
+---@return function
+local function Telescope(module)
+  return function()
+    require('telescope.builtin')[module]()
+  end
+end
+set('n', '<leader>tf', Telescope 'fd', opts { desc = "Find Files" })
+set('n', '<leader>tg', Telescope 'live_grep', opts { desc = "Live grep" })
+set('n', '<leader>tb', Telescope 'buffers', opts { desc = "Current Buffers" })
+set('n', '<leader>th', Telescope 'help_tags', opts { desc = "Help Files" })
+set('n', '<leader>cf', vim.lsp.buf.format, opts { desc = 'Format File' })
 vim.api.nvim_create_autocmd('LspAttach', {
-  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
   callback = function(ev)
-    wk.register {
-      ['<leader>l'] = {
-        name = '+lsp',
-      },
-    }
-    local lspopts = { buffer = ev.buf, silent = true, noremap = true }
-    set(
-      'n',
-      '<leader>ff',
-      vim.lsp.buf.format,
-      optMap(mode, lspopts, { desc = 'Format File' })
-    )
-    set(
-      'n',
-      '<leader>lD',
-      vim.lsp.buf.declaration,
-      optMap(mode, lspopts, { desc = 'Jump to symbol declaration' })
-    )
-    set(
-      'n',
-      '<leader>lh',
-      vim.lsp.buf.hover,
-      optMap(mode, lspopts, { desc = 'Hover Info' })
-    )
-    set(
-      'n',
-      '<leader>ls',
-      vim.lsp.buf.signature_help,
-      optMap(mode, lspopts, { desc = 'Symbol Signature' })
-    )
-    set(
-      'n',
-      '<leader>lt',
-      vim.lsp.buf.type_definition,
-      optMap(mode, lspopts, { desc = 'Jump to type definition' })
-    )
-    set(
-      'n',
-      '<leader>lr',
-      vim.lsp.buf.rename,
-      optMap(mode, lspopts, { desc = 'Rename Symbol' })
-    )
-    set(
-      { 'n', 'v' },
-      '<space>la',
-      vim.lsp.buf.code_action,
-      optMap(mode, lspopts, { desc = 'Code Action' })
-    )
+    local opts = defaultSetting { buffer = ev.buf, silent = true, noremap = true }
+    set('n', '<leader>cD', vim.lsp.buf.declaration, opts { desc = 'Go to symbol declaration' })
+    set('n', '<leader>ch', vim.lsp.buf.hover, opts { desc = 'Hover Info' })
+    set('n', '<leader>cs', vim.lsp.buf.signature_help, opts { desc = 'Symbol Signature' })
+    set('n', '<leader>ct', vim.lsp.buf.type_definition, opts { desc = 'Jump to type definition' })
+    set('n', '<leader>cr', vim.lsp.buf.rename, opts { desc = 'Rename Symbol' })
+    set('n', '<space>ca', vim.lsp.buf.code_action, opts { desc = 'Code Action' })
   end,
 })
