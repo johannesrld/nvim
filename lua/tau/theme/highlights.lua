@@ -1,16 +1,42 @@
 vim.opt.termguicolors = true
 require('lspconfig.ui.windows').default_options.border = 'single'
 
+
 require('nvim-treesitter.configs').setup {
   ensure_installed = {
+    -- General Vim stuff
     'lua',
+    'vim',
+    'vimdoc',
+    -- python
+    'requirements',
     'python',
-    'org',
+    -- Shell
     'bash',
+    -- General Data formats
+    'json',
+    'json5',
+    'jsonc',
+    'jq',
+    'yaml',
+    'xml',
+    'toml',
+    'sql',
+    -- Plain text documents
+    'org',
+    'markdown',
+    'mermaid',
+    -- Web Stuff
     'html',
     'javascript',
-    'css',
     'typescript',
+    'css',
+    -- Git
+    'gitattributes',
+    'gitcommit',
+    'gitignore',
+    'git_config',
+    'git_rebase',
   },
 
   indent = { enable = true, disable = { 'html', 'ocaml' } },
