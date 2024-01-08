@@ -50,7 +50,8 @@ return {
             'stylelint', -- Stylelint lsp server?
             'html-lsp',
             'emmet-language-server',
-            'eslint-lsp',
+            'typescript-language-server',
+            -- 'eslint-lsp',
             'json-lsp',
             -- Other
             -- 'ocaml-lsp',
