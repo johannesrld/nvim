@@ -4,12 +4,12 @@ There are many config but this one is mine
 
 If you want to use this:
 
-1. Dont, this WILL break sometimes
+1. Don't, this WILL break sometimes
 
 2. You'll need a couple requirements, namely these commands:
   - "gcc" (The GNU Compiler Collection)
   - "g++" (GCC's C++ Compiler)
-  - "make"
+  - "make" (C/C++ build tool)
   - "cargo" (rust compilation/project management)
   - "npm" (Node package manager)
   - "rg" (Ripgrep)
