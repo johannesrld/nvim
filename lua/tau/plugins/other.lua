@@ -1,11 +1,9 @@
 return {
   --Plugins
   { 'nvim-lua/plenary.nvim' },
-  { 'vim-scripts/securemodelines',                 lazy = false,          priority = 1 },
-  { 'JoosepAlviste/nvim-ts-context-commentstring', lazy = true },
   { 'anuvyklack/hydra.nvim' },
-  { 'windwp/nvim-autopairs',                       event = 'InsertEnter', opts = {} },
-  { 'L3MON4D3/LuaSnip',                            version = '1.*',       build = 'make install_jsregexp', },
+  { 'vim-scripts/securemodelines', lazy = false,          priority = 1 },
+  { 'windwp/nvim-autopairs',       event = 'InsertEnter', config = true },
   {
     'jiaoshijie/undotree',
     lazy = true,
@@ -58,6 +56,9 @@ return {
         end,
       },
     },
+    dependencies = {
+      { 'JoosepAlviste/nvim-ts-context-commentstring', lazy = true },
+    }
   },
   {
     'hiphish/rainbow-delimiters.nvim',
@@ -107,6 +108,7 @@ return {
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
+      { 'L3MON4D3/LuaSnip', version = '1.*', build = 'make install_jsregexp', },
       'saadparwaiz1/cmp_luasnip',
     },
   },
