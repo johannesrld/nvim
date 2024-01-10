@@ -7,7 +7,7 @@ wk.register({
   t = {
     name = '+Telescope',
   },
-  c = {
+  l = {
     name = '+Code Actions'
   }
 }, { prefix = "<leader>" })
@@ -29,12 +29,6 @@ set(
   opts { desc = 'View Probelms' }
 )
 
-set(
-  'n',
-  '<leader>z',
-  function() require('zen-mode').toggle() end,
-  opts { desc = 'Zen Mode' }
-)
 
 set(
   'n',
@@ -101,15 +95,17 @@ set('n', '<leader>tf', Telescope 'fd', opts { desc = "Find Files" })
 set('n', '<leader>tg', Telescope 'live_grep', opts { desc = "Live grep" })
 set('n', '<leader>tb', Telescope 'buffers', opts { desc = "Current Buffers" })
 set('n', '<leader>th', Telescope 'help_tags', opts { desc = "Help Files" })
-set('n', '<leader>cf', vim.lsp.buf.format, opts { desc = 'Format File' })
+set('n', '<leader>lf', vim.lsp.buf.format, opts { desc = 'Format File' })
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(ev)
     local opts = defaultSetting { buffer = ev.buf, silent = true, noremap = true }
-    set('n', '<leader>cD', vim.lsp.buf.declaration, opts { desc = 'Go to symbol declaration' })
-    set('n', '<leader>ch', vim.lsp.buf.hover, opts { desc = 'Hover Info' })
-    set('n', '<leader>cs', vim.lsp.buf.signature_help, opts { desc = 'Symbol Signature' })
-    set('n', '<leader>ct', vim.lsp.buf.type_definition, opts { desc = 'Jump to type definition' })
-    set('n', '<leader>cr', vim.lsp.buf.rename, opts { desc = 'Rename Symbol' })
-    set('n', '<space>ca', vim.lsp.buf.code_action, opts { desc = 'Code Action' })
+    set('n', 'gd', vim.lsp.buf.definition, opts {desc = "goto symbol definition"})
+    set('n', 'K', vim.lsp.buf.hover, opts { desc = 'Hover Info' })
+    set('n', "[d", vim.diagnostic.goto_next, opts { desc = "Goto next issue"})
+    set('n', "]d", vim.diagnostic.goto_prev, opts { desc = "Goto prev issue"})
+    set('n', '<leader>lr', vim.lsp.buf.rename, opts { desc = 'Rename Symbol' })
+    set('n', '<leader>la', vim.lsp.buf.code_action, opts { desc = 'Code Action' })
+    set('n', '<leader>ls', vim.lsp.buf.signature_help, opts { desc = 'Symbol Signature' })
+    -- set('n', '<leader>ct', vim.lsp.buf.type_definition, opts { desc = 'Jump to type definition' })
   end,
 })
