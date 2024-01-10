@@ -22,4 +22,3 @@ end
 require 'tau'
 require 'tau.keymap'
 require 'tau.theme.highlights'
-require 'tau.theme.line'

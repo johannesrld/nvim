@@ -26,6 +26,6 @@ return {
       },
     },
   },
-  { 'lewis6991/gitsigns.nvim',   lazy = true,   event = 'VeryLazy', cmd = 'Gitsigns' },
+  -- { 'lewis6991/gitsigns.nvim' },
   { 'akinsho/git-conflict.nvim', version = '*', config = true },
 }

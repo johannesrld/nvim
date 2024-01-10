@@ -94,15 +94,14 @@ end
 set('n', '<leader>tf', Telescope 'fd', opts { desc = "Find Files" })
 set('n', '<leader>tg', Telescope 'live_grep', opts { desc = "Live grep" })
 set('n', '<leader>tb', Telescope 'buffers', opts { desc = "Current Buffers" })
-set('n', '<leader>th', Telescope 'help_tags', opts { desc = "Help Files" })
 set('n', '<leader>lf', vim.lsp.buf.format, opts { desc = 'Format File' })
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(ev)
     local opts = defaultSetting { buffer = ev.buf, silent = true, noremap = true }
-    set('n', 'gd', vim.lsp.buf.definition, opts {desc = "goto symbol definition"})
+    set('n', 'gd', vim.lsp.buf.definition, opts { desc = "goto symbol definition" })
     set('n', 'K', vim.lsp.buf.hover, opts { desc = 'Hover Info' })
-    set('n', "[d", vim.diagnostic.goto_next, opts { desc = "Goto next issue"})
-    set('n', "]d", vim.diagnostic.goto_prev, opts { desc = "Goto prev issue"})
+    set('n', "[d", vim.diagnostic.goto_next, opts { desc = "Goto next issue" })
+    set('n', "]d", vim.diagnostic.goto_prev, opts { desc = "Goto prev issue" })
     set('n', '<leader>lr', vim.lsp.buf.rename, opts { desc = 'Rename Symbol' })
     set('n', '<leader>la', vim.lsp.buf.code_action, opts { desc = 'Code Action' })
     set('n', '<leader>ls', vim.lsp.buf.signature_help, opts { desc = 'Symbol Signature' })
