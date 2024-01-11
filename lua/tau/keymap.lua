@@ -88,10 +88,10 @@ hydra {
 ---@return function
 local function Telescope(module)
   return function()
-    require('telescope.builtin')[module]()
+    require('telescope.builtin')[module](require('telescope.themes').get_ivy { layout_config = { height = 10 } })
   end
 end
-set('n', '<leader>tf', Telescope 'fd', opts { desc = "Find Files" })
+set('n', '<leader>tf', Telescope 'find_files', opts { desc = "Find Files" })
 set('n', '<leader>tg', Telescope 'live_grep', opts { desc = "Live grep" })
 set('n', '<leader>tb', Telescope 'buffers', opts { desc = "Current Buffers" })
 set('n', '<leader>lf', vim.lsp.buf.format, opts { desc = 'Format File' })

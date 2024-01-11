@@ -37,6 +37,11 @@ return {
     lazy = true,
     cmd = 'Telescope',
     dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = {
+      defaults = {
+        bottom_pane = { height = 35 }
+      }
+    }
   },
   {
     'nvim-treesitter/nvim-treesitter',
