@@ -90,16 +90,16 @@ hydra {
 ---@param module string
 ---@return function
 local function Telescope(module)
-  local ivy_theme = require('telescope.themes').get_ivy{
+  local teleopts = require('telescope.themes').get_ivy {
     layout_config = {
       height = 13
     },
     borderchars = {
       preview = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
-    }
+    },
   }
   return function()
-    require('telescope.builtin')[module](ivy_theme)
+    require('telescope.builtin')[module](teleopts)
   end
 end
 set('n', "[d", vim.diagnostic.goto_next, opts { desc = "Goto next issue" })
