@@ -78,6 +78,8 @@ return {
         lua = { 'stylua' },
         markdown = { 'markdownlint', 'dprint' },
         json = { 'dprint' },
+        javascript = { 'prettier' },
+        typescript = { 'prettier' }
       },
     },
   },

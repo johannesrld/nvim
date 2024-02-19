@@ -1,5 +1,7 @@
 return {
   --Plugins
+  { 'LhKipp/nvim-nu', opts = {} },
+  { 'nvimtools/none-ls.nvim', lazy = true },
   { 'nvim-lua/plenary.nvim' },
   { 'anuvyklack/hydra.nvim' },
   { 'vim-scripts/securemodelines', lazy = false,          priority = 1 },
