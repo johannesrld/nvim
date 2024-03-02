@@ -17,12 +17,14 @@ cmp.setup {
     ['<cr>'] = cmp.mapping.confirm { select = true },
   },
   sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'function' },
-    { name = 'luasnip' },
-    { name = 'buffer' },
-    { name = 'html-css' },
-    { name = 'conjure' },
+    { name = 'luasnip',  max_item_count = 4 },
+    { name = 'html-css', max_item_count = 4 },
+    { name = 'nvim_lsp', max_item_count = 4, entry_filter = function(entry)
+      return cmp.lsp.CompletionItemKind.Snippet ~= entry:get_kind()
+    end },
+    { name = 'function', max_item_count = 4 },
+    -- { name = 'buffer' },
+    -- { name = 'conjure' },
   }, { { name = 'buffer' } }),
   sorting = {
     comparators = {
