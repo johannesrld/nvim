@@ -1,11 +1,23 @@
 return {
+  -- {
+  --   'sainnhe/gruvbox-material',
+  --   priority = 1000,
+  --   init = function()
+  --     vim.g.gruvbox_material_background = 'hard'
+  --   end,
+  -- },
+  -- { "johannesrld/gruber-darker.nvim" },
   {
-    'sainnhe/gruvbox-material',
+    'rebelot/kanagawa.nvim',
     priority = 1000,
+    opts = {
+      commentStyle = { italic = false },
+      keywordStyle = { italic = false },
+      theme = 'dragon'
+    },
     init = function()
-      vim.g.gruvbox_material_background = 'hard'
-      vim.cmd 'colorscheme gruvbox-material'
-    end,
+      vim.cmd 'colorscheme kanagawa-dragon'
+    end
   },
   {
     'uga-rosa/ccc.nvim',

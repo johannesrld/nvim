@@ -1,11 +1,26 @@
 return {
   --Plugins
-  { 'LhKipp/nvim-nu', opts = {} },
-  { 'nvimtools/none-ls.nvim', lazy = true },
+  {
+    'nvim-focus/focus.nvim',
+    version = '*',
+    opts = {
+      commands = false
+    },
+    event = 'VeryLazy'
+  },
+  { 'LhKipp/nvim-nu',              opts = {} },
+  { 'nvimtools/none-ls.nvim',      lazy = true },
   { 'nvim-lua/plenary.nvim' },
   { 'anuvyklack/hydra.nvim' },
-  { 'vim-scripts/securemodelines', lazy = false,          priority = 1 },
-  { 'windwp/nvim-autopairs',       event = 'InsertEnter', config = true },
+  { 'vim-scripts/securemodelines', lazy = false, priority = 1 },
+  {
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    config = true,
+    opts = {
+      check_ts = true
+    }
+  },
   {
     'jiaoshijie/undotree',
     lazy = true,

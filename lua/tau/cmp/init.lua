@@ -17,14 +17,11 @@ cmp.setup {
     ['<cr>'] = cmp.mapping.confirm { select = true },
   },
   sources = cmp.config.sources({
+    { name = 'nvim_lsp', max_item_count = 4 },
     { name = 'luasnip',  max_item_count = 4 },
     { name = 'html-css', max_item_count = 4 },
-    { name = 'nvim_lsp', max_item_count = 4, entry_filter = function(entry)
-      return cmp.lsp.CompletionItemKind.Snippet ~= entry:get_kind()
-    end },
     { name = 'function', max_item_count = 4 },
     -- { name = 'buffer' },
-    -- { name = 'conjure' },
   }, { { name = 'buffer' } }),
   sorting = {
     comparators = {
@@ -55,7 +52,11 @@ vim.api.nvim_create_autocmd('InsertEnter', {
   group = vim.api.nvim_create_augroup('Autopair_cmp', {}),
   callback = function(_)
     local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
-    cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+    cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done {
+      filetypes = {
+        lisp = false
+      }
+    })
   end,
   once = true,
 })
@@ -65,6 +66,12 @@ cmp.setup.filetype('gitcommit', {
   }, {
     { name = 'buffer' },
   }),
+})
+
+cmp.setup.filetype('lisp', {
+  sources = {
+    { name = 'nvlime' }
+  }
 })
 
 cmp.setup.cmdline({ '/', '?' }, {
