@@ -1,12 +1,13 @@
 local indentWidth = 4
 local stdpath = vim.fn.stdpath
+local colourcolum_option = '88'
 
 -- Misc
 vim.opt.spelllang = 'en_gb'
 vim.opt.spell = not vim.g.vscode and true or false
 vim.opt_local.spelloptions:append 'noplainbuffer'
 vim.g.mapleader = ' '
-vim.g.maplocalleader = ','
+vim.g.maplocalleader = ';'
 
 vim.o.breakindent = true
 
@@ -27,7 +28,7 @@ vim.opt.numberwidth = 3       -- Min number of lines for line number gutter
 vim.opt.showmode = false      -- don't show the mode in the command area (e.g. "--INSERT--")
 vim.opt.conceallevel = 2      -- Hide concealed chars unless syn-cchar is set
 vim.opt.updatetime = 300      -- Faster completion
-vim.opt.colorcolumn = '88'
+vim.opt.colorcolumn = colourcolum_option
 vim.opt.completeopt = { 'menuone', 'noselect', 'noinsert' }
 vim.opt.shortmess = vim.opt.shortmess + { c = true }
 
@@ -55,3 +56,17 @@ vim.g.mundo_right = 1
 vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 3
 vim.g.netrw_winsize = 20
+
+
+local bufoption = vim.api.nvim_buf_get_option
+
+vim.api.nvim_create_autocmd('BufEnter', {
+  callback = function(e)
+    local buftype = bufoption(e.buf, 'buftype')
+    if not bufoption(e.buf, 'modifiable') or (buftype ~= '' and buftype ~= 'acwrite') then
+      vim.wo.colorcolumn = '0'
+    else
+      vim.wo.colorcolumn = colourcolum_option
+    end
+  end
+})

@@ -39,7 +39,7 @@ return {
             'stylua',
 
             --python
-            'pyright', -- TODO: replace with pylyzer once it is mature enough
+            'basedpyright', -- TODO: replace with pylyzer once it is mature enough
             'mypy',
             'debugpy',
             'ruff-lsp',

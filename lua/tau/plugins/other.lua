@@ -9,7 +9,6 @@ return {
     event = 'VeryLazy'
   },
   { 'LhKipp/nvim-nu',              opts = {} },
-  { 'nvimtools/none-ls.nvim',      lazy = true },
   { 'nvim-lua/plenary.nvim' },
   { 'anuvyklack/hydra.nvim' },
   { 'vim-scripts/securemodelines', lazy = false, priority = 1 },
@@ -47,7 +46,11 @@ return {
       vim.o.timeout = true
       vim.o.timeoutlen = 300
     end,
-    opts = { triggers_nowait = { '<leader>', '<localleader>' } },
+    opts = { triggers_nowait = { '<leader>', '<localleader>', '<LocalLeader>', '<Localleader>' } },
+  },
+  {
+    'yorickpeterse/nvim-window',
+    config = true
   },
   {
     'nvim-telescope/telescope.nvim',
@@ -90,11 +93,11 @@ return {
       { 'JoosepAlviste/nvim-ts-context-commentstring', lazy = true },
     }
   },
-  {
-    'hiphish/rainbow-delimiters.nvim',
-    lazy = true,
-    ft = { 'fennel', 'lisp', 'racket', 'clojure', 'guile', 'haskell' },
-  },
+  -- {
+  --   'hiphish/rainbow-delimiters.nvim',
+  --   lazy = true,
+  --   ft = { 'fennel', 'lisp', 'racket', 'clojure', 'guile' },
+  -- },
   {
     'eraserhd/parinfer-rust',
     build = 'cargo build --release',

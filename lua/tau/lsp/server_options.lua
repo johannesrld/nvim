@@ -12,13 +12,7 @@ return {
     capabilities = cmp_capabilities,
     on_init = function(client)
       client.config.settings = vim.tbl_deep_extend('force', client.config.settings, {
-        Lua = {
-          runtime = { version = 'LuaJIT' },
-          workspace = {
-            checkThirdParty = false,
-            library = { vim.env.VIMRUNTIME },
-          },
-        },
+        Lua = { runtime = { version = 'LuaJIT' }, },
       })
     end,
   },

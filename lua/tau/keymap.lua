@@ -2,34 +2,49 @@
 local set = vim.keymap.set
 ---@type function
 local hydra = require 'hydra'
----@type function
+---@type table
 local wk = require 'which-key'
 
-wk.register({
-  t = {
-    name = '+Telescope',
-  },
-  l = {
-    name = '+Code Actions'
-  }
-}, { prefix = "<leader>" })
 
 ---@param defaultOpts table
----@return fun(customOpts: table): table
+---@return fun(customOpts: table?): table
 local function defaultSetting(defaultOpts)
   return function(customOpts)
-    customOpts = customOpts or {}
+    if customOpts == nil then return defaultOpts end
     return vim.tbl_extend('force', defaultOpts, customOpts)
   end
 end
 
 local opts = defaultSetting { silent = true, noremap = true }
 
+wk.register({
+  t = {
+    name = '+Telescope',
+  },
+  l = {
+    name = '+Language Actions'
+  }
+}, { prefix = "<leader>" })
+
+
+-- Stupid nonsense to get around which-keys #172 and/or #476, 
+-- remove at the earliest convenience
 set(
   'n',
-  '<leader>x',
-  function() require('trouble').toggle() end,
-  opts { desc = 'View Probelms' }
+  vim.g.maplocalleader,
+  function()
+    wk.show(vim.g.maplocalleader, { mode = 'n' })
+  end,
+  opts()
+)
+
+set(
+  'n',
+  '<leader>w',
+  function()
+    require 'nvim-window'.pick()
+  end,
+  opts { desc = 'Jump to window' }
 )
 
 
@@ -102,21 +117,20 @@ local function Telescope(module)
     require('telescope.builtin')[module](teleopts)
   end
 end
-set('n', "[d", vim.diagnostic.goto_next, opts { desc = "Goto next issue" })
-set('n', "]d", vim.diagnostic.goto_prev, opts { desc = "Goto prev issue" })
 set('n', '<leader>tf', Telescope 'find_files', opts { desc = "Find Files" })
 set('n', '<leader>tg', Telescope 'live_grep', opts { desc = "Live grep" })
 set('n', '<leader>tb', Telescope 'buffers', opts { desc = "Current Buffers" })
 -- Note that the +l prefix is for "language", not lsp
-set('n', '<leader>lf', vim.lsp.buf.format, opts { desc = 'Format File' })
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(ev)
+    ---@diagnostic disable-next-line
     local opts = defaultSetting { buffer = ev.buf, silent = true, noremap = true }
-
+    set('n', '<leader>x', function() require('trouble').toggle() end, opts { desc = 'View Probelms' })
+    set('n', '<leader>lf', vim.lsp.buf.format, opts { desc = 'Format File' })
     set('n', 'K', vim.lsp.buf.hover, opts { desc = 'Hover Info' })
     set('n', 'gd', vim.lsp.buf.definition, opts { desc = "goto symbol definition" })
     set('n', 'gi', vim.lsp.buf.implementation, opts { desc = "goto implementation" })
-    set('n', 'gr', vim.lsp.buf.references, opts { desc = "goto references" })
+    set('n', 'gr', Telescope 'lsp_references', opts { desc = "goto references" })
     set({ 'n', 'v' }, '<leader>la', vim.lsp.buf.code_action, opts { desc = 'Code Action' })
     set('n', '<leader>lr', vim.lsp.buf.rename, opts { desc = 'Rename Symbol' })
     set('n', '<leader>ls', Telescope 'lsp_document_symbols', opts { desc = 'View buffer symbols' })

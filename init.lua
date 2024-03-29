@@ -18,6 +18,7 @@ if not bootstrap.success then
       .. missing_command_str
       .. ']\nAborting Setup'
   print(err_msg)
+  return
 end
 require 'tau'
 require 'tau.keymap'

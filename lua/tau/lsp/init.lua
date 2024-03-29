@@ -5,10 +5,12 @@ local blacklisted_servers = { hls = true, tsserver = true, rust_analyzer = true 
 require('mason-lspconfig').setup_handlers {
   function(server_name)
     if blacklisted_servers[server_name] then return end
+
     if server_options[server_name] ~= nil then
       require('lspconfig')[server_name].setup(server_options[server_name])
       return
     end
+
     require('lspconfig')[server_name].setup { capabilities = cmp_capabilities }
   end,
 }
