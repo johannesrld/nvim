@@ -17,8 +17,8 @@ cmp.setup {
     ['<cr>'] = cmp.mapping.confirm { select = true },
   },
   sources = cmp.config.sources({
-    { name = 'nvim_lsp', max_item_count = 10 },
     { name = 'luasnip',  max_item_count = 4 },
+    { name = 'nvim_lsp', max_item_count = 10 },
     { name = 'html-css', max_item_count = 4 },
     { name = 'function', max_item_count = 4 },
     -- { name = 'buffer' },
