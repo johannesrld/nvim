@@ -93,11 +93,6 @@ return {
       { 'JoosepAlviste/nvim-ts-context-commentstring', lazy = true },
     }
   },
-  -- {
-  --   'hiphish/rainbow-delimiters.nvim',
-  --   lazy = true,
-  --   ft = { 'fennel', 'lisp', 'racket', 'clojure', 'guile' },
-  -- },
   {
     'eraserhd/parinfer-rust',
     build = 'cargo build --release',
