@@ -56,7 +56,6 @@ return {
             -- Other
             -- 'ocaml-lsp',
             -- 'ocamlformat',
-            'haskell-language-server',
           },
 
           auto_update = false,
@@ -76,20 +75,25 @@ return {
     opts = {
       formatters_by_ft = {
         lua = { 'stylua' },
-        markdown = { 'markdownlint', 'dprint' },
+        markdown = { { 'dprint', 'markdownlint' } },
         json = { 'dprint' },
-        javascript = { 'prettier' },
-        typescript = { 'prettier' }
+        javascript = { 'dprint' },
+        typescript = { 'dprint' }
       },
     },
   },
   {
+    'mfussenegger/nvim-lint',
+    lazy = true
+  },
+  {
     'ray-x/lsp_signature.nvim',
-    event = 'LspAttach',
     opts = {
       hint_prefix = '🦭 ',
       handler_opts = { border = 'none' },
     },
   },
   { 'lvimuser/lsp-inlayhints.nvim', event = 'LspAttach' },
+  { "rcarriga/nvim-dap-ui",         dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" }, config = true},
+  { 'leoluz/nvim-dap-go',           config = true },
 }

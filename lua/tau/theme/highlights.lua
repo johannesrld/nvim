@@ -5,6 +5,7 @@ require('nvim-treesitter.configs').setup {
   ensure_installed = {
     -- General Vim stuff
     'lua',
+    'luadoc',
     'vim',
     'vimdoc',
     -- python
@@ -30,12 +31,18 @@ require('nvim-treesitter.configs').setup {
     'javascript',
     'typescript',
     'css',
+    'jsdoc',
     -- Git
     'gitattributes',
     'gitcommit',
     'gitignore',
     'git_config',
     'git_rebase',
+    'diff',
+    --other
+    'go',
+    'gomod',
+    'gosum'
   },
 
   indent = { enable = true, disable = { 'html', 'ocaml' } },
