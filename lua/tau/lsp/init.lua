@@ -1,8 +1,9 @@
 local cmp_capabilities = require 'tau.lsp.capabilities'
 local server_options = require 'tau.lsp.server_options'
 
-local blacklisted_servers = { hls = true, tsserver = true, rust_analyzer = true } -- These are handled elsewhere
+local blacklisted_servers = { hls = true, tsserver = true} -- These are handled elsewhere
 require('mason-lspconfig').setup_handlers {
+  ['rust_analyzer'] = function () end,
   function(server_name)
     if blacklisted_servers[server_name] then return end
 
@@ -24,4 +25,3 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
   once = true,
 })
-
