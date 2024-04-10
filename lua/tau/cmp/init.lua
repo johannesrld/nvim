@@ -21,7 +21,7 @@ cmp.setup {
     { name = 'nvim_lsp', max_item_count = 10 },
     { name = 'html-css', max_item_count = 4 },
     { name = 'function', max_item_count = 4 },
-    -- { name = 'buffer' },
+    { name = 'buffer', max_item_count = 0},
   }, { { name = 'buffer' } }),
   sorting = {
     comparators = {

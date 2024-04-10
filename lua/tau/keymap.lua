@@ -4,8 +4,6 @@ local set = vim.keymap.set
 local hydra = require 'hydra'
 ---@type table
 local wk = require 'which-key'
-
-
 ---@param defaultOpts table
 ---@return fun(customOpts: table?): table
 local function defaultSetting(defaultOpts)

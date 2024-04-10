@@ -52,12 +52,12 @@ vim.opt.undofile = true                     -- Use an undofile to store undos/sa
 vim.opt.undodir = stdpath 'data' .. '/undo' -- store undofiles in vim's data directory (typically ~/.local/share/nvim)
 
 -- NetRW Tree
-vim.g.mundo_right = 1
 vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 3
 vim.g.netrw_winsize = 20
 
 
+vim.g.mundo_right = 1
 local bufoption = vim.api.nvim_buf_get_option
 
 vim.api.nvim_create_autocmd('BufEnter', {
