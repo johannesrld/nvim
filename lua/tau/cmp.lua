@@ -14,32 +14,20 @@ cmp.setup {
     ['<c-k>'] = cmp.mapping.select_prev_item(),
     ['<c-Space>'] = cmp.mapping.complete(),
     ['<c-e>'] = cmp.mapping.abort(),
-    ["<Tab>"] = cmp.mapping(function(fallback)
-      -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
-      if cmp.visible() then
-        local entry = cmp.get_selected_entry()
-        if not entry then
-          cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-        end
-        cmp.confirm()
-      else
-        fallback()
-      end
-    end)
+    ['<cr>'] = cmp.mapping.confirm { select = true },
   },
   sources = cmp.config.sources({
     { name = 'luasnip',  max_item_count = 4 },
     { name = 'nvim_lsp', max_item_count = 10 },
     { name = 'html-css', max_item_count = 4 },
     { name = 'function', max_item_count = 4 },
-    { name = 'buffer',   max_item_count = 0 },
+    { name = 'buffer', max_item_count = 0},
   }, { { name = 'buffer' } }),
   sorting = {
     comparators = {
       cmp.config.compare.exact,
       cmp.config.compare.offset,
       cmp.config.compare.score,
-
       function(entry1, entry2)
         local _, entry1_under = entry1.completion_item.label:find '^_+'
         local _, entry2_under = entry2.completion_item.label:find '^_+'
