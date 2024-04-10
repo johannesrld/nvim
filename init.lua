@@ -22,4 +22,4 @@ if not bootstrap.success then
 end
 require 'tau'
 require 'tau.keymap'
-require 'tau.theme.highlights'
+require 'tau.treesitter'

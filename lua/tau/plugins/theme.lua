@@ -1,15 +1,23 @@
 return {
   {
-    "johannesrld/gruber-darker.nvim",
-    -- Optionally install Lush. Allows for more configuration or extending the colorscheme
-    -- If you don't want to install lush, make sure to set g:zenbones_compat = 1
-    -- In Vim, compat mode is turned on as Lush only works in Neovim.
+    'johannesrld/vscode.nvim',
+    branch = "better-highlights",
     priority = 1000,
     init = function()
-      vim.cmd [[colorscheme gruber-darker]]
+      vim.cmd [[colorscheme vscode]]
     end,
+    config = function()
+      require('vscode').setup {
+        transparent = false,
+        group_overrides = {
+          ["@p9.operator.arrow_func"] = { link = "@keyword" },
+          ["@p9.type"] = { link = "@type"},
+          ["@p9.template_literal"] = { link = "@keyword" },
+          ["@p9.tag.identifier"] = { link = "@variable" }
+        }
+      }
+    end
   },
-  { 'johannesrld/vscode.nvim', branch = "better-highlights"},
   {
     'uga-rosa/ccc.nvim',
     lazy = true,
