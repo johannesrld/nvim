@@ -13,7 +13,8 @@ return {
           ["@p9.operator.arrow_func"] = { link = "@keyword" },
           ["@p9.type"] = { link = "@type"},
           ["@p9.template_literal"] = { link = "@keyword" },
-          ["@p9.tag.identifier"] = { link = "@variable" }
+          ["@p9.tag.identifier"] = { link = "@variable" },
+          ["@lsp.type.formatSpecifier"] = { link = "@keyword" }
         }
       }
     end

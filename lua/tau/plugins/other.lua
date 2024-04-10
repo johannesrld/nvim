@@ -8,7 +8,6 @@ return {
     },
     event = 'VeryLazy'
   },
-  { 'LhKipp/nvim-nu',              opts = {} },
   { 'nvim-lua/plenary.nvim' },
   { 'anuvyklack/hydra.nvim' },
   { 'vim-scripts/securemodelines', lazy = false, priority = 1 },
@@ -27,19 +26,6 @@ return {
     opts = { float_diff = false },
   },
   {
-    'nvim-orgmode/orgmode',
-    lazy = true,
-    ft = { 'org', 'orgmode' },
-    config = function()
-      require('orgmode').setup_ts_grammar()
-      require('orgmode').setup
-      {
-        org_agenda_files = '~/orgfiles/**/*',
-        org_default_notes_file = '~/orgfiles/refile.org',
-      }
-    end,
-  },
-  {
     'folke/which-key.nvim',
     event = 'VeryLazy',
     init = function()
@@ -47,10 +33,6 @@ return {
       vim.o.timeoutlen = 300
     end,
     opts = { triggers_nowait = { '<leader>', '<localleader>', '<LocalLeader>', '<Localleader>' } },
-  },
-  {
-    'yorickpeterse/nvim-window',
-    config = true
   },
   {
     'nvim-telescope/telescope.nvim',
@@ -92,13 +74,6 @@ return {
     dependencies = {
       { 'JoosepAlviste/nvim-ts-context-commentstring', lazy = true },
     }
-  },
-  {
-    'eraserhd/parinfer-rust',
-    build = 'cargo build --release',
-    lazy = true,
-    event = 'InsertEnter',
-    ft = { 'fennel', 'lisp', 'racket', 'guile' },
   },
   {
     'RRethy/nvim-treesitter-textsubjects',
