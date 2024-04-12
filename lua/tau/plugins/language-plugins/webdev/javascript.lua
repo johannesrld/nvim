@@ -9,4 +9,5 @@ return {
       require('lspconfig')['typescript-tools'].launch()
     end,
   },
+  { 'xabikos/vscode-javascript' }
 }
