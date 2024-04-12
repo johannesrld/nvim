@@ -1,5 +1,6 @@
 local cmp = require 'cmp'
-local luasnips = require 'luasnip'
+local snippet = require 'cmp.types'.lsp.CompletionItemKind.Snippet
+local luasnip = require 'luasnip'
 require('luasnip.loaders.from_vscode').lazy_load()
 local cmp_border = vim.tbl_deep_extend('force', cmp.config.window.bordered(), {
   border = { '┌', '─', '┐', '│', '┘', '─', '└', '│' },
@@ -8,26 +9,40 @@ local cmp_border = vim.tbl_deep_extend('force', cmp.config.window.bordered(), {
 cmp.setup {
   window = { completion = cmp_border, documentation = cmp_border },
   view = { entries = { name = 'custom', selection_order = 'near_cursor' } },
-  snippet = { expand = function(args) luasnips.lsp_expand(args.body) end },
+  snippet = { expand = function(args) luasnip.lsp_expand(args.body) end },
   mapping = cmp.mapping.preset.insert {
     ['<c-j>'] = cmp.mapping.select_next_item(),
     ['<c-k>'] = cmp.mapping.select_prev_item(),
     ['<c-Space>'] = cmp.mapping.complete(),
     ['<c-e>'] = cmp.mapping.abort(),
-    ['<cr>'] = cmp.mapping.confirm { select = true },
+    ['<CR>'] = cmp.mapping({
+      i = function(fallback)
+        if not cmp.visible() then
+          fallback()
+          return
+        end
+        local entry = cmp:get_first_entry()
+        if entry ~= nil and entry.completion_item.kind ~= snippet and entry.exact then
+          cmp.close()
+          fallback()
+          return
+        end
+        cmp.confirm({ select = true })
+      end
+    }),
   },
   sources = cmp.config.sources({
     { name = 'luasnip',  max_item_count = 4 },
     { name = 'nvim_lsp', max_item_count = 10 },
     { name = 'html-css', max_item_count = 4 },
     { name = 'function', max_item_count = 4 },
-    { name = 'buffer', max_item_count = 0},
-  }, { { name = 'buffer' } }),
+    { name = 'buffer',   max_item_count = 0 },
+  }),
   sorting = {
     comparators = {
       cmp.config.compare.exact,
-      cmp.config.compare.offset,
       cmp.config.compare.score,
+      cmp.config.compare.offset,
       function(entry1, entry2)
         local _, entry1_under = entry1.completion_item.label:find '^_+'
         local _, entry2_under = entry2.completion_item.label:find '^_+'
