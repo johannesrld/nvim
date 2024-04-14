@@ -3,7 +3,6 @@ local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities(
 )
 cmp_capabilities.textDocument.completion.completionItem.snippetSupport = true
 ---@param tbl table<string, any>
----@param before? fun(tbl: table)
 ---@return function
 local function config(tbl)
   local name = tbl[1]
