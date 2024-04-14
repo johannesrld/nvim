@@ -13,8 +13,7 @@ cmp.setup {
   mapping = cmp.mapping.preset.insert {
     ['<c-j>'] = cmp.mapping.select_next_item(),
     ['<c-k>'] = cmp.mapping.select_prev_item(),
-    ['<c-Space>'] = cmp.mapping.complete(),
-    ['<c-e>'] = cmp.mapping.abort(),
+    ['<c-CR>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping({
       i = function(fallback)
         if not cmp.visible() then
