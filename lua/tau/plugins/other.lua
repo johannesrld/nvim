@@ -8,6 +8,7 @@ return {
     },
     event = 'VeryLazy'
   },
+  { 'm4xshen/hardtime.nvim', config = true},
   { 'nvim-lua/plenary.nvim' },
   { 'anuvyklack/hydra.nvim' },
   { 'vim-scripts/securemodelines', lazy = false, priority = 1 },
