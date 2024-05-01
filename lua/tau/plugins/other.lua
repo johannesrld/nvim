@@ -1,5 +1,6 @@
 return {
   --Plugins
+  'folke/todo-comments.nvim',
   {
     'nvim-focus/focus.nvim',
     version = '*',
