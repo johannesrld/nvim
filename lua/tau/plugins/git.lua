@@ -10,7 +10,25 @@ return {
       },
     },
     init = function()
-      vim.cmd [[ autocmd FileType NeogitStatus,NeogitPopup lua vim.opt_local.spell = false; vim.opt_local.list = false; vim.opt_local.foldlevel = 1000 ]]
+      vim.api.nvim_create_autocmd({ "FileType" }, {
+        pattern = {
+          "NeogitStatus",
+          "NeogitPopup",
+          "NeogitCommitView",
+          "NeogitConsole",
+          "NeogitLogView",
+          "NeogitReflogView",
+          "NeogitCommitSelectView",
+          "NeogitStatusNew",
+          "NeogitRebaseTodo",
+          "NeogitPopup"
+        },
+        callback = function()
+          vim.opt_local.spell = false;
+          vim.opt_local.list = false;
+          vim.opt_local.foldlevel = 1000;
+        end
+      })
     end
   },
   {
