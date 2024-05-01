@@ -14,7 +14,12 @@ return {
           ["@p9.type"] = { link = "@type"},
           ["@p9.template_literal"] = { link = "@keyword" },
           ["@p9.tag.identifier"] = { link = "@variable" },
-          ["@lsp.type.formatSpecifier"] = { link = "@keyword" }
+          ["@p9.sexpression"] = { link = "@tag.delimiter" },
+          ["@lsp.type.formatSpecifier"] = { link = "@keyword" },
+          ["@string.special.symbol"] = { link = "@variable"},
+          ["@lsp.type.function.clojure"] = { link = 'none' },
+          ["@lsp.type.variable.clojure"] = { link = 'none' },
+          ["MatchParen"] = {bold = true, fg = '#18a2fe', bg = 'none'}
         }
       }
     end
