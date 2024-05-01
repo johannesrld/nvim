@@ -8,7 +8,15 @@ return {
     },
     event = 'VeryLazy'
   },
-  { 'm4xshen/hardtime.nvim', config = true},
+  {
+    "andymass/vim-matchup",
+    config = function()
+      vim.g.matchup_matchpref = { html = { tagnameonly = 1 } }
+      vim.g.matchup_matchparen_deferred = 1
+      vim.g.matchup_matchparen_hi_surround_always = 1
+    end
+  },
+  -- { 'm4xshen/hardtime.nvim',       config = true },
   { 'nvim-lua/plenary.nvim' },
   { 'anuvyklack/hydra.nvim' },
   { 'vim-scripts/securemodelines', lazy = false, priority = 1 },
