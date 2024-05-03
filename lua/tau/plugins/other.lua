@@ -1,5 +1,4 @@
 return {
-  --Plugins
   {
     'folke/todo-comments.nvim',
     opts = {
@@ -13,23 +12,16 @@ return {
         NOTE = { icon = "" },
         TEST = { icon = "" }
       },
-      highlight = {
-        keyword = "bg",
-        after = ""
-      }
+      highlight = { keyword = "bg", after = "" }
     }
   },
   {
     'nvim-focus/focus.nvim',
     version = '*',
-    opts = {
-      commands = false
-    },
+    opts = { commands = false },
     event = 'VeryLazy'
   },
-  -- { 'm4xshen/hardtime.nvim',       config = true },
   { 'nvim-lua/plenary.nvim' },
-  { 'anuvyklack/hydra.nvim' },
   { 'vim-scripts/securemodelines', lazy = false, priority = 1 },
   {
     'windwp/nvim-autopairs',
@@ -60,13 +52,13 @@ return {
     cmd = 'Telescope',
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
-      local actions = require "telescope.actions"
+      local action = require "telescope.actions"
       require("telescope").setup {
         defaults = {
           mappings = {
             i = {
-              ["<C-j>"] = actions.move_selection_next,
-              ["<C-k>"] = actions.move_selection_previous
+              ["<C-j>"] = action.move_selection_next,
+              ["<C-k>"] = action.move_selection_previous
             }
           }
         }
@@ -100,23 +92,14 @@ return {
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
   },
   {
-    'nmac427/guess-indent.nvim',
-    init = function() require('guess-indent').setup {} end,
-  },
-  {
     'folke/trouble.nvim',
     opts = {
       icons = false,
-      fold_open = 'v',      -- icon used for open folds
-      fold_closed = '>',    -- icon used for closed folds
-      indent_lines = false, -- add an indent guide below the fold icons
-      signs = {
-        error = 'X',
-        warning = 'W',
-        hint = 'H',
-        information = '?',
-      },
-      use_diagnostic_signs = false, -- enabling this will use the signs defined in your lsp client
+      fold_open = 'v',
+      fold_closed = '>',
+      indent_lines = false,
+      signs = { error = 'X', warning = 'W', hint = 'H', information = '?' },
+      use_diagnostic_signs = false,
     },
     lazy = true,
     cmd = 'TroubleToggle',

@@ -1,7 +1,5 @@
 ---@type function
 local set = vim.keymap.set
----@type function
-local hydra = require 'hydra'
 ---@type table
 local wk = require 'which-key'
 ---@param defaultOpts table
@@ -32,24 +30,6 @@ set('n', '<leader>m', function() require('undotree').toggle() end, opts { desc =
 set('n', '<leader>g', function() require('neogit').open {} end, opts { desc = 'Open Neogit' })
 
 
-local function slew_hydra() print 'Hercules slew the Hydra.' end
-hydra {
-  name = 'Window resizing',
-  mode = 'n',
-  body = '<C-W>',
-  heads = {
-    { '+', '<C-W>+', { timeout = false } },
-    { '-', '<C-W>-', { timeout = false } },
-    { '>', '<C-W>>', { timeout = false } },
-    { '<', '<C-W><', { timeout = false } },
-    { '=', '<C-W>=', { exit = true, timeout = false } },
-  },
-  config = {
-    hint = false,
-    on_enter = function() vim.bo.modifiable = false end,
-    on_exit = slew_hydra,
-  },
-}
 ---@param module string
 ---@return function
 local function Telescope(module)
