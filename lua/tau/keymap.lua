@@ -4,14 +4,14 @@ local set = vim.keymap.set
 local wk = require 'which-key'
 ---@param defaultOpts table
 ---@return fun(customOpts: table?): table
-local function defaultSetting(defaultOpts)
+local function createOpts(defaultOpts)
   return function(customOpts)
     if customOpts == nil then return defaultOpts end
     return vim.tbl_extend('force', defaultOpts, customOpts)
   end
 end
 
-local opts = defaultSetting { silent = true, noremap = true }
+local opts = createOpts { silent = true, noremap = true }
 
 wk.register({
   t = { name = '+Telescope', },
@@ -47,7 +47,7 @@ set('n', '<leader>tb', Telescope 'buffers', opts { desc = "Current Buffers" })
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(ev)
     ---@diagnostic disable-next-line
-    local opts = defaultSetting { buffer = ev.buf, silent = true, noremap = true }
+    local opts = createOpts { buffer = ev.buf, silent = true, noremap = true }
     set('n', '<leader>x', function() require('trouble').toggle() end, opts { desc = 'View Probelms' })
     set('n', '<leader>lf', vim.lsp.buf.format, opts { desc = 'Format File' })
     set('n', 'K', vim.lsp.buf.hover, opts { desc = 'Hover Info' })

@@ -10,18 +10,13 @@ return {
       },
     },
     init = function()
-      vim.api.nvim_create_autocmd({ "FileType" }, {
+      vim.api.nvim_create_autocmd("FileType", {
         pattern = {
-          "NeogitStatus",
-          "NeogitPopup",
-          "NeogitCommitView",
-          "NeogitConsole",
-          "NeogitLogView",
-          "NeogitReflogView",
-          "NeogitCommitSelectView",
-          "NeogitStatusNew",
-          "NeogitRebaseTodo",
-          "NeogitPopup"
+          "NeogitStatus",           "NeogitPopup",
+          "NeogitCommitView",       "NeogitConsole",
+          "NeogitLogView",          "NeogitReflogView",
+          "NeogitCommitSelectView", "NeogitStatusNew",
+          "NeogitRebaseTodo",       "NeogitPopup"
         },
         callback = function()
           vim.opt_local.spell = false;

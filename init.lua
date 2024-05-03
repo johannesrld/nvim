@@ -22,4 +22,3 @@ if not bootstrap.success then
 end
 require 'tau'
 require 'tau.keymap'
-require 'tau.treesitter'

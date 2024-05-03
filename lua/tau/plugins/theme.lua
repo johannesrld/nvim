@@ -32,18 +32,11 @@ return {
     'uga-rosa/ccc.nvim',
     lazy = true,
     event = 'BufRead',
-    opts = {
-      highlighter = {
-        auto_enable = true,
-      },
-    },
+    opts = { highlighter = { auto_enable = true } },
   },
   {
     'echasnovski/mini.statusline',
     version = false,
-    opts = {
-      use_icons = false,
-      set_vim_settings = false
-    }
+    opts = { use_icons = false, set_vim_settings = false }
   },
 }

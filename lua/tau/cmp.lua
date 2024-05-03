@@ -61,30 +61,8 @@ cmp.setup {
   },
   experimental = { ghost_test = true },
 }
-vim.api.nvim_create_autocmd('InsertEnter', {
-  group = vim.api.nvim_create_augroup('Autopair_cmp', {}),
-  callback = function(_)
-    local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
-    cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done {
-      filetypes = {
-        lisp = false
-      }
-    })
-  end,
-  once = true,
-})
 cmp.setup.filetype('gitcommit', {
-  sources = cmp.config.sources({
-    { name = 'git' },
-  }, {
-    { name = 'buffer' },
-  }),
-})
-
-cmp.setup.filetype('lisp', {
-  sources = {
-    { name = 'nvlime' }
-  }
+  sources = cmp.config.sources({ { name = 'git' } }, { { name = 'buffer' } }),
 })
 
 cmp.setup.cmdline({ '/', '?' }, {
@@ -94,11 +72,7 @@ cmp.setup.cmdline({ '/', '?' }, {
 
 cmp.setup.cmdline(':', {
   mapping = cmp.mapping.preset.cmdline(),
-  sources = cmp.config.sources({
-    { name = 'path' },
-  }, {
-    { name = 'cmdline' },
-  }),
+  sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline' } })
 })
 local lsp_border = {
   { '┌', 'FloatBorder' },
@@ -116,3 +90,14 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
   opts.border = opts.border or lsp_border
   return __open_floating_preview(contents, syntax, opts, ...)
 end
+
+vim.api.nvim_create_autocmd('InsertEnter', {
+  group = vim.api.nvim_create_augroup('Autopair_cmp', {}),
+  callback = function(_)
+    local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
+    cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done {
+      filetypes = { lisp = false }
+    })
+  end,
+  once = true,
+})

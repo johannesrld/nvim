@@ -11,6 +11,7 @@ vim.g.maplocalleader = ';'
 
 vim.o.breakindent = true
 
+vim.opt.termguicolors = true
 
 vim.opt.clipboard:append 'unnamedplus'
 -- UI

@@ -10,8 +10,6 @@ local required_commands = {
   'gzip',
   'unzip',
   'python3'
-  -- 'opam' technically this will be required but not today!!!
- -- 'ghcup',
 }
 
 local missing_commands = {}

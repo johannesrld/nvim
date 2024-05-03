@@ -25,11 +25,22 @@ return {
   { 'vim-scripts/securemodelines', lazy = false, priority = 1 },
   {
     'windwp/nvim-autopairs',
-    event = 'InsertEnter',
-    config = true,
-    opts = {
-      check_ts = true
-    }
+    config = function()
+      local npairs = require("nvim-autopairs")
+      local cond = require('nvim-autopairs.conds')
+      npairs.setup {
+        check_ts = true,
+        ts_config = { lisp = { 'comment', 'block_comment' } }
+      }
+      npairs.get_rules("'")[1].not_filetypes = { "scheme", "lisp" }
+      npairs.get_rules("'")[1]:with_pair(cond.not_after_text("["))
+      ---@type function
+      local Rule = require("nvim-autopairs.rule")
+      npairs.add_rules {
+        Rule("*", "*", { "lisp" }),
+        Rule("#|", "|#", { "lisp" })
+      }
+    end
   },
   {
     'jiaoshijie/undotree',
@@ -66,13 +77,6 @@ return {
     end
   },
   {
-    'nvim-treesitter/nvim-treesitter',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-      'RRethy/nvim-treesitter-endwise',
-    },
-  },
-  {
     'echasnovski/mini.comment',
     event = 'VeryLazy',
     opts = {
@@ -86,10 +90,6 @@ return {
     dependencies = {
       { 'JoosepAlviste/nvim-ts-context-commentstring', lazy = true },
     }
-  },
-  {
-    'RRethy/nvim-treesitter-textsubjects',
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
   },
   {
     'folke/trouble.nvim',
