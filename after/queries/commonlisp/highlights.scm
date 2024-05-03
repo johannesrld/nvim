@@ -89,6 +89,7 @@
 ((condition_clause) _*) @keyword.conditional
 ((termination_clause) _*) @keyword.return
 (format_specifier) @string.special
+(format_modifiers (num_lit) @number)
 (format_specifier (format_directive_type "%")) @string.escape
 (format_specifier (format_directive_type "&")) @string.escape
 (format_specifier (format_directive_type "_")) @string.escape

@@ -28,6 +28,7 @@ return {
     config = function()
       local npairs = require("nvim-autopairs")
       local cond = require('nvim-autopairs.conds')
+      local ts_cond = require('nvim-autopairs.ts-conds')
       npairs.setup {
         check_ts = true,
         ts_config = { lisp = { 'comment', 'block_comment' } }
@@ -38,8 +39,19 @@ return {
       ---@type function
       local Rule = require("nvim-autopairs.rule")
       npairs.add_rules {
-        Rule("*", "*", { "lisp" }),
-        Rule("#|", "|#", { "lisp" })
+        Rule("*", "*", { "lisp" }):with_pair(ts_cond.is_not_ts_node({ 'str_lit' })),
+        Rule("#|", "|#", { "lisp" }):with_pair(ts_cond.is_not_ts_node({ 'str_lit' })),
+        Rule("~(", "~)", { "lisp" }):with_pair(ts_cond.is_ts_node({ 'str_lit' })),
+        Rule("~:(", "~)", { "lisp" }):with_pair(ts_cond.is_ts_node({ 'str_lit' })),
+        Rule("~@(", "~)", { "lisp" }):with_pair(ts_cond.is_ts_node({ 'str_lit' })),
+        Rule("~:@(", "~)", { "lisp" }):with_pair(ts_cond.is_ts_node({ 'str_lit' })),
+        Rule("~{", "~}", { "lisp" }):with_pair(ts_cond.is_ts_node({ 'str_lit' })),
+        Rule("~:{", "~}", { "lisp" }):with_pair(ts_cond.is_ts_node({ 'str_lit' })),
+        Rule("~@{", "~}", { "lisp" }):with_pair(ts_cond.is_ts_node({ 'str_lit' })),
+        Rule("~:@{", "~}", { "lisp" }):with_pair(ts_cond.is_ts_node({ 'str_lit' })),
+        Rule("~[", "~]", { "lisp" }):with_pair(ts_cond.is_ts_node({ 'str_lit' })),
+        Rule("~:[", "~]", { "lisp" }):with_pair(ts_cond.is_ts_node({ 'str_lit' })),
+        Rule("~@[", "~]", { "lisp" }):with_pair(ts_cond.is_ts_node({ 'str_lit' })),
       }
     end
   },
