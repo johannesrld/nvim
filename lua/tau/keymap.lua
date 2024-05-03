@@ -16,50 +16,21 @@ end
 local opts = defaultSetting { silent = true, noremap = true }
 
 wk.register({
-  t = {
-    name = '+Telescope',
-  },
-  l = {
-    name = '+Language Actions'
-  }
+  t = { name = '+Telescope', },
+  l = { name = '+Language Actions' }
 }, { prefix = "<leader>" })
 
 
 -- Stupid nonsense to get around which-keys #172 and/or #476,
 -- remove at the earliest convenience
-set(
-  'n',
-  vim.g.maplocalleader,
-  function()
-    wk.show(vim.g.maplocalleader, { mode = 'n' })
-  end,
-  opts()
-)
+set('n', vim.g.maplocalleader, function() wk.show(vim.g.maplocalleader, { mode = 'n' }) end, opts())
 
-set(
-  'n',
-  '<leader>w',
-  function()
-    require 'nvim-window'.pick()
-  end,
-  opts { desc = 'Jump to window' }
-)
+set('n', '<leader>w', function() require 'nvim-window'.pick() end, opts { desc = 'Jump to window' })
 
+set('n', '<leader>m', function() require('undotree').toggle() end, opts { desc = 'Toggle Undo Tree' })
 
-set(
-  'n',
-  '<leader>m',
-  function() require('undotree').toggle() end,
-  opts { desc = 'Toggle Undo Tree' }
-)
+set('n', '<leader>g', function() require('neogit').open {} end, opts { desc = 'Open Neogit' })
 
-
-set(
-  'n',
-  '<leader>g',
-  function() require('neogit').open {} end,
-  opts { desc = 'Open Neogit' }
-)
 
 local function slew_hydra() print 'Hercules slew the Hydra.' end
 hydra {
@@ -79,42 +50,16 @@ hydra {
     on_exit = slew_hydra,
   },
 }
-hydra {
-  name = 'Swap params',
-  mode = 'n',
-  body = '<leader>',
-  heads = {
-    {
-      'a',
-      '<cmd>TSTextobjectSwapNext @parameter.inner<cr>',
-      { desc = 'Swap to next param' },
-    },
-    {
-      'A',
-      '<cmd>TSTextobjectSwapPrevious @parameter.inner<cr>',
-      { desc = 'Swap to previous param' },
-    },
-  },
-  config = {
-    hint = false,
-    on_exit = slew_hydra,
-  },
-}
 ---@param module string
 ---@return function
 local function Telescope(module)
   local teleopts = require('telescope.themes').get_ivy {
-    layout_config = {
-      height = 13
-    },
-    borderchars = {
-      preview = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
-    },
+    layout_config = { height = 13 },
+    borderchars = { preview = { '─', '│', '─', '│', '┌', '┐', '┘', '└' } },
   }
-  return function()
-    require('telescope.builtin')[module](teleopts)
-  end
+  return function() require('telescope.builtin')[module](teleopts) end
 end
+
 set('n', '<leader>tf', Telescope 'find_files', opts { desc = "Find Files" })
 set('n', '<leader>tg', Telescope 'live_grep', opts { desc = "Live grep" })
 set('n', '<leader>tb', Telescope 'buffers', opts { desc = "Current Buffers" })
@@ -132,47 +77,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     set({ 'n', 'v' }, '<leader>la', vim.lsp.buf.code_action, opts { desc = 'Code Action' })
     set('n', '<leader>lr', vim.lsp.buf.rename, opts { desc = 'Rename Symbol' })
     set('n', '<leader>ls', Telescope 'lsp_document_symbols', opts { desc = 'View buffer symbols' })
-    -- set('n', '<leader>ls', Telescope 'lsp_workspace_symbols', opts { desc = 'View project symbols' })
-    -- set('n', '<leader>ls', vim.lsp.buf.signature_help, opts { desc = 'Symbol Signature' })
-    -- set('n', '<leader>ct', vim.lsp.buf.type_definition, opts { desc = 'Jump to type definition' })
     set('n', '<leader>b', function() require('dap').toggle_breakpoint() end, opts { desc = "Toggle Breakpoint" })
     set('n', '<leader>c', function() require('dap').continue() end, opts { desc = "DAP: Continue" })
   end,
 })
-local dap = require('dap')
-local hint = [[
-     ^ ^Step^ ^ ^      ^ ^     Action
- ----^-^-^-^--^-^----  ^-^-------------------
-     ^ ^back^ ^ ^     ^_t_: toggle breakpoint
-     ^ ^ _K_^ ^        _T_: clear breakpoints
- out _H_ ^ ^ _L_ into  _c_: continue
-     ^ ^ _J_ ^ ^       _x_: terminate
-     ^ ^over ^ ^     ^^_r_: open repl
-
-     ^ ^  _q_: exit
-]]
-hydra {
-  name = 'Debug',
-  hint = hint,
-  config = {
-    color = 'pink',
-    invoke_on_body = true,
-    hint = {
-      type = 'window'
-    },
-  },
-  mode = { 'n' },
-  body = '<leader>d,',
-  heads = {
-    { 'H', dap.step_out,          { desc = 'step out' } },
-    { 'J', dap.step_over,         { desc = 'step over' } },
-    { 'K', dap.step_back,         { desc = 'step back' } },
-    { 'L', dap.step_into,         { desc = 'step into' } },
-    { 't', dap.toggle_breakpoint, { desc = 'toggle breakpoint' } },
-    { 'T', dap.clear_breakpoints, { desc = 'clear breakpoints' } },
-    { 'c', dap.continue,          { desc = 'continue' } },
-    { 'x', dap.terminate,         { desc = 'terminate' } },
-    { 'r', dap.repl.open,         { exit = true, desc = 'open repl' } },
-    { 'q', nil,                   { exit = true, nowait = true, desc = 'exit' } },
-  }
-}
