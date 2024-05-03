@@ -102,8 +102,4 @@ require('nvim-treesitter.configs').setup {
     enable = true,
     enable_rename = true,
   },
-  matchup = {
-    enabled = true,
-    disable_virtual_text = true
-  }
 }

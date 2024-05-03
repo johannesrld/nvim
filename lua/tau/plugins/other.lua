@@ -1,6 +1,24 @@
 return {
   --Plugins
-  'folke/todo-comments.nvim',
+  {
+    'folke/todo-comments.nvim',
+    opts = {
+      signs = false,
+      keywords = {
+        FIX = { icon = "" },
+        TODO = { icon = "" },
+        HACK = { icon = "" },
+        WARN = { icon = "" },
+        PERF = { icon = "" },
+        NOTE = { icon = "" },
+        TEST = { icon = "" }
+      },
+      highlight = {
+        keyword = "bg",
+        after = ""
+      }
+    }
+  },
   {
     'nvim-focus/focus.nvim',
     version = '*',
@@ -8,14 +26,6 @@ return {
       commands = false
     },
     event = 'VeryLazy'
-  },
-  {
-    "andymass/vim-matchup",
-    config = function()
-      vim.g.matchup_matchpref = { html = { tagnameonly = 1 } }
-      vim.g.matchup_matchparen_deferred = 1
-      vim.g.matchup_matchparen_hi_surround_always = 1
-    end
   },
   -- { 'm4xshen/hardtime.nvim',       config = true },
   { 'nvim-lua/plenary.nvim' },

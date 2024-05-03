@@ -5,4 +5,3 @@
     "{"
     "}"
   ] @punctuation.bracket)
-
