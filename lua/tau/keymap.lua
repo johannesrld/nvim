@@ -57,7 +57,5 @@ vim.api.nvim_create_autocmd('LspAttach', {
     set({ 'n', 'v' }, '<leader>la', vim.lsp.buf.code_action, opts { desc = 'Code Action' })
     set('n', '<leader>lr', vim.lsp.buf.rename, opts { desc = 'Rename Symbol' })
     set('n', '<leader>ls', Telescope 'lsp_document_symbols', opts { desc = 'View buffer symbols' })
-    set('n', '<leader>b', function() require('dap').toggle_breakpoint() end, opts { desc = "Toggle Breakpoint" })
-    set('n', '<leader>c', function() require('dap').continue() end, opts { desc = "DAP: Continue" })
   end,
 })

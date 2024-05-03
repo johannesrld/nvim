@@ -57,8 +57,6 @@ vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 3
 vim.g.netrw_winsize = 20
 
-
-vim.g.mundo_right = 1
 local bufoption = vim.api.nvim_buf_get_option
 
 vim.api.nvim_create_autocmd('BufEnter', {

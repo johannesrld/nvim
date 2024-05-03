@@ -51,11 +51,10 @@ return {
             'html-lsp',
             'emmet-language-server',
             'typescript-language-server',
-            -- 'eslint-lsp',
             'json-lsp',
-            -- Other
-            -- 'ocaml-lsp',
-            -- 'ocamlformat',
+            'markuplint',
+            --Other
+            'dprint'
           },
 
           auto_update = false,
@@ -74,7 +73,7 @@ return {
     event = { 'BufRead' },
     opts = {
       formatters_by_ft = {
-        lua = { 'stylua' },
+        lua = { { 'stylua' } },
         markdown = { { 'dprint', 'markdownlint' } },
         json = { 'dprint' },
         javascript = { 'dprint' },
@@ -103,5 +102,4 @@ return {
     },
   },
   { 'lvimuser/lsp-inlayhints.nvim', event = 'LspAttach' },
-  { "rcarriga/nvim-dap-ui",         dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" }, config = true },
 }
