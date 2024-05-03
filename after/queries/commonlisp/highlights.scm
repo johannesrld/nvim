@@ -1,11 +1,10 @@
-;; extends
+; extends
 [
  "("
  ")"
  ] @tag.delimiter
 
 (nil_lit) @boolean
-
 
 ((sym_lit) @boolean (#any-of? @boolean "NIL"))
 (list_lit
@@ -80,12 +79,7 @@
                      "most-negative-single-float"
                      "most-positive-double-float"))
 
-(format_specifier) @string.special
-(format_specifier (format_directive_type "%")) @string.escape
-(format_specifier (format_directive_type "&")) @string.escape
-(format_specifier (format_directive_type "_")) @string.escape
-(format_specifier (format_directive_type "|")) @string.escape
-(format_specifier (format_directive_type "Newline")) @string.escape
+((sym_lit) @p9.commonlisp.special_var (#lua-match? @p9.commonlisp.special_var "^[*].+[*]$"))
 (accumulation_verb) @keyword
 ((for_clause) _*) @keyword.repeat
 (for_clause_word _* @keyword.repeat) @keyword.repeat
@@ -94,4 +88,12 @@
 ((do_clause) _*) @keyword
 ((condition_clause) _*) @keyword.conditional
 ((termination_clause) _*) @keyword.return
-((sym_lit) @p9.commonlisp.special_var (#lua-match? @p9.commonlisp.special_var "^[*].+[*]$"))
+(format_specifier) @string.special
+(format_specifier (format_directive_type "%")) @string.escape
+(format_specifier (format_directive_type "&")) @string.escape
+(format_specifier (format_directive_type "_")) @string.escape
+(format_specifier (format_directive_type "|")) @string.escape
+(format_specifier (format_directive_type "Newline")) @string.escape
+(format_specifier (format_directive_type) @p9.template_literal (#lua-match? @p9.template_literal "[{}]")) @p9.template_literal
+(format_specifier (format_directive_type) @p9.template_literal (#lua-match? @p9.template_literal "[()]")) @p9.template_literal
+(format_specifier (format_directive_type) @p9.template_literal (#lua-match? @p9.template_literal "[%[%]]")) @p9.template_literal

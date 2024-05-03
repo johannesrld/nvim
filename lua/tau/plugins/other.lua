@@ -33,6 +33,7 @@ return {
         ts_config = { lisp = { 'comment', 'block_comment' } }
       }
       npairs.get_rules("'")[1].not_filetypes = { "scheme", "lisp" }
+      npairs.get_rules("`")[1].not_filetypes = { "scheme", "lisp" }
       npairs.get_rules("'")[1]:with_pair(cond.not_after_text("["))
       ---@type function
       local Rule = require("nvim-autopairs.rule")

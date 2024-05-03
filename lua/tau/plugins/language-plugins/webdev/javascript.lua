@@ -9,5 +9,5 @@ return {
       require('lspconfig')['typescript-tools'].launch()
     end,
   },
-  { 'xabikos/vscode-javascript' }
+  { 'xabikos/vscode-javascript', ft = { 'typescript', 'javascript', 'tsx', 'jsx' } }
 }
