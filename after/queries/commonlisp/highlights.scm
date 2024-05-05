@@ -15,7 +15,7 @@
   .
   value: (sym_lit) @keyword.repeat (#any-of? @keyword.repeat "dotimes" "dolist" "do" "do*" "loop-finish"))
 
-
+(quoting_lit value: (list_lit . value: (sym_lit) @variable))
 
 ((sym_lit) @constant.builtin
            (#any-of? @constant.builtin "single-float-negative-epsilon"
@@ -98,3 +98,9 @@
 (format_specifier (format_directive_type) @p9.template_literal (#lua-match? @p9.template_literal "[{}]")) @p9.template_literal
 (format_specifier (format_directive_type) @p9.template_literal (#lua-match? @p9.template_literal "[()]")) @p9.template_literal
 (format_specifier (format_directive_type) @p9.template_literal (#lua-match? @p9.template_literal "[%[%]]")) @p9.template_literal
+
+(quoting_lit) @keyword
+(syn_quoting_lit) @keyword
+(unquote_splicing_lit) @keyword
+(unquoting_lit) @keyword
+(vec_lit "#" @keyword)
