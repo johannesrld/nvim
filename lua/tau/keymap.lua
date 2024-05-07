@@ -1,3 +1,4 @@
+local parseKeybinds = require 'lua.tau.keybinds.nastybits'
 ---@type function
 local set = vim.keymap.set
 ---@type table
@@ -18,18 +19,6 @@ wk.register({
   l = { name = '+Language Actions' }
 }, { prefix = "<leader>" })
 
-
--- Stupid nonsense to get around which-keys #172 and/or #476,
--- remove at the earliest convenience
-set('n', vim.g.maplocalleader, function() wk.show(vim.g.maplocalleader, { mode = 'n' }) end, opts())
-
-set('n', '<leader>w', function() require 'nvim-window'.pick() end, opts { desc = 'Jump to window' })
-
-set('n', '<leader>m', function() require('undotree').toggle() end, opts { desc = 'Toggle Undo Tree' })
-
-set('n', '<leader>g', function() require('neogit').open {} end, opts { desc = 'Open Neogit' })
-
-
 ---@param module string
 ---@return function
 local function Telescope(module)
@@ -40,9 +29,46 @@ local function Telescope(module)
   return function() require('telescope.builtin')[module](teleopts) end
 end
 
-set('n', '<leader>tf', Telescope 'find_files', opts { desc = "Find Files" })
-set('n', '<leader>tg', Telescope 'live_grep', opts { desc = "Live grep" })
-set('n', '<leader>tb', Telescope 'buffers', opts { desc = "Current Buffers" })
+---@type keybindSpec
+local keybinds = {
+  { silent = true, noremap = true },
+  [vim.g.maplocalleader] = function()
+    wk.show(vim.g.maplocalleader, { mode = 'n' })
+  end,
+  ['<leader>w'] = {
+    "Jump to window",
+    with_leader = true,
+    function()
+      require('nvim-window').pick()
+    end
+  },
+  ["<leader>m"] = {
+    "Toggle Undo Tree",
+    function()
+      require("undotree").toggle()
+    end
+  },
+  ["<leader>g"] = {
+    "Open Neogit",
+    function()
+      require("neogit").open {}
+    end
+  },
+  ["<leader>tf"] = {
+    "Find Files",
+    Telescope "find_files"
+  },
+  ["<leader>tg"] = {
+    "Live Grep",
+    Telescope "live_grep"
+  },
+  ["<leader>tb"] = {
+    "Current Buffers",
+    Telescope "buffers"
+  },
+}
+parseKeybinds(keybinds)
+
 -- Note that the +l prefix is for "language", not lsp
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(ev)
@@ -59,3 +85,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
     set('n', '<leader>ls', Telescope 'lsp_document_symbols', opts { desc = 'View buffer symbols' })
   end,
 })
+local function with_leader(tbl) end
+
+
+
+local keybinds = {
+  K =  { "Hover Info",             vim.lsp.buf.hover },
+  gd = { "Goto symbol definition", vim.lsp.buf.definition },
+  gi = { "Goto implementation",    vim.lsp.buf.implementation },
+  gr = { "goto References",        Telescope "lsp_references" },
+}

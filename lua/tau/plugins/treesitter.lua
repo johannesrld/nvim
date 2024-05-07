@@ -1,10 +1,12 @@
 return {
   {
-    'nvim-treesitter/nvim-treesitter',
+    -- 'johannesrld/nvim-treesitter',
+    dir = "~/projects/neovim/nvim-treesitter",
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
       'RRethy/nvim-treesitter-endwise',
     },
+    -- branch = "fix-commonlisp-quotes",
     config = function()
       require('lspconfig.ui.windows').default_options.border = 'single'
       require('nvim-treesitter.configs').setup {
@@ -97,11 +99,18 @@ return {
         },
         endwise = { enable = true, },
         autotag = { enable = true, enable_rename = true },
+        refactor = {
+          highlight_current_scope = { enable = true }
+        }
       }
     end
   },
   {
     'RRethy/nvim-treesitter-textsubjects',
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    -- dependencies = { 'johannesrld/nvim-treesitter' },
   },
+  {
+    'nvim-treesitter/nvim-treesitter-refactor',
+    -- dependencies = { 'johannesrld/nvim-treesitter' }
+  }
 }

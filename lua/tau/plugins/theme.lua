@@ -1,6 +1,7 @@
 return {
+  {"projekt0n/github-nvim-theme"},
   {
-    'Mofiqul/vscode.nvim',
+    dir = "~/projects/neovim/vscode.nvim",
     -- branch = "better-highlights",
     priority = 1000,
     init = function()
@@ -18,7 +19,7 @@ return {
           ["@p9.tag.identifier"]           = { link = "@variable" },
           ["@p9.commonlisp.special_var"]   = { fg = "#D16969" },
           ["@string.special.symbol"]       = { link = "@constant" },
-          ["@string.escape"]               = { link = "Special" },
+          ["@string.escape"]               = { link = "@stringEscape" },
           ["@character.printf"]            = { link = "SpecialChar" },
           ["@constant.builtin.commonlisp"] = { link = "@constant" },
           ["@lsp.type.formatSpecifier"]    = { link = "@keyword" },

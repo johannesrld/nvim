@@ -32,6 +32,8 @@ cmp.setup {
   },
   sources = cmp.config.sources({
     { name = 'luasnip',  max_item_count = 4 },
+    { name = 'nvlime', max_item_count = 50 },
+    -- { name = 'conjure',   max_item_count = 4 },
     { name = 'nvim_lsp', max_item_count = 10 },
     { name = 'html-css', max_item_count = 4 },
     { name = 'function', max_item_count = 4 },
