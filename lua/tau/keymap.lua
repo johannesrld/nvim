@@ -1,4 +1,4 @@
-local parseKeybinds = require 'lua.tau.keybinds.nastybits'
+local parseKeybinds = require 'tau.keybinds.nastybits'
 ---@type function
 local set = vim.keymap.set
 ---@type table
