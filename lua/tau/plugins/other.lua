@@ -1,4 +1,5 @@
 return {
+  "rktjmp/hotpot.nvim",
   {
     'folke/todo-comments.nvim',
     opts = {

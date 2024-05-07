@@ -43,6 +43,8 @@ if not vim.loop.fs_stat(hotpotpath) then
     hotpotpath,
   })
 end
-
+require("hotpot").setup {
+  provide_require_fennel = true
+}
 vim.opt.rtp:prepend { hotpotpath, lazypath }
 return { success = true }
