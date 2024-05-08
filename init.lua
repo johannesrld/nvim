@@ -49,8 +49,8 @@ require('lazy').setup {
     },
   },
 }
-local failed_to_load = ""
 pcall(require, 'tau.options')
+local failed_to_load = ""
 local cmp_loaded, _ = pcall(require, 'tau.cmp')
 if not cmp_loaded then failed_to_load = failed_to_load .. "Failed to load nvim-cmp\n" end
 local lsp_loaded, _ = pcall(require, 'tau.lsp')

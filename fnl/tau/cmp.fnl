@@ -1,5 +1,4 @@
-(import-macros {: void!} "tau.macros")
-(local {: autocmd} (require "tau._internal.funcs"))
+(import-macros {: void! : autocmd!} "tau.macros")
 (local cmp (require :cmp))
 (local snippet (-> (require :cmp.types)
                    (. :lsp)
@@ -21,7 +20,7 @@
           (cmp.confirm {:select true})
           (void! (fallback))))
     (void! (fallback))))
-
+(print "LMAO")
 (cmp.setup 
   {:experimental {:ghost_test true}
    :mapping (cmp.mapping.preset.insert {:<CR> (cmp.mapping {:i select-incomplete-or-snippet})
@@ -74,7 +73,6 @@
   (set opts.border (or opts.border border))
   (__open-floating-preview contents syntax opts ...))
 
-(autocmd :InsertEnter 
-  (fn []
-    (local cmp-ap (require :nvim-autopairs.completion.cmp))
-    (cmp.event:on :confirm_done (cmp-ap.on_confirm_done {:filetypes {:lisp false}}))))
+(autocmd! :InsertEnter {}
+  (local cmp-ap (require :nvim-autopairs.completion.cmp))
+  (cmp.event:on :confirm_done (cmp-ap.on_confirm_done {:filetypes {:lisp false}})))
