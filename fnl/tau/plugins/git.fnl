@@ -1,4 +1,4 @@
-(import-macros {: autocmd!} "tau.macros")
+(import-macros {: autocmd! : ol!} "tau.macros")
 [{1 :NeogitOrg/neogit
   :cmd :Neogit
   :lazy true
@@ -9,9 +9,9 @@
                                     "NeogitConsole" "NeogitLogView" "NeogitReflogView" 
                                     "NeogitCommitSelectView" "NeogitStatusNew" "NeogitRebaseTodo" 
                                     "NeogitPopup"]}
-       (set vim.opt_local.spell false)
-       (set vim.opt_local.list false)
-       (set vim.opt_local.foldlevel 1000))}
+       (ol! spell false)
+       (ol! list false)
+       (ol! foldlevel 1000))}
  {1 :sindrets/diffview.nvim
   :lazy true
   :opts 

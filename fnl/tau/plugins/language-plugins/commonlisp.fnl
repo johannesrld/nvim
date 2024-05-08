@@ -1,4 +1,5 @@
-(set vim.g.nvlime_config {:cmp {:enabled true}})
+(import-macros {: g!} "tau.macros")
+(g! nvlime_config {:cmp {:enabled true}})
 [{1 "johannesrld/parinfer-rust"
   :event "InsertEnter"
   :lazy true

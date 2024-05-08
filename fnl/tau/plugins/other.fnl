@@ -1,3 +1,4 @@
+(import-macros {: o!} "tau.macros")
 (macro req! [lib func & var-args]
   `((. (require ,lib) ,func) ,(unpack var-args)))
 
@@ -56,8 +57,8 @@
  {1 "folke/which-key.nvim"
   :event "VeryLazy"
   :init (fn [] 
-          (set vim.o.timeout true) 
-          (set vim.o.timeoutlen 300))
+          (o! timeout true) 
+          (o! timeoutlen 300))
   :opts {:triggers_nowait ["<leader>" "<localleader>" "<LocalLeader>" "<Localleader>"]}}
  {1 "nvim-telescope/telescope.nvim"
   :cmd "Telescope"

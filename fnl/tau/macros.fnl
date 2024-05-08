@@ -25,6 +25,16 @@
       (tset configs lsp_name (lsp! lsp_name lsp_config))))
   `((-> (require :mason-lspconfig) (. :setup_handlers)) ,configs))
 
+(fn o! [myopt val]
+ `(tset vim.opt ,(tostring myopt) ,val))
 
+(fn ol! [myopt val]
+ `(tset vim.opt ,(tostring myopt) ,val))
 
-{: void! : masonsetup! : autocmd! : lazy!}
+(fn g! [myopt val]
+ `(tset vim.g ,(tostring myopt) ,val))
+
+(fn wo! [myopt val]
+ `(tset vim.g ,(tostring myopt) ,val))
+
+{: void! : masonsetup! : autocmd! : lazy! : o! : ol! : g! : wo!}
