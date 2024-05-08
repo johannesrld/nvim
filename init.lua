@@ -1,5 +1,4 @@
 vim.loader.enable()
-pcall(require, 'tau.options')
 local bootstrapped, bootstrap_result = pcall(require, '_bootstrap')
 if not bootstrapped then
   print("ERROR, failed to require lua/_bootstrap, unrecovereable")
@@ -16,6 +15,8 @@ if not bootstrap_result.success then
   print(err_msg)
   return
 end
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ';' -- thanks lazy assholes!!!
 require('lazy').setup {
   spec = {
     { import = 'tau.plugins' },
@@ -48,10 +49,15 @@ require('lazy').setup {
     },
   },
 }
-
+local failed_to_load = ""
+pcall(require, 'tau.options')
 local cmp_loaded, _ = pcall(require, 'tau.cmp')
-if not cmp_loaded then print("Failed to load nvim-cmp") end
+if not cmp_loaded then failed_to_load = failed_to_load .. "Failed to load nvim-cmp\n" end
 local lsp_loaded, _ = pcall(require, 'tau.lsp')
-if not lsp_loaded then print("Failed to load lsp configuration") end
+if not lsp_loaded then failed_to_load = failed_to_load .. "Failed to load lsp config\n" end
 local key_loaded, _ = pcall(require, 'tau.keymap')
-if not key_loaded then print("Failed to load failed to load keybindings") end
+if not key_loaded then failed_to_load = failed_to_load .. "Failed to load keybindings\n" end
+
+if failed_to_load ~= "" then
+  vim.notify(failed_to_load, vim.log.levels.ERROR)
+end
