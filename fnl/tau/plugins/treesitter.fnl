@@ -3,10 +3,7 @@
       (tset (. (require :lspconfig.ui.windows) :default_options) :border
             :single)
       ((. (require :nvim-treesitter.configs) :setup) opts.opts))
-  :dependencies 
-    ["nvim-treesitter/nvim-treesitter-textobjects" "RRethy/nvim-treesitter-endwise"]
-  :dir 
-    "~/projects/neovim/nvim-treesitter"
+  :dir "~/projects/neovim/nvim-treesitter"
   :opts 
     {:auto_install true
      :ensure_installed 
@@ -51,5 +48,9 @@
      :indent    {:enable true :disable ["ocaml"]}
      :refactor  {:highlight_current_scope {:enable true}}}}
         
- [:RRethy/nvim-treesitter-textsubjects]
- [:nvim-treesitter/nvim-treesitter-refactor]]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        	
+ ["RRethy/nvim-treesitter-textsubjects"
+  ;:dependencies ["nvim-treesitter/nvim-treesitter"]
+  ]
+ ["nvim-treesitter/nvim-treesitter-refactor"
+  ;:dependencies ["nvim-treesitter/nvim-treesitter"]
+  ]]

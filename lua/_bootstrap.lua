@@ -1,4 +1,4 @@
-local required_cmds = { 'gcc', 'g++', 'make', 'cargo', 'npm', 'rg', 'node', 'tar', 'gzip', 'unzip', 'python3' }
+local required_cmds = {'gcc','g++','make','cargo','npm','rg','node','tar','gzip','unzip','python3' }
 
 local missing_cmds = {}
 for _,c in ipairs(required_cmds) do if vim.fn.executable(c)~=1 then table.insert(missing_cmds, c) end end

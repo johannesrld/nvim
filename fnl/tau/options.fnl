@@ -7,6 +7,7 @@
 (vim.opt_local.spelloptions:append "noplainbuffer")
 (vim.opt.clipboard:append "unnamedplus")
 (vim.opt_local.spelloptions:append "noplainbuffer")
+(vim.diagnostic.config {:signs false})
 (g! mapleader " ")
 (g! maplocalleader ";")
 (o! breakindent true)

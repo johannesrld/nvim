@@ -2,8 +2,8 @@
 (import-macros {: autocmd! : lazy!} :tau.macros)
 (local wk (require :which-key))
 (wk.register {:l {:name "+Language Actions"} 
-              :t {:name :+Telescope}}
-             {:prefix :<leader>})
+              :t {:name "+Telescope"}}
+             {:prefix "<leader>"})
 ; GRAAAA I LOVE THIS MACRO
 (macro lazy! [lib func & var-args]
   `(fn [] ((. (require ,lib) ,func) ,(unpack var-args))))
