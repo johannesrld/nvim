@@ -45,12 +45,8 @@
      :swap      {:enable true}
      :autotag   {:enable true :enable_rename true}
      :highlight {:enable true :additional_vim_regex_highlighting ["org"]}
-     :indent    {:enable true :disable ["ocaml"]}
-     :refactor  {:highlight_current_scope {:enable true}}}}
+     :indent    {:enable true :disable ["ocaml"]}}}
         
- ["RRethy/nvim-treesitter-textsubjects"
+ ["RRethy/nvim-treesitter-textsubjects"]]
   ;:dependencies ["nvim-treesitter/nvim-treesitter"]
-  ]
- ["nvim-treesitter/nvim-treesitter-refactor"
-  ;:dependencies ["nvim-treesitter/nvim-treesitter"]
-  ]]
+  

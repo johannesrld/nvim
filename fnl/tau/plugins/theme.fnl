@@ -15,6 +15,9 @@
       "@string.escape"               {:link "@stringEscape"}
       "@string.special.symbol"       {:link "@constant"}
       "MatchParen"                   {:bg   "none" :bold true :fg "#18a2fe"}
+      "@vscLightRed"                 {:fg "#D16969"}
+      "@vscYellowOrange"             {:fg "#D7BA7D"}
+      "@vscYellow"                   {:fg "#DCDCAA"}
       "SpecialChar"                  {:link "@variable"}}}
   :init #(vim.cmd "colorscheme vscode")
   :priority 1000}

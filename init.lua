@@ -9,7 +9,29 @@ if not bootstrap_result.success then
 end
 vim.g.mapleader=' '
 vim.g.maplocalleader=';' -- thanks lazy assholes!!!
-require('lazy').setup{spec={{import='tau.plugins'},{import='tau.plugins.language-plugins'},{import='tau.plugins.language-plugins.webdev'},},ui={icons={cmd='$ ',config='c',event='!',ft='ft:',init='in:',import='ip:',keys='ky',lazy='zz',loaded='+',not_loaded='-',plugin='∈ ',runtime='V ',source=':',start='>',task='||',list={'<>','->','*','‒',},},},}
+require('lazy').setup{
+  spec={
+    {import='tau.plugins'},
+    {import='tau.plugins.language-plugins'},
+    {import='tau.plugins.language-plugins.webdev'},},
+  ui={
+    icons={cmd='$ ',config='c',event='!',ft='ft:',init='in:',import='ip:',keys='ky',lazy='zz',loaded='+',not_loaded='-',plugin='∈ ',runtime='V ',source=':',start='>',task='||',list={'<>','->','*','‒',},
+    },
+  },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "matchit",
+        "matchparen",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      }
+    }
+  }
+}
 pcall(require, 'tau.options')
 local failed_to_load=""
 local cmp_loaded,_=pcall(require, 'tau.cmp')

@@ -20,36 +20,8 @@
  {1 "vim-scripts/securemodelines" 
   :lazy false 
   :priority 1}
- {1 "windwp/nvim-autopairs"
-  :opts {:check_ts true
-         :ts_config {"lisp" [:comment :block_comment]}}
-  :config (fn [opts]
-            (local ap (require :nvim-autopairs))
-            (ap.setup opts)
-            (local rule (require :nvim-autopairs.rule))
-            (macro r! [rule1 rule2 ft & rules]
-              (var wrapped `(rule ,rule1 ,rule2 ,ft))
-              (each [_# rule# (ipairs rules)]
-                (set wrapped `(: ,wrapped :with_pair ,rule#)))
-              wrapped)
-            (local cond (require :nvim-autopairs.conds))
-            (tset (. (ap.get_rules "'") 1) :not_filetypes ["scheme" "lisp"])
-            (tset (. (ap.get_rules "`") 1) :not_filetypes ["scheme" "lisp"])
-            (: (. (ap.get_rules "'") 1) :with_pair (cond.not_after_text "["))
-            (local {: is_ts_node : is_not_ts_node} (require :nvim-autopairs.ts-conds))
-            (ap.add_rules [(r! "*" "*"     ["lisp"] (is_not_ts_node [:str_lit :comment]))
-                           (r! "#|" "|#"   ["lisp"] (is_not_ts_node [:str_lit :comment]))
-                           (r! "~(" "~)"   ["lisp"] (is_ts_node     [:str_lit]))
-                           (r! "~:(" "~)"  ["lisp"] (is_ts_node     [:str_lit]))
-                           (r! "~@(" "~)"  ["lisp"] (is_ts_node     [:str_lit]))
-                           (r! "~:@(" "~)" ["lisp"] (is_ts_node     [:str_lit]))
-                           (r! "~{" "~}"   ["lisp"] (is_ts_node     [:str_lit]))
-                           (r! "~:{" "~}"  ["lisp"] (is_ts_node     [:str_lit]))
-                           (r! "~@{" "~}"  ["lisp"] (is_ts_node     [:str_lit]))
-                           (r! "~:@{" "~}" ["lisp"] (is_ts_node     [:str_lit]))
-                           (r! "~[" "~]"   ["lisp"] (is_ts_node     [:str_lit]))
-                           (r! "~:[" "~]"  ["lisp"] (is_ts_node     [:str_lit]))
-                           (r! "~@[" "~]"  ["lisp"] (is_ts_node     [:str_lit]))]))}
+ {1 "echasnovski/mini.pairs"
+  :config true}
  {1 "jiaoshijie/undotree" 
    :event "VeryLazy" 
    :lazy true 
@@ -87,7 +59,7 @@
                  "hrsh7th/cmp-buffer"
                  "hrsh7th/cmp-nvim-lsp"
                  "hrsh7th/cmp-buffer"
-                 "hrsh7th/cmp-path"
+                 "FelipeLema/cmp-async-path"
                  "hrsh7th/cmp-cmdline"
                  "saadparwaiz1/cmp_luasnip"
                  {1 "L3MON4D3/LuaSnip" :build "make install_jsregexp" :version "1.*"}]}]

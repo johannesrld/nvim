@@ -60,7 +60,7 @@
 
 (cmp.setup.cmdline 
   ":" {:mapping (cmp.mapping.preset.cmdline)
-       :sources (cmp.config.sources [{:name "path"}] [{:name "cmdline"}])})
+       :sources (cmp.config.sources [{:name "async_path"}] [{:name "cmdline"}])})
 
 (local border [["┌" :FloatBorder] ["─" :FloatBorder] 
                ["┐" :FloatBorder] ["│" :FloatBorder]
@@ -72,7 +72,3 @@
   (local opts (or opts {}))
   (set opts.border (or opts.border border))
   (__open-floating-preview contents syntax opts ...))
-
-(autocmd! :InsertEnter {}
-  (local cmp-ap (require :nvim-autopairs.completion.cmp))
-  (cmp.event:on :confirm_done (cmp-ap.on_confirm_done {:filetypes {:lisp false}})))

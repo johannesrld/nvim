@@ -19,9 +19,15 @@
       {:folder_closed ">" 
        :folder_open "v"}
      :signs 
-       {:done "✓" 
-        :fold_closed ">" 
-        :fold_open "v"}
+      {:done "✓" 
+       :fold_closed ">" 
+       :fold_open "v"}
      :use_icons false}}
  {1 "lewis6991/gitsigns.nvim" :config true}
- {1 "akinsho/git-conflict.nvim" :config true :version "*"}]  
+ {1 "akinsho/git-conflict.nvim"
+  :lazy true
+  :cmd ["GitConflictChooseOurs" "GitConflictChooseTheirs"
+        "GitConflictChooseBoth" "GitConflictChooseNone"
+        "GitConflictNextConflict" "GitConflictPrevConflict"
+        "GitConflictListQf"]
+  :version "*"}]  
