@@ -105,8 +105,4 @@
 (unquoting_lit "," @keyword)
 (vec_lit "#" @keyword)
 (kwd_lit ":" @constant)
-; (list_lit .
-;   value: (package_lit 
-;            package: ((sym_lit) (#any-of? "ql"))
-;            symbol: ((sym_lit) @keyword.import (#any-of? @keyword.import "quickload")))
-;   value: (kwd_lit (kwd_symbol) @namespace))
+(var_quoting_lit "#'" @keyword (#set! "priority" 105) value: (sym_lit) @function)
