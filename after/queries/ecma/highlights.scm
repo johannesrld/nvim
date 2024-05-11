@@ -42,3 +42,4 @@
                      value: (arrow_function))
 
 (ERROR "function" . (identifier) @function)
+(ERROR "class" . (identifier) @type)
