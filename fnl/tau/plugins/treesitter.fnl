@@ -48,7 +48,9 @@
      :swap      {:enable true}
      :autotag   {:enable true :enable_rename true}
      :highlight {:enable true :additional_vim_regex_highlighting ["org"]}
-     :indent    {:enable true :disable ["ocaml"]}}}]
+     :indent    {:enable true :disable ["ocaml"]}}}
+ ["windwp/nvim-ts-autotag"]
+ ["nvim-treesitter/nvim-treesitter-textobjects"]]
         
  ;["RRethy/nvim-treesitter-textsubjects"]
  
