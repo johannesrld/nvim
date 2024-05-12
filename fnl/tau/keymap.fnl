@@ -4,24 +4,24 @@
 (wk.register {:l {:name "+Language Actions"} 
               :t {:name "+Telescope"}}
              {:prefix "<leader>"})
-; GRAAAA I LOVE THIS MACRO
-(macro lazy! [lib func & var-args]
-  `(fn [] ((. (require ,lib) ,func) ,(unpack var-args))))
 
 (fn telescope [module]
   (let [opts {:borderchars   {:preview ["─" "│" "─" "│" "┌" "┐" "┘" "└"]} 
               :layout_config {:height 13}}
-        theme ((. (require :telescope.themes) :get_ivy) opts)]
-    (lazy! :telescope.builtin module theme)))
+        theme (lazy! :telescope.themes :get_ivy opts)]
+    (lazy! :telescope.builtin module (theme))))
+
 
 (keybinds {1            {:noremap true :silent true}
-            :<leader>g  ["Open Neogit"       (lazy! :neogit :open {})]
-            :<leader>m  ["Toggle Undo Tree"  (lazy! :undotree :toggle)]
-            :<leader>tb ["Current Buffers"   (telescope :buffers)]
-            :<leader>tf ["Find Files"        (telescope :find_files)]
-            :<leader>tg ["Live Grep"         (telescope :live_grep)]
-            :<leader>w  ["Jump to window"    (lazy! :nvim-window :pick)]
-            vim.g.maplocalleader             (fn [] (wk.show vim.g.maplocalleader {:mode :n}))})
+           :<leader>v   ["Split Window [V]ertically" vim.cmd.vsplit]})
+
+(keybinds {1            {:noremap true :silent true}
+            :<leader>g  ["Open Neo[g]it"        (lazy! :neogit :open {})]
+            :<leader>m  ["Toggle Undo Tree"     (lazy! :undotree :toggle)]
+            :<leader>b  ["Current [B]uffers"    (telescope :buffers)]
+            :<leader>f  ["[F]ind Files"         (telescope :find_files)]
+            :<leader>s  ["Live Grep ([S]earch)" (telescope :live_grep)]
+            vim.g.maplocalleader                (wk.show vim.g.maplocalleader {:mode :n})})
 
 (autocmd! :LspAttach {:once true} 
   (keybinds {1           {:buffer $1.buf :noremap true :silent true} 

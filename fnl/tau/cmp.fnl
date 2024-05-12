@@ -20,7 +20,6 @@
           (cmp.confirm {:select true})
           (void! (fallback))))
     (void! (fallback))))
-(print "LMAO")
 (cmp.setup 
   {:experimental {:ghost_test true}
    :mapping (cmp.mapping.preset.insert {:<CR> (cmp.mapping {:i select-incomplete-or-snippet})

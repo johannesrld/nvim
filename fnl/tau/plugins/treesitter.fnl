@@ -8,19 +8,22 @@
     {:auto_install true
      :ensure_installed 
        [ ; vim/lua stuff
-        "lua" "luadoc" "vim" "vimdoc" "fennel"
+        "lua" "luap" "luadoc" "vim" "vimdoc" "fennel"
          ; python
-        "requirements" "python"
+        "requirements" "python" "pymanifest"
          ; shell
-        "bash"
+        "bash" "awk" "readline"
          ; common data formats
-        "json" "json5" "jsonc" "jq" "yaml" "xml" "toml" "sql" 
+        "json" "json5" "jsonc" "jq" "yaml" "xml" "toml" "sql" "tsv"
          ; markup
-        "org" "markdown" "mermaid"
+        "org" "markdown" "markdown_inline" "mermaid" "rst"
          ; webstuff
-        "html" "javascript" "typescript" "css" "jsdoc"
+         "http" "html" "javascript" "typescript" "css" "jsdoc" "tsx"
          ; git files
-        "gitattributes" "gitcommit" "gitignore" "git_config" "git_rebase" "diff"]
+        "gitattributes" "gitcommit" "gitignore" "git_config" "git_rebase" "diff"
+         ; Misc
+        "printf" "regex" "dockerfile" "llvm" "asm" "disassembly" "ini"]
+
      :textobjects 
        {:move  {:enable true
                 :set_jumps true
@@ -45,8 +48,9 @@
      :swap      {:enable true}
      :autotag   {:enable true :enable_rename true}
      :highlight {:enable true :additional_vim_regex_highlighting ["org"]}
-     :indent    {:enable true :disable ["ocaml"]}}}
+     :indent    {:enable true :disable ["ocaml"]}}}]
         
- ["RRethy/nvim-treesitter-textsubjects"]]
+ ;["RRethy/nvim-treesitter-textsubjects"]
+ 
   ;:dependencies ["nvim-treesitter/nvim-treesitter"]
   

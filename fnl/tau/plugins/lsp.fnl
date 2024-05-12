@@ -60,4 +60,5 @@
     {:handler_opts {:border "none"} 
      :hint_prefix "🦭 "}}
  {1 "lvimuser/lsp-inlayhints.nvim" 
-  :event "LspAttach"}]  
+  :event "LspAttach"}
+ {1 "folke/neodev.nvim" :opts {}}]  
