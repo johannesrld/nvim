@@ -58,7 +58,8 @@
   ;       :signs                {:error "X" :hint "H" :information "?" :warning "W"}
   ;       :use_diagnostic_signs false}}
  {1 "onsails/lspkind.nvim"}                                           
- {1 "hrsh7th/nvim-cmp"
+ {1 "yioneko/nvim-cmp"
+  :branch "perf"
   :dependencies ["hrsh7th/cmp-nvim-lsp"
                  "hrsh7th/cmp-buffer"
                  "hrsh7th/cmp-nvim-lsp"
