@@ -34,10 +34,11 @@ require('lazy').setup{
 }
 pcall(require, 'tau.options')
 local failed_to_load=""
-local cmp_loaded,_=pcall(require, 'tau.cmp')
-if not cmp_loaded then failed_to_load = failed_to_load .. "Failed to load nvim-cmp\n" end
+require 'tau.cmp'
+-- if not cmp_loaded then failed_to_load = failed_to_load .. "Failed to load nvim-cmp\n" end
 local lsp_loaded,_=pcall(require, 'tau.lsp')
 if not lsp_loaded then failed_to_load = failed_to_load .. "Failed to load lsp config\n" end
-local key_loaded,_ = pcall(require, 'tau.keymap')
-if not key_loaded then failed_to_load = failed_to_load .. "Failed to load keybindings\n" end
+-- local key_loaded,_ = pcall(require, 'tau.keymap')
+require("tau.keymap")
+-- if not key_loaded then failed_to_load = failed_to_load .. "Failed to load keybindings\n" end
 if failed_to_load ~= "" then vim.notify(failed_to_load, vim.log.levels.ERROR) end

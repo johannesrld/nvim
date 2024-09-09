@@ -1,4 +1,4 @@
-(import-macros {: o!} "tau.macros")
+(import-macros {: o! : autocmd!} "tau.macros")
 (macro req! [lib func & var-args]
   `((. (require ,lib) ,func) ,(unpack var-args)))
 
@@ -20,8 +20,16 @@
  {1 "vim-scripts/securemodelines" 
   :lazy false 
   :priority 1}
- {1 "echasnovski/mini.pairs"
-  :config true}
+ {1 "windwp/nvim-autopairs"
+  :config (fn []
+            (local np (require :nvim-autopairs))
+            (local cond (require :nvim-autopairs.conds))
+            (local ts-cond (require :nvim-autopairs.ts-conds))
+            (np.setup {:check_ts true :ts_config {:lisp ["comment" "block_comment"]}})
+            (macro set-rule [rule method lst]
+              `(tset (. (np.get_rules ,rule) 1) ,method ,lst))
+            (set-rule "'" :not_filetypes ["scheme" "lisp" "fennel"])
+            (set-rule "`" :not_filetypes ["scheme" "lisp" "fennel"]))}
  {1 "jiaoshijie/undotree" 
    :event "VeryLazy" 
    :lazy true 
@@ -30,8 +38,7 @@
   :event "VeryLazy"
   :init (fn [] 
           (o! timeout true) 
-          (o! timeoutlen 300))
-  :opts {:triggers_nowait ["<leader>" "<localleader>" "<LocalLeader>" "<Localleader>"]}}
+          (o! timeoutlen 300))}
  {1 "nvim-telescope/telescope.nvim"
   :cmd "Telescope"
   :config (fn []
@@ -40,21 +47,18 @@
                                                                         :<C-k> action.move_selection_previous}}}}))
   :dependencies [ "nvim-lua/plenary.nvim"]
   :lazy true}
- {1 "echasnovski/mini.comment"
-  :dependencies [{1 "JoosepAlviste/nvim-ts-context-commentstring" :lazy true}]
-  :event "VeryLazy"}
  {1 "folke/trouble.nvim"
-  :cmd "TroubleToggle"
+  :cmd "Trouble"
   :lazy true
-  :opts {:fold_closed          ">"
-         :fold_open            "v"
-         :icons                false
-         :indent_lines         false
-         :signs                {:error "X" :hint "H" :information "?" :warning "W"}
-         :use_diagnostic_signs false}}
-
- {1 "johannesrld/nvim-cmp"
-  :branch "expose-first-entry"
+  :config true}
+  ;:opts {:fold_closed          ">"
+  ;       :fold_open            "v"
+  ;       :icons                false
+  ;       :indent_lines         false
+  ;       :signs                {:error "X" :hint "H" :information "?" :warning "W"}
+  ;       :use_diagnostic_signs false}}
+ {1 "onsails/lspkind.nvim"}                                           
+ {1 "hrsh7th/nvim-cmp"
   :dependencies ["hrsh7th/cmp-nvim-lsp"
                  "hrsh7th/cmp-buffer"
                  "hrsh7th/cmp-nvim-lsp"
@@ -62,4 +66,7 @@
                  "FelipeLema/cmp-async-path"
                  "hrsh7th/cmp-cmdline"
                  "saadparwaiz1/cmp_luasnip"
-                 {1 "L3MON4D3/LuaSnip" :build "make install_jsregexp" :version "1.*"}]}]
+                 {1 "L3MON4D3/LuaSnip" :build "make install_jsregexp" :version "1.*"}]}
+ {1 "xabikos/vscode-javascript"}
+ {1 "Decodetalkers/csharpls-extended-lsp.nvim"}]
+ ;{1 "monkoose/matchparen.nvim" :config true}]

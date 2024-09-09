@@ -2,19 +2,28 @@
 (local indent-width 4)
 (local stdpath vim.fn.stdpath)
 (local colourcolum-option "88")
-(o! spelllang "en_gb")
-(o! spell (or (and (not vim.g.vscode) true) false))
-(vim.opt_local.spelloptions:append "noplainbuffer")
-(vim.opt.clipboard:append "unnamedplus")
-(vim.opt_local.spelloptions:append "noplainbuffer")
+;(o! spelllang "en_gb")
+;(o! spell (or (and (not vim.g.vscode) true) false))
+;(vim.opt_local.spelloptions:append "noplainbuffer")
+;;(g! clipboard {:name "WslClipboard"
+;;               :copy 
+;;                 {"+" "clip.exe"
+;;                  "*" "clip.exe"}
+;;               :paste 
+;;                 {"+" "powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace(\"`r\", \"\"))"
+;;                  "*" "powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace(\"`r\", \"\"))"}
+;;               :cache_enabled 0})
+;
+;;(o! clipboard "unnamedplus")                             
+;(vim.opt_local.spelloptions:append "noplainbuffer")
 (vim.diagnostic.config {:signs false})
 (g! mapleader " ")
 (g! maplocalleader ";")
 (o! breakindent true)
 (o! termguicolors true)
 (o! laststatus 3)
-(o! spelllang "en_gb")
-(o! spell true)
+;;(o! spelllang "en_gb")
+;;(o! spell true)
 (o! showtabline 0)
 (o! number true)
 (o! relativenumber true)
@@ -26,7 +35,7 @@
 (o! conceallevel 2)
 (o! updatetime 300)
 (o! colorcolumn colourcolum-option)
-(o! completeopt ["menuone" "noselect" "noinsert"])
+(o! completeopt ["menu" "menuone" "noinsert" "popup"])
 (o! shortmess (+ vim.opt.shortmess {:c true}))
 (o! autoindent true)
 (o! smartindent true)
@@ -41,11 +50,22 @@
 (o! swapfile false)
 (o! undofile true)
 (o! undodir (.. (stdpath "data") "/undo"))
-
+;
 (g! netrw_banner 0)
 (g! netrw_liststyle 3)
 (g! netrw_winsize 20)
+;
+(o! foldmethod "expr")
+(o! foldcolumn "0")
+(o! foldtext "")
+(o! foldlevel 99)
+;(o! foldlevelstart 1)
+(o! foldnestmax 4)
+(o! foldexpr "v:lua.vim.treesitter.foldexpr()")
 
+
+(o! pumheight 10)
+(o! pumwidth 10)
 (local bufoption vim.api.nvim_buf_get_option)  
 (autocmd! :BufEnter {}
     (local buftype (bufoption $1.buf :buftype))

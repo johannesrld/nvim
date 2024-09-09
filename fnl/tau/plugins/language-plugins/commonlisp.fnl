@@ -7,6 +7,5 @@
   :build "cargo build --release"}
   
  {1 "monkoose/nvlime"
-  :lazy true
   :ft ["lisp"]
   :dependencies ["https://github.com/monkoose/parsley"]}]  

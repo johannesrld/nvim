@@ -1,9 +1,17 @@
-[{:config 
+[{1 "nvim-treesitter/nvim-treesitter"
+  :config 
     (fn [opts]
+      (local parser_configs (require :nvim-treesitter.parsers))
+      (local parser_config (parser_configs.get_parser_configs))
+      (set parser_config.commonlisp 
+            {:install_info 
+              {:url "~/projects/javascript/new-tree-sitter-cl/" 
+               :files ["src/parser.c"]
+               :generate_requires_npm false}})
       (tset (. (require :lspconfig.ui.windows) :default_options) :border
             :single)
       ((. (require :nvim-treesitter.configs) :setup) opts.opts))
-  :dir "~/projects/neovim/nvim-treesitter"
+      
   :opts 
     {:auto_install true
      :ensure_installed 

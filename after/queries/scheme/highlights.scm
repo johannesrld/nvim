@@ -1,0 +1,2 @@
+;; extends
+["(" ")"] @tag.delimiter

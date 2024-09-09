@@ -1,2 +1,3 @@
 ;; extends
-(tag (identifier) @p9.tag.identifier)
+(tag (identifier) @variable)
+(tag (identifier) @nospell)

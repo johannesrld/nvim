@@ -4,7 +4,7 @@
 (fn lsp! [name tbl]
   (if (not= tbl :nosetup)
       (do
-         (tset tbl :capabilities `cmp-capabilities)
+         (tset tbl :capabilities `capabilities)
         `(fn [] ((. (. (require :lspconfig) ,name) :setup) ,tbl)))
       `(fn [])))
  
@@ -16,9 +16,9 @@
       (vim.tbl_extend :force ,opts {:callback (hashfn (do (do ,(unpack callback) nil)))})))
 
 ; warning, this macro will devour your newborn if you're not careful
-(fn masonsetup! [& args]
+(fn masonsetup! [capabilities & args]
   (local configs {})
-  (tset configs 1 `#((-> (require :lspconfig) (. $1) (. :setup)) {}))
+  (tset configs 1 `#((-> (require :lspconfig) (. $1) (. :setup)) {:capabilities capabilities}))
   (for [i 1 (length args) 2]
     (let [lsp_name (. args i)
           lsp_config (. args (+ i 1))]

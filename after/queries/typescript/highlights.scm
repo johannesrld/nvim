@@ -4,4 +4,4 @@
   [
     "${"
     "}"
-  ] @p9.template_literal)
+  ] @keyword)

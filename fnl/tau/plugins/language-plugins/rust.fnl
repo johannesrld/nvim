@@ -1,0 +1,1 @@
+["mrcjkb/rustaceanvim"]

@@ -4,7 +4,7 @@
   [
     "${"
     "}"
-  ] @p9.template_literal)
+  ] @keyword)
 ["=>" "async" ] @keyword
 (generator_function_declaration "*" @keyword)
 (lexical_declaration "const" (variable_declarator name: (identifier) @constant))
@@ -15,7 +15,9 @@
   (#eq? @string "use strict")) 
 
 (program 
-  . 
+  (comment)?
+  (hash_bang_line)?
+  .
   (expression_statement 
     . 
     (string 
@@ -24,15 +26,17 @@
 (function_declaration 
   body: 
     (statement_block 
+      (comment)?
       . 
       (expression_statement 
-        (string 
+        (string
           (string_fragment) @keyword.directive 
             (#eq? @keyword.directive "use strict")))))
 (arrow_function 
   body: 
     (statement_block 
-      . 
+      (comment)?
+      .
       (expression_statement 
         (string 
           (string_fragment) @keyword.directive 
@@ -40,6 +44,17 @@
 
 (variable_declarator name: (identifier) @function
                      value: (arrow_function))
+(variable_declarator name: (identifier) @function
+                     value: (function_expression))
+(function_expression
+  body: (statement_block
+          (comment)?
+          .
+          (expression_statement
+            (string
+              (string_fragment) @keyword.directive
+                (#eq? @keyword.directive "use strict")))))
 
 (ERROR "function" . (identifier) @function)
 (ERROR "class" . (identifier) @type)
+

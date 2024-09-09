@@ -38,27 +38,27 @@
  {1 "neovim/nvim-lspconfig"
     :event "VeryLazy" 
     :lazy true}
- {1 "stevearc/conform.nvim"
-  :event "BufRead"
-  :lazy true
-  :opts 
-    {:formatters_by_ft 
-      {:javascript ["dprint"]
-       :json       ["dprint"]
-       :lua        [["stylua"]]
-       :markdown   [["dprint" "markdownlint"]]
-       :typescript ["dprint"]}}}
+ ;{1 "stevearc/conform.nvim"
+ ; :event "BufRead"
+ ; :lazy true
+ ; :opts 
+ ;   {:formatters_by_ft 
+ ;     ;{:javascript [["dprint"]]
+ ;      :json       [["dprint"]]
+ ;      :lua        [["stylua"]]
+ ;      :markdown   [["dprint" "markdownlint"]]
+ ;      :typescript [["dprint"]]}}
  {1 "mfussenegger/nvim-lint"
   :lazy true
   :event "VeryLazy"
   :config (fn []
             (tset (require :lint) :linters_by_ft {:html ["markuplint"]})
             (autocmd! :BufWritePost {}
-                ((. (require :lint) :try_lint))))}
- {1 "ray-x/lsp_signature.nvim"
-  :opts 
-    {:handler_opts {:border "none"} 
-     :hint_prefix "🦭 "}}
- {1 "lvimuser/lsp-inlayhints.nvim" 
-  :event "LspAttach"}
- {1 "folke/neodev.nvim" :opts {}}]  
+                ((. (require :lint) :try_lint))))}]
+ ;{1 "ray-x/lsp_signature.nvim"
+ ; :opts 
+ ;   {:handler_opts {:border "none"} 
+ ;    :hint_prefix "🦭 "}}
+ ;{1 "lvimuser/lsp-inlayhints.nvim" 
+ ; :event "LspAttach"}
+ ;{1 "folke/neodev.nvim" :opts {}}]  

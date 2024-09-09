@@ -23,7 +23,7 @@
        :fold_closed ">" 
        :fold_open "v"}
      :use_icons false}}
- {1 "lewis6991/gitsigns.nvim" :config true :event "BufRead"}
+ {1 "lewis6991/gitsigns.nvim" :event "BufRead" :opts {:current_line_blame true :current_line_blame_opts {:delay 2000}}}
  {1 "akinsho/git-conflict.nvim"
   :lazy true
   :cmd ["GitConflictChooseOurs" "GitConflictChooseTheirs"
