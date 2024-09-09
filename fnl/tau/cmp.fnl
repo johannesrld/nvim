@@ -22,7 +22,8 @@
           (void! (fallback))))
     (void! (fallback))))
 (cmp.setup 
-  {:mapping (cmp.mapping.preset.insert {:<CR> (cmp.mapping.confirm {:select true})
+  {:performance {:debounce 10 :throttle 10}
+   :mapping (cmp.mapping.preset.insert {:<CR> (cmp.mapping.confirm {:select true})
                                         :<c-CR> (cmp.mapping.abort)
                                         :<c-j> (cmp.mapping.select_next_item)
                                         :<c-k> (cmp.mapping.select_prev_item)
