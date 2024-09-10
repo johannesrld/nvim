@@ -36,15 +36,15 @@
              :comparators [cmp.config.compare.offset  
                            cmp.config.compare.exact
                            cmp.config.compare.score
-                           cmp.config.compare.recently_used
-                           cmp.config.compare.order
-                           cmp.config.compare.locality
                            (fn [entry1 entry2]
                              (var (_ entry1-under) (entry1.completion_item.label:find "^_+"))
                              (var (_ entry2-under) (entry2.completion_item.label:find "^_+"))
                              (set entry1-under (or entry1-under 0))
                              (set entry2-under (or entry2-under 0))
                              (if (< entry1-under entry2-under) true false))
+                           cmp.config.compare.recently_used
+                           cmp.config.compare.order
+                           cmp.config.compare.locality
                            cmp.config.compare.length]}
    :sources (cmp.config.sources [{:max_item_count 25 :name "nvim_lsp" :priority 8}
                                  {:max_item_count 10 :name "luasnip" :priority 9}
