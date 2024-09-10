@@ -68,6 +68,5 @@
                  "hrsh7th/cmp-cmdline"
                  "saadparwaiz1/cmp_luasnip"
                  {1 "L3MON4D3/LuaSnip" :build "make install_jsregexp" :version "1.*"}]}
- {1 "xabikos/vscode-javascript"}
  {1 "Decodetalkers/csharpls-extended-lsp.nvim"}]
  ;{1 "monkoose/matchparen.nvim" :config true}]
