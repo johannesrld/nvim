@@ -15,16 +15,17 @@
            :<leader>v   ["Split Window [V]ertically" vim.cmd.vsplit]})
 
 (keybinds {1            {:noremap true :silent true}
-            :<leader>g  ["Open Neo[g]it"        (lazy! :neogit :open {})]
-            :<leader>m  ["Toggle Undo Tree"     (lazy! :undotree :toggle)]
-            :<leader>b  ["Current [B]uffers"    (telescope :buffers)]
-            :<leader>f  ["[F]ind Files"         (telescope :find_files)]
-            :<leader>s  ["Live Grep ([S]earch)" (telescope :live_grep)]})
+            :<leader>x  ["View Problems (Focus)" (lazy! :trouble :toggle {:mode "diagnostics" :focus true})]
+            :<leader>X  ["View Problems"         (lazy! :trouble :toggle {:mode "diagnostics" :focus false})]
+            :<leader>g  ["Open Neo[g]it"         (lazy! :neogit :open {})]
+            :<leader>m  ["Toggle Undo Tree"      (lazy! :undotree :toggle)]
+            :<leader>b  ["Current [B]uffers"     (telescope :buffers)]
+            :<leader>f  ["[F]ind Files"          (telescope :find_files)]
+            :<leader>s  ["Live Grep ([S]earch)"  (telescope :live_grep)]})
             ;vim.g.maplocalleader                (wk.show vim.g.maplocalleader {:mode :n}))
 
 (autocmd! :LspAttach {}
   (keybinds {1           {:buffer $1.buf :noremap true :silent true} 
-             :<leader>x  ["View Problems"          (lazy! :trouble :toggle "diagnostics")]
              :K          ["Hover Info"             vim.lsp.buf.hover]
              :gd         ["Goto symbol definition" (telescope :lsp_definitions)]
              :gi         ["Goto implementation"    (telescope :lsp_implementation)]

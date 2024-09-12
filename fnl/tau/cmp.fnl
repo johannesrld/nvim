@@ -88,7 +88,7 @@
                ["┐" :FloatBorder] ["│" :FloatBorder]
                ["┘" :FloatBorder] ["─" :FloatBorder] 
                ["└" :FloatBorder] ["│" :FloatBorder]])
-(cmp.event:on "confirm_done" (cmp-ap.on_confirm_done))
+(cmp.event:on "confirm_done" (cmp-ap.on_confirm_done {:filetypes {:lisp false :css false}}))
 (local __open-floating-preview vim.lsp.util.open_floating_preview)
 (fn vim.lsp.util.open_floating_preview [contents syntax opts ...]
   (local opts (or opts {}))

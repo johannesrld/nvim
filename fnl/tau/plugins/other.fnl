@@ -50,6 +50,9 @@
  {1 "folke/trouble.nvim"
   :cmd "Trouble"
   :lazy true
+  :opts {:icons {:indent {:fold_closed ">" :fold_open "v"}
+                 :folder_closed "- "
+                 :folder_open   "- "}}
   :config true}
   ;:opts {:fold_closed          ">"
   ;       :fold_open            "v"
