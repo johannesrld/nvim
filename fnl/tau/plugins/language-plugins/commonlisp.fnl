@@ -4,8 +4,7 @@
   :event "InsertEnter"
   :lazy true
   :branch "fix-undo-explosions"
-  :build "cargo build --release"}
-  
- {1 "monkoose/nvlime"
-  :ft ["lisp"]
-  :dependencies ["https://github.com/monkoose/parsley"]}]  
+  :build "cargo build --release"}]
+;{1 "monkoose/nvlime"
+; :ft ["lisp"]
+; :dependencies ["https://github.com/monkoose/parsley"]}  

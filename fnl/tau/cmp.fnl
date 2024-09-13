@@ -75,8 +75,8 @@
             :documentation cmp-border}})
 (cmp.setup.filetype 
   "gitcommit" {:sources (cmp.config.sources [{:name "git"}] [{:name "buffer"}])})
-(cmp.setup.filetype 
-  "lisp" {:sources [{:name "nvlime"}]})
+;(cmp.setup.filetype 
+;  "lisp" {:sources [{:name "nvlime"}]})
 (cmp.setup.cmdline 
   ["/" "?"] {:mapping (cmp.mapping.preset.cmdline) :sources [{:name "buffer"}]})
 
