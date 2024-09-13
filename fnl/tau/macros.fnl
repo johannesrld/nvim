@@ -13,7 +13,7 @@
 
 (fn autocmd! [event opts & callback]
   `(vim.api.nvim_create_autocmd ,event 
-      (vim.tbl_extend :force ,opts {:callback (hashfn (do (do ,(unpack callback) nil)))})))
+      (vim.tbl_extend :force ,opts {:callback (hashfn (do ,(unpack callback)))})))
 
 ; warning, this macro will devour your newborn if you're not careful
 (fn masonsetup! [capabilities & args]
