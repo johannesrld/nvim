@@ -17,8 +17,6 @@
 (keybinds {1            {:noremap true :silent true}
             :<leader>x  ["View Problems (Focus)" (lazy! :trouble :toggle {:mode "diagnostics" :focus true})]
             :<leader>X  ["View Problems"         (lazy! :trouble :toggle {:mode "diagnostics" :focus false})]
-            :<leader>g  ["Open Neo[g]it"         (lazy! :neogit :open {})]
-            :<leader>m  ["Toggle Undo Tree"      (lazy! :undotree :toggle)]
             :<leader>b  ["Current [B]uffers"     (telescope :buffers)]
             :<leader>f  ["[F]ind Files"          (telescope :find_files)]
             :<leader>s  ["Live Grep ([S]earch)"  (telescope :live_grep)]})

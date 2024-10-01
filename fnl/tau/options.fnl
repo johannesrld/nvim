@@ -2,28 +2,12 @@
 (local indent-width 4)
 (local stdpath vim.fn.stdpath)
 (local colourcolum-option "88")
-;(o! spelllang "en_gb")
-;(o! spell (or (and (not vim.g.vscode) true) false))
-;(vim.opt_local.spelloptions:append "noplainbuffer")
-;;(g! clipboard {:name "WslClipboard"
-;;               :copy 
-;;                 {"+" "clip.exe"
-;;                  "*" "clip.exe"}
-;;               :paste 
-;;                 {"+" "powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace(\"`r\", \"\"))"
-;;                  "*" "powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace(\"`r\", \"\"))"}
-;;               :cache_enabled 0})
-;
-;;(o! clipboard "unnamedplus")                             
-;(vim.opt_local.spelloptions:append "noplainbuffer")
 (vim.diagnostic.config {:signs false})
 (g! mapleader " ")
 (g! maplocalleader ";")
 (o! breakindent true)
 (o! termguicolors true)
 (o! laststatus 3)
-;;(o! spelllang "en_gb")
-;;(o! spell true)
 (o! showtabline 0)
 (o! number true)
 (o! relativenumber true)

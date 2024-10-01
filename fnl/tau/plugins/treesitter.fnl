@@ -54,13 +54,7 @@
                   :node_incremental "<c-space>" :scope_incremental "<c-s>"}}
      :endwise   {:enable true}
      :swap      {:enable true}
-     :autotag   {:enable true :enable_rename true}
      :highlight {:enable true :additional_vim_regex_highlighting ["org"]}
-     :indent    {:enable true :disable ["ocaml"]}}}
- ["windwp/nvim-ts-autotag"]
+     :indent    {:enable true :disable ["ocaml" "html"]}}}
+ ;{1 "windwp/nvim-ts-autotag" :config true}
  ["nvim-treesitter/nvim-treesitter-textobjects"]]
-        
- ;["RRethy/nvim-treesitter-textsubjects"]
- 
-  ;:dependencies ["nvim-treesitter/nvim-treesitter"]
-  

@@ -6,9 +6,9 @@
 (set capabilities.textDocument.completion.completionItem.snippetSupport true)
 
 (masonsetup! capabilities
-  "emmet_language_server" {:init_options {:showAbbreviationSuggestions    true
-                                               :showExpandedAbbreviation  "always"
-                                               :showSuggestionsAsSnippets true}}
+  "emmet_language_server" {:init_options {:showAbbreviationSuggestions true
+                                          :showExpandedAbbreviation "always"
+                                          :showSuggestionsAsSnippets true}}
   "jsonls"                {:settings {:json {:schemas ((. (. (require "schemastore") :json) :schemas))
                                              :validate {:enable true}}}}
   "rust_analyzer"         :nosetup

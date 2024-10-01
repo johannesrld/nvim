@@ -5,5 +5,3 @@
   :config (fn []
             ((. (require :typescript-tools) :setup) {})
             ((. (. (require :lspconfig) :typescript-tools) :launch)))}]
- ;{1 "xabikos/vscode-javascript" 
- ; :ft ["typescript" "javascript" "tsx" "jsx"]}]  
