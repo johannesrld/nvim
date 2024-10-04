@@ -1,7 +1,3 @@
 .vscode/
 undo/
 spell/
-lua/*
-!lua/_bootstrap.lua
-!lua/tau/options.lua
-!lua/tau/plugins/hotpot.lua
