@@ -1,2 +1,10 @@
-vim.g["nvlime_config"] = {cmp = {enabled = true}}
-return {{"johannesrld/parinfer-rust", event = "InsertEnter", lazy = true, branch = "fix-undo-explosions", build = "cargo build --release"}, {"Olical/conjure", ft = {"lisp", "scheme", "fennel", "clojure", "janet", "racket", "rust", "lua", "python", "julia"}}, {"PaterJason/cmp-conjure", ft = {"lisp", "scheme", "fennel", "clojure", "janet", "racket", "rust", "lua", "python", "julia"}}}
+return {
+  {
+    "johannesrld/parinfer-rust",
+    event = "InsertEnter",
+    lazy = true,
+    branch = "fix-undo-explosions",
+    build = "cargo build --release"
+  }
+}
+

@@ -1,4 +1,4 @@
-local function _1_(keybinds)
+return function(keybinds)
   local default_opts = (keybinds[1] or {})
   table.remove(keybinds, 1)
   for keybind, spec in pairs(keybinds) do
@@ -17,10 +17,10 @@ local function _1_(keybinds)
       else
         callback = spec[2]
       end
-      local options = vim.tbl_extend("force", default_opts, {desc = (desc or default_opts.desc), silent = (spec.silent or default_opts.silent)})
+      local options = vim.tbl_extend("force", default_opts,
+        { desc = (desc or default_opts.desc), silent = (spec.silent or default_opts.silent) })
       vim.keymap.set((spec.mode or "n"), keybind, callback, options)
     end
   end
   return nil
 end
-return _1_
