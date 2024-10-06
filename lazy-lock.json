@@ -1,6 +1,7 @@
 {
   "LuaSnip": { "branch": "master", "commit": "500981ff6cefc7343e3959ef0f939bd0bfd49ba9" },
   "SchemaStore.nvim": { "branch": "main", "commit": "dd374887d6e1de38e9d7041da824a8dc10cae401" },
+  "ccc.nvim": { "branch": "main", "commit": "7c639042583c7bdc7ce2e37e5a0e0aa6d0659c6a" },
   "cmp-async-path": { "branch": "main", "commit": "9d581eec5acf812316913565c135b0d1ee2c9a71" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
   "cmp-cmdline": { "branch": "main", "commit": "d250c63aa13ead745e3a40f61fdd3470efde3923" },
@@ -20,8 +21,8 @@
   "nvim-treesitter": { "branch": "master", "commit": "5bcc338c3dfe2164a893c6dbeca4210f65f9c4e2" },
   "nvim-treesitter-textobjects": { "branch": "master", "commit": "4a2d05ec24eaa6b655c7d19092a3b6c0219d46b9" },
   "parinfer-rust": { "branch": "fix-undo-explosions", "commit": "fb664eabcb37b1ef7791b944fc9bf5acf6fbd6b8" },
+  "plan-gruber": { "branch": "main", "commit": "3d556370f728a99c18bb22a37443fbb00cc90a0b" },
   "plenary.nvim": { "branch": "master", "commit": "2d9b06177a975543726ce5c73fca176cedbffe9d" },
-  "rose-pine": { "branch": "main", "commit": "8b1fd252255a7f2c41b4192a787ab62660b29f72" },
   "rustaceanvim": { "branch": "master", "commit": "29f42cc149f915d771c550b6dfe7c788d856cf04" },
   "telescope.nvim": { "branch": "master", "commit": "eae0d8fbde590b0eaa2f9481948cd6fd7dd21656" },
   "trouble.nvim": { "branch": "main", "commit": "254145ffd528b98eb20be894338e2d5c93fa02c2" },

@@ -5,14 +5,15 @@ return {
     version = false
   },
   {
-    "rose-pine/neovim",
-    name = "rose-pine",
-    opts = {
-      enable = { migrations = false },
-      styles = { bold = false, italic = false }
-    },
+    "uga-rosa/ccc.nvim",
+    opts = { highlighter = { auto_enable = true } }
+  },
+  {
+    "johannesrld/plan-gruber",
+    priority = 1000,
+    lazy = false,
     init = function()
-      vim.cmd("colorscheme rose-pine")
+      vim.cmd("colorscheme gruber-darker")
     end
   },
 }
