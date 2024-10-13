@@ -126,11 +126,9 @@ local border = {
   { '\226\148\148', 'FloatBorder' },
   { '\226\148\130', 'FloatBorder' },
 }
-cmp.event:on(
-  'confirm_done',
-  cmp_ap.on_confirm_done {
-    filetypes = { css = false, lisp = false },
-  }
+cmp.event:on('confirm_done', cmp_ap.on_confirm_done {
+  filetypes = { css = false, lisp = false },
+}
 )
 local __open_floating_preview = vim.lsp.util.open_floating_preview
 vim.lsp.util.open_floating_preview = function(contents, syntax, opts, ...)

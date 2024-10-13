@@ -1,9 +1,9 @@
 vim.lsp.set_log_level 'OFF'
-local capabilities = vim.lsp.protocol.make_client_capabilities()
--- do
---   local client_capabilities = vim.lsp.protocol.make_client_capabilities()
---   -- capabilities = require('cmp_nvim_lsp').default_capabilities(client_capabilities)
--- end
+local capabilities
+do
+  local client_capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities = require('cmp_nvim_lsp').default_capabilities(client_capabilities)
+end
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 local function _1_(_241)
   return require('lspconfig')[_241].setup { capabilities = capabilities }

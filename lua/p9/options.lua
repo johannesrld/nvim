@@ -44,21 +44,3 @@ vim.opt.foldnestmax = 4
 vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.opt.pumheight = 10
 vim.opt.pumwidth = 10
-local bufoption = vim.api.nvim_buf_get_option
-local function _1_(_241)
-  local buftype = bufoption(_241.buf, 'buftype')
-  if
-    not bufoption(_241.buf, 'modifiable')
-    or ((buftype ~= '') and (buftype ~= 'acwrite'))
-  then
-    vim.g['colorcolumn'] = '0'
-    return nil
-  else
-    vim.g['colorcolumn'] = colourcolum_option
-    return nil
-  end
-end
-return vim.api.nvim_create_autocmd(
-  'BufEnter',
-  vim.tbl_extend('force', {}, { callback = _1_ })
-)

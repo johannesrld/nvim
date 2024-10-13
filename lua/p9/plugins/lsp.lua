@@ -1,19 +1,12 @@
-local function _1_() return require('mason.api.command').MasonUpdate() end
-local function _2_()
-  require('lint')['linters_by_ft'] = { html = { 'markuplint' } }
-  local function _3_() return require('lint').try_lint() end
-  return vim.api.nvim_create_autocmd(
-    'BufWritePost',
-    vim.tbl_extend('force', {}, { callback = _3_ })
-  )
-end
 return {
   {
     'williamboman/mason.nvim',
     dependencies = { 'neovim/nvim-lspconfig' },
     event = 'VeryLazy',
     lazy = true,
-    build = _1_,
+    build = function()
+      require('mason.api.command').MasonUpdate()
+    end,
     opts = {
       ui = {
         icons = {
