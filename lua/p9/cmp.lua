@@ -1,5 +1,4 @@
 local cmp = require 'cmp'
-local cmp_ap = require 'nvim-autopairs.completion.cmp'
 local luasnip = require 'luasnip'
 local lspkind = require 'lspkind'
 require('luasnip.loaders.from_vscode').lazy_load()
@@ -126,10 +125,15 @@ local border = {
   { '\226\148\148', 'FloatBorder' },
   { '\226\148\130', 'FloatBorder' },
 }
-cmp.event:on('confirm_done', cmp_ap.on_confirm_done {
-  filetypes = { css = false, lisp = false },
-}
-)
+
+vim.api.nvim_create_autocmd('InsertEnter', {
+  callback = function()
+    local cmp_ap = require 'nvim-autopairs.completion.cmp'
+    cmp.event:on('confirm_done', cmp_ap.on_confirm_done {
+      filetypes = { css = false, lisp = false },
+    })
+  end
+})
 local __open_floating_preview = vim.lsp.util.open_floating_preview
 vim.lsp.util.open_floating_preview = function(contents, syntax, opts, ...)
   local real_opts = opts or {}
