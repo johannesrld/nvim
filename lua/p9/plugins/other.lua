@@ -1,6 +1,8 @@
 return {
   {
     'windwp/nvim-autopairs',
+    lazy = true,
+    event = "InsertEnter",
     config = function()
       local np = require 'nvim-autopairs'
       np.setup { check_ts = true, ts_config = { lisp = { 'comment', 'block_comment' } } }
@@ -87,28 +89,31 @@ return {
     },
     config = true,
   },
-  -- 'onsails/lspkind.nvim',
-  {
-    'Saghen/blink.cmp',
-    init = function() require('blink.cmp').setup() end,
-    build = "cargo build --release"
-  }
+  'onsails/lspkind.nvim',
   -- {
-  --   'iguanacucumber/magazine.nvim',
-  --   dependencies = {
-  --     'hrsh7th/cmp-nvim-lsp',
-  --     'hrsh7th/cmp-buffer',
-  --     'hrsh7th/cmp-nvim-lsp',
-  --     'hrsh7th/cmp-buffer',
-  --     'https://codeberg.org/FelipeLema/cmp-async-path',
-  --     'hrsh7th/cmp-cmdline',
-  --     'saadparwaiz1/cmp_luasnip',
-  --     {
-  --       'L3MON4D3/LuaSnip',
-  --       lazy = true,
-  --       build = 'make install_jsregexp',
-  --       version = '1.*',
-  --     },
-  --   },
-  -- },
+  --   'Saghen/blink.cmp',
+  --   init = function() require('blink.cmp').setup() end,
+  --   build = "cargo build --release"
+  -- }
+  {
+    'iguanacucumber/magazine.nvim',
+    lazy = true,
+    event = { "InsertEnter", "CmdlineEnter" },
+    config = function() require "p9.cmp" end,
+    dependencies = {
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+      'https://codeberg.org/FelipeLema/cmp-async-path',
+      'hrsh7th/cmp-cmdline',
+      'saadparwaiz1/cmp_luasnip',
+      {
+        'L3MON4D3/LuaSnip',
+        lazy = true,
+        build = 'make install_jsregexp',
+        version = '1.*',
+      },
+    },
+  },
 }

@@ -1,18 +1,21 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    config = function(opts)
-      local parser_configs = require 'nvim-treesitter.parsers'
-      local parser_config = parser_configs.get_parser_configs()
-      parser_config.commonlisp = {
-        install_info = {
-          url = '~/projects/javascript/new-tree-sitter-cl/',
-          files = { 'src/parser.c' },
-          generate_requires_npm = false,
-        },
-      }
-      require('lspconfig.ui.windows').default_options.border = 'single'
-      return require('nvim-treesitter.configs').setup(opts.opts)
+    -- config = function(opts)
+    --   -- local parser_configs = require 'nvim-treesitter.parsers'
+    --   -- local parser_config = parser_configs.get_parser_configs()
+    --   -- parser_config.commonlisp = {
+    --   --   install_info = {
+    --   --     url = '~/projects/javascript/new-tree-sitter-cl/',
+    --   --     files = { 'src/parser.c' },
+    --   --     generate_requires_npm = false,
+    --   --   },
+    --   -- }
+    --   -- require('lspconfig.ui.windows').default_options.border = 'single'
+    --   return require('nvim-treesitter.configs').setup(opts.opts)
+    -- end,
+    config = function (opts)
+      require 'nvim-treesitter.configs'.setup(opts.opts)
     end,
     opts = {
       auto_install = true,
@@ -64,28 +67,28 @@ return {
         'disassembly',
         'ini',
       },
-      -- textobjects = {
-      --   move = {
-      --     enable = true,
-      --     set_jumps = true,
-      --     goto_next_end = { [']M'] = '@function.outer', [']['] = '@class.outer' },
-      --     goto_next_start = { [']]'] = '@class.outer', [']m'] = '@function.outer' },
-      --     goto_previous_end = { ['[M'] = '@function.outer', ['[]'] = '@class.outer' },
-      --     goto_previous_start = { ['[['] = '@class.outer', ['[m'] = '@function.outer' },
-      --   },
-      --   select = {
-      --     enable = true,
-      --     lookahead = true,
-      --     keymaps = {
-      --       aa = '@parameter.outer',
-      --       ac = '@class.outer',
-      --       af = '@function.outer',
-      --       ia = '@parameter.inner',
-      --       ic = '@class.inner',
-      --       ['if'] = '@function.inner',
-      --     },
-      --   },
-      -- },
+      textobjects = {
+        move = {
+          enable = true,
+          set_jumps = true,
+          goto_next_end = { [']M'] = '@function.outer', [']['] = '@class.outer' },
+          goto_next_start = { [']]'] = '@class.outer', [']m'] = '@function.outer' },
+          goto_previous_end = { ['[M'] = '@function.outer', ['[]'] = '@class.outer' },
+          goto_previous_start = { ['[['] = '@class.outer', ['[m'] = '@function.outer' },
+        },
+        select = {
+          enable = true,
+          lookahead = true,
+          keymaps = {
+            aa = '@parameter.outer',
+            ac = '@class.outer',
+            af = '@function.outer',
+            ia = '@parameter.inner',
+            ic = '@class.inner',
+            ['if'] = '@function.inner',
+          },
+        },
+      },
       incremental_selection = {
         enable = true,
         keymaps = {
@@ -101,5 +104,5 @@ return {
       indent = { enable = true, disable = { 'ocaml', 'html' } },
     },
   },
-  -- { 'nvim-treesitter/nvim-treesitter-textobjects' },
+  { 'nvim-treesitter/nvim-treesitter-textobjects' },
 }

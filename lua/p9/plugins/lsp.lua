@@ -68,10 +68,4 @@ return {
     event = 'VeryLazy',
     lazy = true,
   },
-  {
-    'mfussenegger/nvim-lint',
-    lazy = true,
-    event = 'VeryLazy',
-    config = _2_,
-  },
 }
