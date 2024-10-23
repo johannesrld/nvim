@@ -16,6 +16,11 @@ if not bootstrap_result.success then
   )
   return
 end
+
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_netrw = 0
+vim.g.loaded_netrwPlugin = 0
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ';' -- thanks lazy assholes!!!
 require('lazy').setup {
@@ -58,15 +63,6 @@ require('lazy').setup {
     },
   },
 }
-pcall(require, 'p9.options')
-local failed_to_load = ''
--- require 'p9.cmp'
--- if not cmp_loaded then failed_to_load = failed_to_load .. "Failed to load nvim-cmp\n" end
-local lsp_loaded, _ = pcall(require, 'p9.lsp')
-if not lsp_loaded then
-  failed_to_load = failed_to_load .. 'Failed to load lsp config\n'
-end
--- local key_loaded,_ = pcall(require, 'p9.keymap')
+require 'p9.options'
+require 'p9.lsp'
 require 'p9.keymap'
--- if not key_loaded then failed_to_load = failed_to_load .. "Failed to load keybindings\n" end
-if failed_to_load ~= '' then vim.notify(failed_to_load, vim.log.levels.ERROR) end

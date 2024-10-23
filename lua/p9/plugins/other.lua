@@ -1,14 +1,7 @@
 return {
   {
-    'windwp/nvim-autopairs',
-    lazy = true,
-    event = "InsertEnter",
-    config = function()
-      local np = require 'nvim-autopairs'
-      np.setup { check_ts = true, ts_config = { lisp = { 'comment', 'block_comment' } } }
-      np.get_rules("'")[1]['not_filetypes'] = { 'scheme', 'lisp', 'fennel' }
-      np.get_rules('`')[1]['not_filetypes'] = { 'scheme', 'lisp', 'fennel' }
-    end,
+    'stevearc/oil.nvim',
+    init = function() require('oil').setup() end,
   },
   {
     'folke/which-key.nvim',
@@ -30,8 +23,6 @@ return {
           Left = '<',
           Right = '>',
           C = 'C-',
-          -- M = "M-",
-          -- D = "C-",
           S = 'Shift',
           CR = 'CR',
           Esc = 'Esc',
@@ -77,43 +68,10 @@ return {
     lazy = true,
   },
   {
-    'folke/trouble.nvim',
-    cmd = 'Trouble',
+    'johannesrld/parinfer-rust',
+    event = 'InsertEnter',
     lazy = true,
-    opts = {
-      icons = {
-        indent = { fold_closed = '>', fold_open = 'v' },
-        folder_closed = '- ',
-        folder_open = '- ',
-      },
-    },
-    config = true,
-  },
-  'onsails/lspkind.nvim',
-  -- {
-  --   'Saghen/blink.cmp',
-  --   init = function() require('blink.cmp').setup() end,
-  --   build = "cargo build --release"
-  -- }
-  {
-    'iguanacucumber/magazine.nvim',
-    lazy = true,
-    event = { "InsertEnter", "CmdlineEnter" },
-    config = function() require "p9.cmp" end,
-    dependencies = {
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-buffer',
-      'https://codeberg.org/FelipeLema/cmp-async-path',
-      'hrsh7th/cmp-cmdline',
-      'saadparwaiz1/cmp_luasnip',
-      {
-        'L3MON4D3/LuaSnip',
-        lazy = true,
-        build = 'make install_jsregexp',
-        version = '1.*',
-      },
-    },
+    branch = 'fix-undo-explosions',
+    build = 'cargo build --release',
   },
 }

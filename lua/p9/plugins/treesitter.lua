@@ -1,22 +1,7 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    -- config = function(opts)
-    --   -- local parser_configs = require 'nvim-treesitter.parsers'
-    --   -- local parser_config = parser_configs.get_parser_configs()
-    --   -- parser_config.commonlisp = {
-    --   --   install_info = {
-    --   --     url = '~/projects/javascript/new-tree-sitter-cl/',
-    --   --     files = { 'src/parser.c' },
-    --   --     generate_requires_npm = false,
-    --   --   },
-    --   -- }
-    --   -- require('lspconfig.ui.windows').default_options.border = 'single'
-    --   return require('nvim-treesitter.configs').setup(opts.opts)
-    -- end,
-    config = function (opts)
-      require 'nvim-treesitter.configs'.setup(opts.opts)
-    end,
+    config = function(opts) require('nvim-treesitter.configs').setup(opts.opts) end,
     opts = {
       auto_install = true,
       ensure_installed = {

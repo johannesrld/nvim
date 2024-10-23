@@ -12,7 +12,7 @@ return {
   {
     'johannesrld/gruv9',
     priority = 1000,
-    lazy = false,
+    lazy = true,
     init = function() vim.cmd 'colorscheme gruber-darker' end,
   },
 }
