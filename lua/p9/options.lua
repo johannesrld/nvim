@@ -28,6 +28,7 @@ vim.opt.shiftwidth = indent_width
 vim.opt.softtabstop = indent_width
 vim.opt.tabstop = indent_width
 vim.opt.autowrite = true
+vim.opt.mouse = ''
 vim.opt.ignorecase = true
 vim.opt.fileencoding = 'utf-8'
 vim.opt.swapfile = false

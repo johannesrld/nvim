@@ -16,8 +16,9 @@ if not bootstrap_result.success then
   )
   return
 end
-
+vim.opt.mouse = nil
 vim.g.loaded_sql_completion = 0
+vim.g.loaded_remote_plugins = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_python_provider = 0
