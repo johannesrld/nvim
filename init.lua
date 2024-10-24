@@ -17,7 +17,11 @@ if not bootstrap_result.success then
   return
 end
 
+vim.g.loaded_sql_completion = 0
 vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_python_provider = 0
+vim.g.loaded_node_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_netrw = 0
 vim.g.loaded_netrwPlugin = 0
@@ -53,8 +57,11 @@ require('lazy').setup {
     rtp = {
       disabled_plugins = {
         'gzip',
+        'man',
         'matchit',
         'matchparen',
+        'shada',
+        'spellfile',
         'tarPlugin',
         'tohtml',
         'tutor',
