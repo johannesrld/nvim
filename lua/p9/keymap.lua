@@ -57,9 +57,9 @@ keybinds {
     'View Problems',
     function() return require('trouble').toggle { mode = 'diagnostics', focus = false } end,
   },
-  ['<leader><leader>'] = { 'Current [B]uffers', telescope 'buffers' },
-  ['<leader>f'] = { '[F]ind Files', telescope 'find_files' },
-  ['<leader>s'] = { 'Live Grep ([S]earch)', telescope 'live_grep' },
+  ['<leader>b'] = { 'Current [B]uffers', telescope 'buffers' },
+  ['<leader><leader>'] = { '[F]ind Files', telescope 'find_files' },
+  ['<leader>/'] = { 'Live Grep ', telescope 'live_grep' },
 }
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(c)
