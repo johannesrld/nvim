@@ -1,4 +1,5 @@
 return {
+  { "tris203/precognition.nvim", branch = "debounced", opts = {}},
   {
     'stevearc/oil.nvim',
     init = function() require('oil').setup({
