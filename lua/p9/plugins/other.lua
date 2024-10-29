@@ -1,15 +1,22 @@
 return {
-  { "tris203/precognition.nvim", branch = "debounced", opts = {}},
+  {
+    "m4xshen/hardtime.nvim",
+    dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+    opts = {}
+  },
+  { "tris203/precognition.nvim", branch = "debounced", opts = {} },
   {
     'stevearc/oil.nvim',
-    init = function() require('oil').setup({
-      view_options = {
-        show_hidden = true,
-        is_always_hidden = function (name, _)
-          return name == ".git"
-        end
-      }
-    }) end,
+    init = function()
+      require('oil').setup({
+        view_options = {
+          show_hidden = true,
+          is_always_hidden = function(name, _)
+            return name == ".git"
+          end
+        }
+      })
+    end,
   },
   {
     'folke/which-key.nvim',

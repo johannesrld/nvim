@@ -11,21 +11,50 @@ if not bootstrap_result.success then
   end
   print(
     'Failed to bootstrap neovim\n[\nYou have missing commands:'
-      .. missing_command_str
-      .. ']\nAborting Setup'
+    .. missing_command_str
+    .. ']\nAborting Setup'
   )
   return
 end
+local disabled_built_ins = {
+  "2html_plugin",
+  "getscript",
+  "getscriptPlugin",
+  "gzip",
+  "logipat",
+  "matchit",
+  "matchparen",
+  "netrw",
+  "netrwFileHandlers",
+  "netrwPlugin",
+  "netrwSettings",
+  "remote_plugins",
+  "rrhelper",
+  "shada_plugin",
+  "spellfile_plugin",
+  "tar",
+  "tarPlugin",
+  "tutor_mode_plugin",
+  "vimball",
+  "vimballPlugin",
+  "zip",
+  "zipPlugin",
+  'gzip',
+  'man',
+  'matchit',
+  'matchparen',
+  'shada',
+  'spellfile',
+  'tarPlugin',
+  'tohtml',
+  'tutor',
+  'zipPlugin',
+}
+for _, plugin in pairs(disabled_built_ins) do
+  vim.g["loaded_" .. plugin] = 1
+end
+
 vim.opt.mouse = nil
-vim.g.loaded_sql_completion = 0
-vim.g.loaded_remote_plugins = 0
-vim.g.loaded_perl_provider = 0
-vim.g.loaded_ruby_provider = 0
-vim.g.loaded_python_provider = 0
-vim.g.loaded_node_provider = 0
-vim.g.loaded_ruby_provider = 0
-vim.g.loaded_netrw = 0
-vim.g.loaded_netrwPlugin = 0
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ';' -- thanks lazy assholes!!!
 require('lazy').setup {
@@ -52,22 +81,6 @@ require('lazy').setup {
       start = '>',
       task = '||',
       list = { '<>', '->', '*', '‒' },
-    },
-  },
-  performance = {
-    rtp = {
-      disabled_plugins = {
-        'gzip',
-        'man',
-        'matchit',
-        'matchparen',
-        'shada',
-        'spellfile',
-        'tarPlugin',
-        'tohtml',
-        'tutor',
-        'zipPlugin',
-      },
     },
   },
 }
