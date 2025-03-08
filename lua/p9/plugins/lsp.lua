@@ -166,28 +166,6 @@ return {
   --           mode = 'symbol',
   --           maxwidth = 30,
   --           symbol_map = {
-  --             Function = '\206\187',
-  --             Method = '\198\155',
-  --             Constructor = '\198\155',
-  --             Field = '\226\136\136',
-  --             Property = '\226\136\136',
-  --             Variable = '\206\177',
-  --             Snippet = '\226\141\137',
-  --             Class = 'C',
-  --             Interface = 'I',
-  --             Module = 'M',
-  --             Enum = 'E',
-  --             Keyword = 'K',
-  --             Color = ' ',
-  --             File = ' ',
-  --             Reference = '*',
-  --             Folder = ' ',
-  --             EnumMember = 'E',
-  --             Constant = '\206\177',
-  --             Struct = 'S',
-  --             Event = ' ',
-  --             Operator = ' ',
-  --             Text = ' ',
   --           },
   --           before = function(_, item)
   --             item['abbr'] = string.sub(item.abbr, 1, 30)
@@ -255,17 +233,56 @@ return {
   -- },
   {
     'saghen/blink.cmp',
+    dependencies = {
+      { 'disrupted/blink-cmp-conventional-commits' },
+    },
     version = '*',
     lazy = true,
     event = { 'InsertEnter', 'CmdlineEnter' },
     opts = {
+      appearance = {
+        kind_icons = {
+          Function = '\206\187',
+          Method = '\198\155',
+          Constructor = '\198\155',
+          Field = '\226\136\136',
+          Property = '\226\136\136',
+          Variable = '\206\177',
+          Snippet = '\226\141\137',
+          Class = 'C',
+          Interface = 'I',
+          Module = 'M',
+          Enum = 'E',
+          Keyword = 'K',
+          Color = ' ',
+          File = ' ',
+          Reference = '*',
+          Folder = ' ',
+          EnumMember = 'E',
+          Constant = '\206\177',
+          Struct = 'S',
+          Event = ' ',
+          Operator = ' ',
+          Text = ' ',
+        }
+      },
+      completion = {
+        ghost_text = { enabled = true }
+      },
+      sources = {
+        per_filetype = { gitcommit = { 'conventional_commits' } },
+        providers = {
+          conventional_commits = {
+            name = 'Conventional Commits',
+            module = 'blink-cmp-conventional-commits',
+          },
+        },
+      },
       keymap = {
         ['<CR>'] = { 'accept', 'fallback' },
         ['<c-CR>'] = { 'cancel', 'fallback' },
         ['<c-j>'] = { 'select_next', 'fallback' },
         ['<c-k>'] = { 'select_prev', 'fallback' }
-                -- ['<c-j>'] = cmp.mapping.select_next_item(),
-                -- ['<c-k>'] = cmp.mapping.select_prev_item(),
       },
       fuzzy = { implementation = "prefer_rust_with_warning" }
     },
