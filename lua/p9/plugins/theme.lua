@@ -1,4 +1,5 @@
 return {
+  -- { 'aktersnurra/no-clown-fiesta.nvim'},
   {
     'echasnovski/mini.statusline',
     opts = { set_vim_settings = false, use_icons = false },

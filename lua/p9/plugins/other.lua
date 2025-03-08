@@ -1,10 +1,10 @@
 return {
-  {
-    "m4xshen/hardtime.nvim",
-    dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-    opts = {}
-  },
-  { "tris203/precognition.nvim", branch = "debounced", opts = {} },
+  -- {
+  --   "m4xshen/hardtime.nvim",
+  --   dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+  --   opts = {}
+  -- },
+  -- { "tris203/precognition.nvim", branch = "debounced", opts = {} },
   {
     'stevearc/oil.nvim',
     init = function()
@@ -82,11 +82,11 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim' },
     lazy = true,
   },
-  {
-    'johannesrld/parinfer-rust',
-    event = 'InsertEnter',
-    lazy = true,
-    branch = 'fix-undo-explosions',
-    build = 'cargo build --release',
-  },
+  -- {
+  --   'johannesrld/parinfer-rust',
+  --   event = 'InsertEnter',
+  --   lazy = true,
+  --   branch = 'fix-undo-explosions',
+  --   build = 'cargo build --release',
+  -- },
 }

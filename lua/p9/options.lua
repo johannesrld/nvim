@@ -1,6 +1,7 @@
 local indent_width = 4
 local stdpath = vim.fn.stdpath
 local colourcolum_option = '88'
+vim.opt.cmdheight = 0
 vim.diagnostic.config { signs = false }
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ';'

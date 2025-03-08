@@ -2,7 +2,7 @@ vim.lsp.set_log_level 'OFF'
 local capabilities
 do
   local client_capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = require('cmp_nvim_lsp').default_capabilities(client_capabilities)
+  capabilities = require('blink.cmp').get_lsp_capabilities(client_capabilities)
 end
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 local function _1_(_241)

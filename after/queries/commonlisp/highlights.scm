@@ -19,3 +19,7 @@
 ;(format_specifier (format_directive_type) @keyword (#lua-match? @keyword "[()]")) @keyword
 ;(format_specifier (format_directive_type) @keyword (#lua-match? @keyword "[%[%]]")) @keyword
 ;(keyword_symbol (symbol) @constant)
+((defun_keyword)
+ @function.macro.commonlisp
+ (#eq? @function.macro.commonlisp "lambda")
+ (#set! conceal "λ"))
