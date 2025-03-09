@@ -59,7 +59,6 @@ return {
     event = 'VeryLazy',
     lazy = true,
   },
-  'onsails/lspkind.nvim',
   {
     'folke/trouble.nvim',
     cmd = 'Trouble',
