@@ -127,7 +127,10 @@ return {
         ghost_text = { enabled = true }
       },
       sources = {
-        per_filetype = { gitcommit = { 'conventional_commits' } },
+        per_filetype = {
+          gitcommit = { 'conventional_commits' },
+          markdown = { 'snippets','lsp', 'path' }
+        },
         providers = {
           conventional_commits = {
             name = 'Conventional Commits',

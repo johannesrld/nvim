@@ -17,6 +17,18 @@ return require('mason-lspconfig').setup_handlers {
       capabilities = capabilities,
     }
   end,
+  lua_ls = function ()
+    return require('lspconfig').lua_ls.setup {
+      settings = {
+        Lua = {
+          completion = {
+            callSnippet = 'Disable',
+            keywordSnippet = 'Disable'
+          }
+        }
+      }
+    }
+  end,
   jsonls = blank,
   rust_analyzer = blank,
   ts_ls = blank,
