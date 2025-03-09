@@ -17,17 +17,7 @@ return require('mason-lspconfig').setup_handlers {
       capabilities = capabilities,
     }
   end,
-  jsonls = function()
-    return require('lspconfig').jsonls.setup {
-      settings = {
-        json = {
-          schemas = require('schemastore').json.schemas(),
-          validate = { enable = true },
-        },
-      },
-      capabilities = capabilities,
-    }
-  end,
+  jsonls = blank,
   rust_analyzer = blank,
   ts_ls = blank,
 }
