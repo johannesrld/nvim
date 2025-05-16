@@ -1,7 +1,17 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    config = function(opts) require('nvim-treesitter.configs').setup(opts.opts) end,
+    config = function(opts)
+      require('nvim-treesitter.configs').setup(opts.opts)
+      local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
+      parser_config.go_tags = {
+        install_info = {
+          url = 'https://github.com/DanWlker/tree-sitter-go_tags',
+          files = { 'src/parser.c' },
+          branch = 'main',
+        },
+      }
+    end,
     opts = {
       auto_install = true,
       ensure_installed = {
@@ -26,7 +36,6 @@ return {
         'toml',
         'sql',
         'tsv',
-        'org',
         'markdown',
         'markdown_inline',
         'mermaid',

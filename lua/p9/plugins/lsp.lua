@@ -24,10 +24,10 @@ return {
   {
     'WhoIsSethDaniel/mason-tool-installer.nvim',
     dependencies = { 'williamboman/mason.nvim' },
-    event = 'VeryLazy',
     lazy = true,
+    cmd = { "MasonToolsInstall", "MasonToolsUpdate"},
     opts = {
-      run_on_start = true,
+      run_on_start = false,
       debounce_hours = 5,
       start_delay = 3000,
       ensure_installed = {
@@ -40,7 +40,7 @@ return {
         'basedpyright',
         'mypy',
         'debugpy',
-        'ruff-lsp',
+        'ruff',
         'black',
         'css-lsp',
         'stylelint',
@@ -129,7 +129,7 @@ return {
       sources = {
         per_filetype = {
           gitcommit = { 'conventional_commits' },
-          markdown = { 'snippets','lsp', 'path' }
+          markdown = { 'snippets', 'lsp', 'path' }
         },
         providers = {
           conventional_commits = {
@@ -144,8 +144,9 @@ return {
         ['<c-j>'] = { 'select_next', 'fallback' },
         ['<c-k>'] = { 'select_prev', 'fallback' }
       },
-      fuzzy = { implementation = "prefer_rust_with_warning" }
+      fuzzy = { implementation = "prefer_rust_with_warning" },
+      signature = { enabled = true }
     },
     opts_extended = { "sources.default" }
-  }
+  },
 }

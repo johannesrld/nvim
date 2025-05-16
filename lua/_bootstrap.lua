@@ -1,4 +1,5 @@
 local required_cmds = {
+  'git',
   'gcc',
   'g++',
   'make',

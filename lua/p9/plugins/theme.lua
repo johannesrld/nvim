@@ -10,9 +10,9 @@ return {
     opts = { highlighter = { auto_enable = true } },
   },
   {
-    'johannesrld/gruv9',
+    "johannesrld/cold.nvim",
     priority = 1000,
     lazy = true,
-    init = function() vim.cmd 'colorscheme gruber-darker' end,
-  },
+    init = function() vim.cmd 'colorscheme cold' end,
+  }
 }
