@@ -40,7 +40,7 @@ local disabled_built_ins = {
   "zip",
   "zipPlugin",
   'gzip',
-  'man',
+  -- 'man',
   'matchit',
   'matchparen',
   'shada',
@@ -56,11 +56,10 @@ end
 
 vim.opt.mouse = nil
 vim.g.mapleader = ' '
-vim.g.maplocalleader = ';' -- thanks lazy assholes!!!
+vim.g.maplocalleader = ' ' -- thanks lazy assholes!!!
 require('lazy').setup {
   spec = {
     { import = 'p9.plugins' },
-    { import = 'p9.plugins.language-plugins' },
     { import = 'p9.plugins.language-plugins.webdev' },
   },
   ui = {
