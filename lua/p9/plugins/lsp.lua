@@ -31,25 +31,29 @@ return {
       debounce_hours = 5,
       start_delay = 3000,
       ensure_installed = {
+        -- Shell
         'shellcheck',
         'shellharden',
         'shfmt',
         'bash-language-server',
+        --Lua
         'lua-language-server',
         'stylua',
+        -- Python
         'basedpyright',
         'mypy',
-        'debugpy',
         'ruff',
         'black',
+        -- HTML/CSS
         'css-lsp',
         'stylelint',
         'html-lsp',
         'emmet-language-server',
+        -- Javascript
         'typescript-language-server',
         'json-lsp',
+        -- markup
         'markuplint',
-        'dprint',
       },
       auto_update = false,
     },

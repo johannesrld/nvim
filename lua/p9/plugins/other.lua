@@ -1,22 +1,46 @@
 return {
-  -- {
-  --   "m4xshen/hardtime.nvim",
-  --   dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-  --   opts = {}
-  -- },
-  -- { "tris203/precognition.nvim", branch = "debounced", opts = {} },
+  {
+    "dundalek/bloat.nvim",
+    cmd = "Bloat",
+  },
+  {
+    'nvim-telescope/telescope.nvim',
+    cmd = 'Telescope',
+    config = function()
+      local action = require 'telescope.actions'
+      return require('telescope').setup {
+        defaults = {
+          mappings = {
+            i = {
+              ['<C-j>'] = action.move_selection_next,
+              ['<C-k>'] = action.move_selection_previous,
+            },
+          },
+        },
+      }
+    end,
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    lazy = true,
+  },
+  {
+    "m4xshen/hardtime.nvim",
+    dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+    opts = {}
+  },
+  { "tris203/precognition.nvim", branch = "debounced", opts = {} },
   {
     'stevearc/oil.nvim',
-    init = function()
-      require('oil').setup({
-        view_options = {
-          show_hidden = true,
-          is_always_hidden = function(name, _)
-            return name == ".git"
-          end
-        }
-      })
-    end,
+    opts = {
+      columns = {
+        "permissions"
+      },
+      view_options = {
+        show_hidden = true,
+        is_always_hidden = function(n, _)
+          return n == ".git"
+        end
+      }
+    },
   },
   {
     'folke/which-key.nvim',
@@ -64,19 +88,38 @@ return {
     },
   },
   {
-    'nvim-telescope/telescope.nvim',
-    cmd = 'Telescope',
-    config = function()
-      local action = require 'telescope.actions'
-      return require('telescope').setup {
-        defaults = {
-          mappings = {
-            i = {
-              ['<C-j>'] = action.move_selection_next,
-              ['<C-k>'] = action.move_selection_previous,
-            },
-          },
-        },
+    "ibhagwan/fzf-lua",
+    -- optional for icon support
+    opts = {
+      'ivy',
+      lsp = {
+        symbols = {
+          symbol_icons = {
+            File        = "F",
+            Module      = "M",
+            Namespace   = "N",
+            Package     = "P",
+            Class       = "C",
+            Method      = "\198\155",
+            Property    = "\226\136\136",
+            Field       = '\226\136\136',
+            Constructor = '\198\155',
+            Enum        = 'E',
+            Interface   = 'I',
+            Function    = '\206\187',
+            Variable    = '\206\177',
+            Constant    = "ᾰ",
+            String      = "\"",
+            Number      = "#",
+            Boolean     = "≡",
+            Array       = "⌸",
+            Object      = "∃",
+            Key         = "·",
+            Null        = " ",
+            EnumMember  = "·",
+            Struct      = "S",
+          }
+        }
       }
     end,
     dependencies = { 'nvim-lua/plenary.nvim' },

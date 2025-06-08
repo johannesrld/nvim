@@ -1,6 +1,7 @@
 local indent_width = 4
 local stdpath = vim.fn.stdpath
 local colourcolum_option = '88'
+vim.o.winborder = "single"
 vim.opt.cmdheight = 0
 vim.diagnostic.config { signs = false }
 vim.opt.list = true
@@ -29,7 +30,6 @@ vim.opt.virtualedit = 'block'
 vim.opt.signcolumn = 'yes'
 vim.opt.fillchars = 'eob: '
 vim.opt.formatoptions = 'qjl1'
-vim.opt.shortmess = vim.opt.shortmess + { c = true }
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.preserveindent = true
