@@ -120,8 +120,10 @@ return {
             Struct      = "S",
           }
         }
-      }
+      },
     dependencies = { 'nvim-lua/plenary.nvim' },
     lazy = true,
   },
 }
+}
+
