@@ -87,43 +87,4 @@ return {
       },
     },
   },
-  {
-    "ibhagwan/fzf-lua",
-    -- optional for icon support
-    opts = {
-      'ivy',
-      lsp = {
-        symbols = {
-          symbol_icons = {
-            File        = "F",
-            Module      = "M",
-            Namespace   = "N",
-            Package     = "P",
-            Class       = "C",
-            Method      = "\198\155",
-            Property    = "\226\136\136",
-            Field       = '\226\136\136',
-            Constructor = '\198\155',
-            Enum        = 'E',
-            Interface   = 'I',
-            Function    = '\206\187',
-            Variable    = '\206\177',
-            Constant    = "ᾰ",
-            String      = "\"",
-            Number      = "#",
-            Boolean     = "≡",
-            Array       = "⌸",
-            Object      = "∃",
-            Key         = "·",
-            Null        = " ",
-            EnumMember  = "·",
-            Struct      = "S",
-          }
-        }
-      },
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    lazy = true,
-  },
 }
-}
-
