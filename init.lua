@@ -7,12 +7,12 @@ end
 if not bootstrap_result.success then
   local missing_command_str = ''
   for _, cmd in ipairs(bootstrap_result.missing_commands) do
-    missing_command_str = missing_command_str .. cmd .. '\n'
+    missing_command_str = missing_command_str .. '\t' .. cmd .. '\n'
   end
   print(
-    'Failed to bootstrap neovim\n[\nYou have missing commands:'
+    'Failed to bootstrap neovim\nYou have missing commands:\n'
     .. missing_command_str
-    .. ']\nAborting Setup'
+    .. 'Aborting Setup'
   )
   return
 end

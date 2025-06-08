@@ -1,8 +1,9 @@
+local set = vim.keymap.set
 return {
   {
     'olrtg/nvim-emmet',
     config = function()
-      return vim.keymap.set(
+      return set(
         { 'n', 'v' },
         '<leader>lw',
         require('nvim-emmet').wrap_with_abbreviation
