@@ -17,22 +17,39 @@ vim.lsp.config('emmet_language_server', {
     showSuggestionsAsSnippets = true,
   },
 })
+
 vim.lsp.config('lua_ls', {
+  on_init = function(client)
+    if client.workspace_folders then
+      local path = client.workspace_folders[1].name
+      if
+          path ~= vim.fn.stdpath('config')
+          and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc'))
+      then
+        return
+      end
+    end
+
+    client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+      runtime = { version = 'LuaJIT', },
+      -- Make the server aware of Neovim runtime files
+    })
+  end,
   settings = {
     Lua = {
+      runtime = {
+        version = "LuaJIT",
+      },
+      root_markers = {
+        ".luarc.json",
+        ".luarc.jsonc",
+        ".luacheckrc",
+        ".stylua.toml",
+        ".git",
+      },
       completion = {
         callSnippet = 'Disable',
-        keywordSnippet = 'Disable'
       }
     }
   }
 })
-vim.lsp.config('janet-lsp', {
-  cmd = {
-    'janet-lsp',
-    '--stdio',
-  },
-  filetypes = { 'janet' },
-  root_markers = { 'project.janet', '.git' },
-})
-vim.lsp.enable({ "janet-lsp" })
