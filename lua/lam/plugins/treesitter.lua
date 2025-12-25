@@ -3,14 +3,6 @@ return {
     'nvim-treesitter/nvim-treesitter',
     config = function(opts)
       require('nvim-treesitter.configs').setup(opts.opts)
-      local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
-      parser_config.go_tags = {
-        install_info = {
-          url = 'https://github.com/DanWlker/tree-sitter-go_tags',
-          files = { 'src/parser.c' },
-          branch = 'main',
-        },
-      }
     end,
     opts = {
       auto_install = true,
@@ -20,7 +12,6 @@ return {
         'luadoc',
         'vim',
         'vimdoc',
-        'fennel',
         'requirements',
         'python',
         'pymanifest',
@@ -30,7 +21,6 @@ return {
         'json',
         'json5',
         'jsonc',
-        'jq',
         'yaml',
         'xml',
         'toml',
@@ -38,8 +28,6 @@ return {
         'tsv',
         'markdown',
         'markdown_inline',
-        'mermaid',
-        'rst',
         'http',
         'html',
         'javascript',
@@ -65,10 +53,22 @@ return {
         move = {
           enable = true,
           set_jumps = true,
-          goto_next_end = { [']M'] = '@function.outer', [']['] = '@class.outer' },
-          goto_next_start = { [']]'] = '@class.outer', [']m'] = '@function.outer' },
-          goto_previous_end = { ['[M'] = '@function.outer', ['[]'] = '@class.outer' },
-          goto_previous_start = { ['[['] = '@class.outer', ['[m'] = '@function.outer' },
+          goto_next_end = {
+            [']M'] = '@function.outer',
+            [']['] = '@class.outer',
+          },
+          goto_next_start = {
+            [']]'] = '@class.outer',
+            [']m'] = '@function.outer',
+          },
+          goto_previous_end = {
+            ['[M'] = '@function.outer',
+            ['[]'] = '@class.outer',
+          },
+          goto_previous_start = {
+            ['[['] = '@class.outer',
+            ['[m'] = '@function.outer',
+          },
         },
         select = {
           enable = true,
@@ -92,9 +92,7 @@ return {
           scope_incremental = '<c-s>',
         },
       },
-      endwise = { enable = true },
-      swap = { enable = true },
-      highlight = { enable = true, additional_vim_regex_highlighting = { 'org' } },
+      highlight = { enable = true },
       indent = { enable = true, disable = { 'ocaml', 'html' } },
     },
   },

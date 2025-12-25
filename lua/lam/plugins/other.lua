@@ -1,20 +1,18 @@
 return {
   {
-    "NeogitOrg/neogit",
-    dependencies = {
-      "nvim-lua/plenary.nvim",  -- required
-      "sindrets/diffview.nvim", -- optional - Diff integration
-    },
+    'johannesrld/gruv9',
+    priority = 1000,
+    lazy = true,
+    init = function()
+      vim.cmd('colorscheme gruber-darker')
+    end,
   },
-  {
-    "dundalek/bloat.nvim",
-    cmd = "Bloat",
-  },
+
   {
     'nvim-telescope/telescope.nvim',
     cmd = 'Telescope',
     config = function()
-      local action = require 'telescope.actions'
+      local action = require('telescope.actions')
       return require('telescope').setup {
         defaults = {
           mappings = {
@@ -29,26 +27,42 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim' },
     lazy = true,
   },
-  {
-    "m4xshen/hardtime.nvim",
-    dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-    opts = {}
-  },
-  { "tris203/precognition.nvim", branch = "debounced", opts = {} },
+
   {
     'stevearc/oil.nvim',
     opts = {
       columns = {
-        "permissions"
+        'permissions',
       },
       view_options = {
         show_hidden = true,
         is_always_hidden = function(n, _)
-          return n == ".git"
-        end
-      }
+          return n == '.git'
+        end,
+      },
+      win_options = {
+        signcolumn = 'no',
+        foldcolumn = '0',
+        colorcolumn = '',
+        spell = false,
+      },
+      delete_to_trash = true,
+      use_default_keymaps = false,
+      keymaps = {
+        ['<CR>'] = 'actions.select',
+        ['P'] = { 'actions.preview', mode = 'n', opts = { horizontal = true } },
+        ['q'] = { 'actions.close', mode = 'n' },
+        ['r'] = 'actions.refresh',
+        ['-'] = { 'actions.parent', mode = 'n' },
+        ['_'] = { 'actions.open_cwd', mode = 'n' },
+        ['`'] = { 'actions.cd', mode = 'n' },
+        ['gs'] = { 'actions.change_sort', mode = 'n' },
+        ['gx'] = 'actions.open_external',
+        ['g.'] = { 'actions.toggle_hidden', mode = 'n' },
+      },
     },
   },
+
   {
     'folke/which-key.nvim',
     event = 'VeryLazy',
@@ -58,6 +72,9 @@ return {
     end,
     opts = {
       preset = 'helix',
+      win = {
+        border = 'single',
+      },
       icons = {
         breadcrumb = '-',
         separator = '->',
