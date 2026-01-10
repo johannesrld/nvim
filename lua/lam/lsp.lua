@@ -11,3 +11,4 @@ vim.lsp.enable(vim.iter(installedPacks):fold({}, function(acc, pack)
   table.insert(acc, pack.spec.neovim and pack.spec.neovim.lspconfig)
   return acc
 end))
+

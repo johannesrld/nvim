@@ -4,6 +4,8 @@ local n = mode.n
 local nx, xo = mode.nx, mode.xo
 local esc = vim.keycode('<Esc>')
 local cr = vim.keycode('<CR>')
+local tab = vim.keycode('<Tab>')
+local ctrltab = vim.keycode('<C-Tab>')
 
 local function cmd(s) return '<Cmd>' .. s .. cr end
 
@@ -28,6 +30,8 @@ nmap(Leader('bD'), delete_buf, { desc = 'Delete! Buffer' })
 nmap(Leader('bs'), scratch_buffer, { desc = 'Scratch Buffer' })
 nmap(Leader('bw'), MiniBufremove.wipeout, { desc = 'Wipeout Buffer' })
 nmap(Leader('bW'), wipeout_buf, { desc = 'Wipeout! Buffer' })
+nmap(tab, cmd 'bnext')
+nmap(ctrltab, cmd 'bprevious')
 
 map(nx, 'gy', '"+y', { desc = 'Copy to System Keyboard' })
 nmap('gp', '"+p', { desc = 'Paste from System Keyboard' })
