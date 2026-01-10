@@ -12,14 +12,8 @@ local function _fail(at)
 end
 
 
----@param additional_defaults table?
----@return fun(mode: string | table, lsh: string, rhs: string | function, opts?: table)
 local function mmap(additional_defaults)
   local default = vim.tbl_extend('force', defaults, additional_defaults or {})
-  ---@param mode string | table
-  ---@param lhs string
-  ---@param rhs string | function
-  ---@param opts? table
   return function(mode, lhs, rhs, opts)
     opts = opts or {}
     local ext_opts = vim.tbl_extend('force', default, opts)
@@ -56,17 +50,25 @@ end or _fail('_G.del')
 
 --Other
 
-_G.map       = isnil(_G.map)       and mmap() or _fail('_G.map')
-_G.mmap      = isnil(_G.mmap)      and mmap   or _fail('_G.mmap')
-_G.Leader    = isnil(_G.Leader)    and Leader or _fail('_G.Leader')
-_G.onLsp     = isnil(_G.onLsp)     and onLsp  or _fail('_G.onLsp')
-_G.lazy      = isnil(_G.lazy)      and lazy   or _fail('_G.lazy')
+_G.map       = isnil(_G.map) and mmap() or _fail('_G.map')
+_G.nmap      = isnil(_G.nmap) and function(lhs, rhs, opts)
+  return map('n', lhs, rhs, opts)
+end or _fail('_G.nmap')
+_G.nvmap     = isnil(_G.nvmap) and function(lhs, rhs, opts)
+  return map('n', lhs, rhs, opts)
+end or _fail('_G.nvmap')
+_G.mmap      = isnil(_G.mmap) and mmap or _fail('_G.mmap')
+_G.Leader    = isnil(_G.Leader) and Leader or _fail('_G.Leader')
+_G.onLsp     = isnil(_G.onLsp) and onLsp or _fail('_G.onLsp')
+_G.lazy      = isnil(_G.lazy) and lazy or _fail('_G.lazy')
 _G.leaderkey = isnil(_G.leaderkey) and leader or _fail('_G.leaderkey')
 _G.mode      = isnil(_G.mode) and {
   n = 'n',
   x = 'x',
   v = 'v',
+  o = 'o'
 } or _fail('_G.mode')
 _G.mode.nx   = { _G.mode.n, _G.mode.x }
 _G.mode.nv   = { _G.mode.n, _G.mode.v }
 _G.mode.xv   = { _G.mode.x, _G.mode.v }
+_G.mode.xo   = { _G.mode.x, _G.mode.o }

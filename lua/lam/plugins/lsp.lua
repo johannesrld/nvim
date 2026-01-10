@@ -1,28 +1,7 @@
 return {
   'neovim/nvim-lspconfig',
   {
-    'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
-    config = true,
-  },
-
-  {
-    'windwp/nvim-autopairs',
-    lazy = true,
-    event = 'InsertEnter',
-    config = true,
-    opts = { check_ts = true },
-    init = function()
-      local np = require('nvim-autopairs')
-      np.get_rules("'")[1].not_filetypes = { 'scheme', 'lisp', 'fennel' }
-      np.get_rules('`')[1].not_filetypes = { 'scheme', 'lisp', 'fennel', 'lua' }
-    end,
-  },
-
-  {
     'saghen/blink.cmp',
-    dependencies = {
-      { 'disrupted/blink-cmp-conventional-commits' },
-    },
     version = '*',
     lazy = true,
     event = { 'InsertEnter', 'CmdlineEnter' },

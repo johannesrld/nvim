@@ -1,33 +1,12 @@
 return {
   {
-    'johannesrld/gruv9',
+    'johannesrld/cold.nvim',
     priority = 1000,
     lazy = true,
-    init = function()
-      vim.cmd('colorscheme gruber-darker')
-    end,
+    init = function ()
+      vim.cmd('colorscheme cold')
+    end
   },
-
-  {
-    'nvim-telescope/telescope.nvim',
-    cmd = 'Telescope',
-    config = function()
-      local action = require('telescope.actions')
-      return require('telescope').setup {
-        defaults = {
-          mappings = {
-            i = {
-              ['<C-j>'] = action.move_selection_next,
-              ['<C-k>'] = action.move_selection_previous,
-            },
-          },
-        },
-      }
-    end,
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    lazy = true,
-  },
-
   {
     'stevearc/oil.nvim',
     opts = {
@@ -62,7 +41,6 @@ return {
       },
     },
   },
-
   {
     'folke/which-key.nvim',
     event = 'VeryLazy',

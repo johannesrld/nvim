@@ -1,11 +1,12 @@
-vim.opt.shada = "'100,<50,s10,:1000,/100,@100,h"
 vim.loader.enable(true)
+vim.opt.shada = "'100,<50,s10,:1000,/100,@100,h"
 local bootstrapped = pcall(require, '__bootstrap')
 if not bootstrapped then
   print('ERROR, failed to require lua/__bootstrap, unrecovereable')
   return
 end
 
+vim.g.no_plugin_maps = true
 vim.o.mouse = ''
 local space = vim.keycode('<Space>')
 local nop = vim.keycode('<Nop>')
@@ -40,7 +41,7 @@ local disabled_built_ins = {
   'zip',
   'zipPlugin',
   'gzip',
-  -- 'man',
+  'man',
   'matchit',
   'matchparen',
   'shada',
@@ -59,7 +60,7 @@ for _, plugin in pairs(disabled_built_ins) do
   vim.g['loaded_' .. plugin] = 0
 end
 
-require('lazy').setup {
+require('lazy').setup({
   spec = {
     { import = 'lam.plugins' },
     { import = 'lam.plugins.language-plugins' },
@@ -84,7 +85,7 @@ require('lazy').setup {
       list = { '<>', '->', '*', '‒' },
     },
   },
-}
+})
 
 require('lam.lsp')
 require('lam.keymap')

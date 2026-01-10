@@ -2,43 +2,42 @@ local indentwidth  = 4
 ---@type function
 local stdpath      = vim.fn.stdpath
 local colourcolumn = '88'
-local opt          = vim.opt
+local o          = vim.opt
 
 -- General ================
-opt.fileencoding   = 'UTF-8'
-opt.switchbuf      = 'usetab'
-opt.spelllang      = 'en_gb'
-opt.termguicolors  = true
-opt.writebackup    = false
-opt.backup         = false
-opt.swapfile       = false
-opt.undofile       = true
-opt.undodir        = stdpath('data') .. '/undo'
-opt.updatetime     = 300
-opt.synmaxcol      = 200
-opt.wildignore     = { '.git' }
+o.fileencoding   = 'UTF-8'
+o.fileformats    = 'unix'
+o.switchbuf      = 'usetab'
+o.spelllang      = 'en_gb'
+o.termguicolors  = true
+o.writebackup    = false
+o.backup         = false
+o.swapfile       = false
+o.undofile       = true
+o.undodir        = stdpath('data') .. '/undo'
+o.updatetime     = 300
+o.synmaxcol      = 200
+o.wildignore     = { '.git' }
 
 -- UI =====================
-opt.title = true
-opt.titlestring = "Neovim"
-opt.laststatus     = 3
-opt.cmdheight      = 0
-opt.breakindent    = true
-opt.colorcolumn    = colourcolumn
-opt.list           = true
-opt.listchars      = {
+o.laststatus     = 3
+o.cmdheight      = 0
+o.breakindent    = true
+o.colorcolumn    = colourcolumn
+o.list           = true
+o.listchars      = {
   tab = '  ',
   extends = '·',
   precedes = '·',
   nbsp = '␣',
 }
-opt.number         = true
-opt.relativenumber = true
-opt.numberwidth    = 3
-opt.pumheight      = 10
-opt.pumwidth       = 10
-opt.ruler          = false
-opt.shortmess:append {
+o.number         = true
+o.relativenumber = true
+o.numberwidth    = 3
+o.pumheight      = 10
+o.pumwidth       = 10
+o.ruler          = false
+o.shortmess:append {
   a = true,
   W = true,
   c = true,
@@ -46,16 +45,16 @@ opt.shortmess:append {
   s = true,
   I = true,
 }
-opt.showmode       = false
-opt.signcolumn     = 'yes:2'
-opt.splitbelow     = true
-opt.splitright     = true
-opt.splitkeep      = 'screen'
-opt.winborder      = 'single'
-opt.wrap           = false
-opt.showtabline    = 0
-opt.conceallevel   = 2
-opt.fillchars      = {
+o.showmode       = false
+o.signcolumn     = 'yes:2'
+o.splitbelow     = true
+o.splitright     = true
+o.splitkeep      = 'screen'
+o.winborder      = 'single'
+o.wrap           = false
+o.showtabline    = 0
+o.conceallevel   = 2
+o.fillchars      = {
   foldopen = ' ',
   foldclose = ' ',
   fold = ' ',
@@ -63,7 +62,7 @@ opt.fillchars      = {
   diff = '╱',
   eob = ' ',
 }
-opt.completeopt    = {
+o.completeopt    = {
   'menu',
   'menuone',
   'noinsert',
@@ -71,29 +70,28 @@ opt.completeopt    = {
 }
 
 -- Editing ================
-opt.autoindent     = true
-opt.expandtab      = true
-opt.formatoptions  = 'qjl1'
-opt.ignorecase     = true
-opt.infercase      = true
-opt.gdefault       = true
-opt.shiftwidth     = indentwidth
-opt.softtabstop    = indentwidth
-opt.tabstop        = indentwidth
-opt.smartcase      = true
-opt.smartindent    = true
-opt.preserveindent = true
-opt.virtualedit    = 'block'
-opt.whichwrap      = ''
-opt.autowrite      = true
-opt.scrolloff      = 8
-opt.sidescrolloff  = 8
-opt.whichwrap      = ''
-opt.completeopt    = {
+o.autoindent     = true
+o.expandtab      = true
+o.formatoptions  = 'qjl1'
+o.ignorecase     = true
+o.infercase      = true
+o.gdefault       = true
+o.shiftwidth     = indentwidth
+o.softtabstop    = indentwidth
+o.tabstop        = indentwidth
+o.smartcase      = true
+o.smartindent    = true
+o.preserveindent = true
+o.virtualedit    = 'block'
+o.whichwrap      = ''
+o.autowrite      = true
+o.scrolloff      = 2147483647
+o.sidescrolloff  = 8
+o.whichwrap      = ''
+o.completeopt    = {
   'menu',
   'menuone',
   'noinsert',
   'popup',
 }
-opt.iskeyword:append('-,?,!')
-
+o.iskeyword:append('-')
