@@ -51,16 +51,16 @@
       "version": "'main'"
     },
     "nvim-treesitter-textobjects": {
-      "rev": "28a3494c075ef0f353314f627546537e43c09592",
+      "rev": "baa6b4ec28c8be5e4a96f9b1b6ae9db85ec422f8",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
       "version": "'main'"
     },
     "oil.nvim": {
-      "rev": "81b8a91735ad5cd24a6b3137f14a89f19176364f",
+      "rev": "fbbb2a98721da86f46b06994fd3b4833b04c6e9b",
       "src": "https://github.com/stevearc/oil.nvim"
     },
     "rustaceanvim": {
-      "rev": "4e9e40432b21df641f08c4ec058f2d6f89365526",
+      "rev": "88575b98bb9937fb9983ddec5e532b67e75ce677",
       "src": "https://github.com/mrcjkb/rustaceanvim",
       "version": "6.0.0 - 7.0.0"
     }
