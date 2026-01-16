@@ -23,6 +23,7 @@ vim.api.nvim_create_autocmd('FileType', {
 --   'awk',
 --   'bash',
 --   'c',
+--   'cpp',
 --   'cmake',
 --   'css',
 --   'csv',

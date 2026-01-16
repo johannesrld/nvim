@@ -1,5 +1,6 @@
 vim.loader.enable(true)
-vim.opt.shada = "'100,<50,s10,:1000,/100,@100,h"
+vim.opt.shadafile = 'NONE'
+vim.opt.shada = ''
 vim.g.no_plugin_maps = true
 local disabled_built_ins = {
   '2html_plugin',
@@ -54,12 +55,16 @@ vim.keymap.set({ 'n', 'v' }, space, nop)
 require('__globals')
 require('lam.000options')
 require('lam.001misc_plugins')
+require('lam.002treesitter')
+require('lam.003ide_features')
+require('lam.004keybinds')
 require('lam.language_plugins')
-require('lam.treesitter')
-require('lam.ide_features')
-require('lam.keybinds')
 
-vim.api.nvim_create_user_command('Update', 'lua =vim.pack.update()', {desc = 'update packages'})
+vim.api.nvim_create_user_command(
+  'Update',
+  'lua =vim.pack.update()',
+  { desc = 'update packages' }
+)
 
-vim.pack.add { 'https://github.com/johannesrld/cold.nvim' }
+vim.pack.add({ 'https://github.com/johannesrld/cold.nvim' })
 vim.cmd.colorscheme('cold')

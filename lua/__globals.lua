@@ -49,12 +49,12 @@ _G.nmap = isnil(_G.nmap)
 _G.nvmap = isnil(_G.nvmap)
     and function(lhs, rhs, opts) return map('n', lhs, rhs, opts) end
   or _fail('_G.nvmap')
-_G.mmap = isnil(_G.mmap) and mmap or _fail('_G.mmap')
-_G.Leader = isnil(_G.Leader) and Leader or _fail('_G.Leader')
-_G.onLsp = isnil(_G.onLsp) and onLsp or _fail('_G.onLsp')
-_G.lazy = isnil(_G.lazy) and lazy or _fail('_G.lazy')
+_G.mmap      = isnil(_G.mmap)      and mmap   or _fail('_G.mmap')
+_G.Leader    = isnil(_G.Leader)    and Leader or _fail('_G.Leader')
+_G.onLsp     = isnil(_G.onLsp)     and onLsp  or _fail('_G.onLsp')
+_G.lazy      = isnil(_G.lazy)      and lazy   or _fail('_G.lazy')
 _G.leaderkey = isnil(_G.leaderkey) and leader or _fail('_G.leaderkey')
-_G.mode = isnil(_G.mode) and {
+_G.mode      = isnil(_G.mode) and {
   n = 'n',
   x = 'x',
   v = 'v',

@@ -3,8 +3,11 @@ vim.pack.add({
   { src = 'https://github.com/neovim/nvim-lspconfig' },
   { src = 'https://github.com/saghen/blink.cmp', version = 'v1.8.0' },
 })
+local finished = false
+
 vim.api.nvim_create_autocmd({ 'InsertEnter', 'CmdlineEnter' }, {
   callback = function()
+    if finished then return end
     require('blink.cmp').setup({
       appearance = {
         kind_icons = {
@@ -56,6 +59,7 @@ vim.api.nvim_create_autocmd({ 'InsertEnter', 'CmdlineEnter' }, {
       fuzzy = { implementation = 'prefer_rust_with_warning' },
       signature = { enabled = true },
     })
+    finished = true
   end,
 })
 require('mason').setup({
