@@ -1,4 +1,3 @@
-local leader = vim.keycode('<leader>')
 local defaults = { noremap = true, silent = true }
 
 local function _fail(at)
@@ -19,19 +18,21 @@ local function mmap(additional_defaults)
   end
 end
 
-local function Leader(code) return leader .. code end
-
-local function onLsp(fn)
-  vim.api.nvim_create_autocmd('LspAttach', {
-    callback = fn,
-  })
-end
+local function Leader(code) return '<leader>' .. code end
 
 local function lazy(pkg, fn)
   return function() return require(pkg)[fn]() end
 end
 
 local function isnil(a) return a == nil end
+
+local function export(name, p)
+  if isnil(_G[name]) then
+    _G[name] = p
+  else
+    _fail('_G.' .. name)
+  end
+end
 
 ---@param modes string | string[]
 ---@param lhs string
@@ -42,24 +43,29 @@ _G.del = isnil(_G.del)
 
 --Other
 
-_G.map = isnil(_G.map) and mmap() or _fail('_G.map')
-_G.nmap = isnil(_G.nmap)
-    and function(lhs, rhs, opts) return map('n', lhs, rhs, opts) end
-  or _fail('_G.nmap')
-_G.nvmap = isnil(_G.nvmap)
-    and function(lhs, rhs, opts) return map('n', lhs, rhs, opts) end
-  or _fail('_G.nvmap')
-_G.mmap      = isnil(_G.mmap)      and mmap   or _fail('_G.mmap')
-_G.Leader    = isnil(_G.Leader)    and Leader or _fail('_G.Leader')
-_G.onLsp     = isnil(_G.onLsp)     and onLsp  or _fail('_G.onLsp')
-_G.lazy      = isnil(_G.lazy)      and lazy   or _fail('_G.lazy')
-_G.leaderkey = isnil(_G.leaderkey) and leader or _fail('_G.leaderkey')
-_G.mode      = isnil(_G.mode) and {
+export('mmap', mmap)
+export('map', mmap())
+export('nmap', function(lhs, rhs, opts) return map('n', lhs, rhs, opts) end)
+export('nvmap', function(lhs, rhs, opts) return map({ 'n', 'v' }, lhs, rhs, opts) end)
+export('Leader', Leader)
+export(
+  'onLsp',
+  function(fn)
+    vim.api.nvim_create_autocmd('LspAttach', {
+      callback = fn,
+    })
+  end
+)
+export('lazy', lazy)
+export('leaderkey', leader)
+
+export('mode', {
   n = 'n',
   x = 'x',
   v = 'v',
   o = 'o',
-} or _fail('_G.mode')
+})
+
 _G.mode.nx = { _G.mode.n, _G.mode.x }
 _G.mode.nv = { _G.mode.n, _G.mode.v }
 _G.mode.xv = { _G.mode.x, _G.mode.v }
