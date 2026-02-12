@@ -14,7 +14,6 @@ do
       require('blink.cmp').setup({
         sources = {
           per_filetype = {
-            gitcommit = { 'conventional_commits' },
             markdown = { 'snippets', 'lsp', 'path' },
           },
         },
