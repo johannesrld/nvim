@@ -6,6 +6,7 @@ local o = vim.opt
 
 -- General ================
 o.fileencoding = 'UTF-8'
+o.fileencodings = 'UTF-8'
 o.fileformats = 'unix'
 o.switchbuf = 'usetab'
 o.spelllang = 'en_gb'
@@ -15,7 +16,8 @@ o.backup = false
 o.swapfile = false
 o.undofile = true
 o.undodir = stdpath('data') .. '/undo'
-o.updatetime = 300
+o.updatetime = 250
+o.timeoutlen = 300
 o.synmaxcol = 200
 o.wildignore = { '.git' }
 
@@ -87,5 +89,7 @@ o.virtualedit = 'block'
 o.autowrite = true
 o.scrolloff = 2147483647
 o.sidescrolloff = 8
+o.scrolloffpad = 1
 o.whichwrap = ''
 o.iskeyword:append('-')
+o.statusline = "[%{mode()}] %f %m%h %= %l:%c | %L | %p%%"

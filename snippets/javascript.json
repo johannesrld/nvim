@@ -1,0 +1,199 @@
+{
+  "Function": {
+    "prefix": "fn",
+    "body": [
+      "function ${1:name}(${2:params}) {",
+      "  $0",
+      "}"
+    ]
+  },
+  "Arrow Function": {
+    "prefix": "afn",
+    "body": [
+      "(${1:params}) => {",
+      "  $0",
+      "}"
+    ]
+  },
+  "IIFE": {
+    "prefix": "iife",
+    "body": [
+      "(function () {",
+      "  $0",
+      "})();"
+    ]
+  },
+  "Const": {
+    "prefix": "const",
+    "body": ["const ${1:name} = $0;"]
+  },
+  "Let": {
+    "prefix": "let",
+    "body": ["let ${1:name} = $0;"]
+  },
+  "If": {
+    "prefix": "if",
+    "body": [
+      "if (${1:condition}) {",
+      "  $0",
+      "}"
+    ]
+  },
+  "If Else": {
+    "prefix": "ife",
+    "body": [
+      "if (${1:condition}) {",
+      "  $2",
+      "} else {",
+      "  $0",
+      "}"
+    ]
+  },
+  "If Not": {
+    "prefix": "ifn",
+    "body": [
+      "if (!${1:condition}) {",
+      "  $0",
+      "}"
+    ]
+  },
+  "Switch": {
+    "prefix": "switch",
+    "body": [
+      "switch (${1:expression}) {",
+      "  case ${2:value}:",
+      "    $0",
+      "    break;",
+      "  default:",
+      "    break;",
+      "}"
+    ]
+  },
+  "For Loop": {
+    "prefix": "for",
+    "body": [
+      "for (let ${1:i} = 0; ${1:i} < ${2:length}; ${1:i}++) {",
+      "  $0",
+      "}"
+    ]
+  },
+  "For Index Loop": {
+    "prefix": "fori",
+    "body": [
+      "for (let ${1:i} = 0; ${1:i} < ${2:array}.length; ${1:i}++) {",
+      "  const ${3:item} = ${2:array}[${1:i}];",
+      "  $0",
+      "}"
+    ]
+  },
+  "For Of": {
+    "prefix": "forof",
+    "body": [
+      "for (const ${1:item} of ${2:iterable}) {",
+      "  $0",
+      "}"
+    ]
+  },
+  "For In": {
+    "prefix": "forin",
+    "body": [
+      "for (const ${1:key} in ${2:object}) {",
+      "  $0",
+      "}"
+    ]
+  },
+  "While": {
+    "prefix": "while",
+    "body": [
+      "while (${1:condition}) {",
+      "  $0",
+      "}"
+    ]
+  },
+  "Do While": {
+    "prefix": "dowhile",
+    "body": [
+      "do {",
+      "  $0",
+      "} while (${1:condition});"
+    ]
+  },
+  "Console Log": {
+    "prefix": "log",
+    "body": ["console.log(${0});"]
+  },
+  "Console Warn": {
+    "prefix": "warn",
+    "body": ["console.warn(${0});"]
+  },
+  "Console Error": {
+    "prefix": "error",
+    "body": ["console.error(${0});"]
+  },
+  "Query Selector": {
+    "prefix": "qs",
+    "body": ["document.querySelector('${0:selector}');"]
+  },
+  "Query Selector All": {
+    "prefix": "qsa",
+    "body": ["document.querySelectorAll('${0:selector}');"]
+  },
+  "Create Element": {
+    "prefix": "ce",
+    "body": ["document.createElement('${0:div}');"]
+  },
+  "Async Function": {
+    "prefix": "asfn",
+    "body": [
+      "async function ${1:name}(${2:params}) {",
+      "  $0",
+      "}"
+    ]
+  },
+  "Await": {
+    "prefix": "await",
+    "body": ["await ${0:promise};"]
+  },
+  "Import Default": {
+    "prefix": "imp",
+    "body": ["import ${0:module} from '${1:module}';"]
+  },
+  "Import Named": {
+    "prefix": "imn",
+    "body": ["import { ${0:name} } from '${1:module}';"]
+  },
+  "Export Default": {
+    "prefix": "exp",
+    "body": ["export default ${0:name};"]
+  },
+  "Export Named": {
+    "prefix": "exn",
+    "body": ["export { ${0:name} };"]
+  },
+  "Try Catch": {
+    "prefix": "try",
+    "body": [
+      "try {",
+      "  $0",
+      "} catch (${1:e}) {",
+      "  console.error(${1:e});",
+      "}"
+    ]
+  },
+  "setTimeout": {
+    "prefix": "setTimeout",
+    "body": [
+      "setTimeout(() => {",
+      "  $0",
+      "}, ${1:delay});"
+    ]
+  },
+  "setInterval": {
+    "prefix": "setInterval",
+    "body": [
+      "setInterval(() => {",
+      "  $0",
+      "}, ${1:interval});"
+    ]
+  }
+}
