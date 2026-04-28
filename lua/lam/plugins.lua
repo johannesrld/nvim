@@ -1,5 +1,4 @@
 vim.pack.add({
-    'https://github.com/nvim-mini/mini.ai',
     'https://github.com/nvim-mini/mini.bracketed',
     'https://github.com/nvim-mini/mini.surround',
     'https://github.com/nvim-mini/mini.bufremove',
@@ -42,7 +41,6 @@ miniclue.setup({
 require('mini.tabline').setup({ use_icons = false })
 
 vim.defer_fn(function()
-    require('mini.ai').setup()
     require('mini.bracketed').setup()
     require('mini.surround').setup()
 end, 0)
