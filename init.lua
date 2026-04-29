@@ -1,3 +1,9 @@
+local space = vim.keycode("<Space>")
+local nop = vim.keycode("<Nop>")
+vim.g.mapleader = space
+vim.g.maplocalleader = space
+vim.keymap.set({ "n", "v" }, space, nop, { silent = true })
+
 require("vim._core.ui2").enable({
   enabled = true,
   msg = { target = "msg" },
@@ -47,24 +53,13 @@ for _, plugin in ipairs(disabled_built_ins) do
   vim.g["loaded_" .. plugin] = 0
 end
 
-vim.o.mouse = ""
-local space = vim.keycode("<Space>")
-local nop = vim.keycode("<Nop>")
-vim.g.mapleader = space
-vim.g.maplocalleader = space
-vim.keymap.set({ "n", "v" }, space, nop, { silent = true })
-
 require("lam.options")
 require("lam.plugins")
 require("lam.treesitter")
 require("lam.ide")
 require("lam.keybinds")
 
-vim.pack.add({ "https://github.com/m4xshen/hardtime.nvim" })
 vim.pack.add({ "https://github.com/johannesrld/cold.nvim" })
-require("hardtime").setup()
 vim.cmd.colorscheme("cold")
 
-vim.api.nvim_create_user_command("Update", function()
-  vim.pack.update()
-end, { desc = "Update packages" })
+vim.api.nvim_create_user_command("Update", vim.pack.update, { desc = "Update packages" })
