@@ -44,10 +44,7 @@ end, 0)
 
 vim.g.canola = {
   columns = { "permissions" },
-  cursor = true,
-  hidden = {
-    enabled = false,
-  },
+  hidden = { enabled = false },
   keymaps = {
     ["-"] = {
       callback = "actions.parent",
@@ -59,7 +56,9 @@ vim.g.canola = {
     ["<C-p>"] = false,
     ["<C-s>"] = false,
     ["<C-t>"] = false,
-    ["<CR>"] = "actions.select",
+    ["g?"] = false,
+    ["g~"] = false,
+    gy = false,
     P = {
       callback = "actions.preview",
       mode = "n",
@@ -67,42 +66,7 @@ vim.g.canola = {
         horizontal = true,
       },
     },
-    _ = {
-      callback = "actions.open_cwd",
-      mode = "n",
-    },
-    ["`"] = {
-      callback = "actions.cd",
-      mode = "n",
-    },
-    ["g."] = {
-      callback = "actions.toggle_hidden",
-      mode = "n",
-    },
-    ["g?"] = false,
-    gs = {
-      callback = "actions.change_sort",
-      mode = "n",
-    },
-    gx = "actions.open_external",
-    gy = false,
-    ["g~"] = false,
-    q = {
-      callback = "actions.close",
-      mode = "n",
-    },
     r = "actions.refresh",
   },
-  watch = false,
-  win = {
-    colorcolumn = "",
-    concealcursor = "nvic",
-    conceallevel = 3,
-    cursorcolumn = false,
-    foldcolumn = "0",
-    list = false,
-    signcolumn = "no",
-    spell = false,
-    wrap = false,
-  },
+  win = { colorcolumn = "" },
 }

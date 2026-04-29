@@ -14,25 +14,10 @@ require("blink.cmp").setup({
     ["<c-j>"] = { "select_next", "fallback" },
     ["<c-k>"] = { "select_prev", "fallback" },
   },
-  fuzzy = { implementation = "prefer_rust_with_warning" },
   signature = { enabled = true },
 })
 
 require("mason").setup()
-
-vim.api.nvim_create_autocmd("LspProgress", {
-  callback = function(ev)
-    local value = ev.data.params.value
-    vim.api.nvim_echo({ { value.message or "done" } }, false, {
-      id = "lsp." .. ev.data.client_id,
-      kind = "progress",
-      source = "vim.lsp",
-      title = value.title,
-      status = value.kind ~= "end" and "running" or "success",
-      percent = value.percentage,
-    })
-  end,
-})
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
