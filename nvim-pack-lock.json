@@ -5,6 +5,11 @@
       "src": "https://github.com/saghen/blink.cmp",
       "version": "'v1.10.2'"
     },
+    "canola.nvim": {
+      "rev": "040a1b18afc8e67a9fc2aea61a4ca1434a613cf1",
+      "src": "https://github.com/barrettruth/canola.nvim",
+      "version": "'canola'"
+    },
     "cold.nvim": {
       "rev": "f05880a618d39976e06f9c24de8b013db4258885",
       "src": "https://github.com/johannesrld/cold.nvim"
@@ -16,10 +21,6 @@
     "mason.nvim": {
       "rev": "cb8445f8ce85d957416c106b780efd51c6298f89",
       "src": "https://github.com/williamboman/mason.nvim"
-    },
-    "mini.ai": {
-      "rev": "43eb2074843950a3a25aae56a5f41362ec043bfa",
-      "src": "https://github.com/nvim-mini/mini.ai"
     },
     "mini.bracketed": {
       "rev": "efb969a6a9583a5d48bfbe36363769351e38f967",
@@ -42,7 +43,7 @@
       "src": "https://github.com/nvim-mini/mini.tabline"
     },
     "nvim-lspconfig": {
-      "rev": "bf5abe69c1874531f359a822d0cff4d73e26113f",
+      "rev": "6419b36f50c42420cbbf1d3ffba573094cf414c8",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
@@ -54,10 +55,6 @@
       "rev": "851e865342e5a4cb1ae23d31caf6e991e1c99f1e",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
       "version": "'main'"
-    },
-    "oil.nvim": {
-      "rev": "0fcc83805ad11cf714a949c98c605ed717e0b83e",
-      "src": "https://github.com/stevearc/oil.nvim"
     }
   }
 }

@@ -1,12 +1,10 @@
 ---@type function
-require('mini.bufremove')
 vim.cmd("packadd nvim.undotree")
 local nx, xo, nv, n = { 'n', 'x' }, { 'x', 'o' }, { 'n', 'v' }, 'n'
 
 local esc = vim.keycode('<Esc>')
 local cr = vim.keycode('<CR>')
 local tab = vim.keycode('<Tab>')
-local oil = require('oil')
 local set = vim.keymap.set ---@type function
 local function Leader(code) return '<leader>' .. code end
 local function cmd(s) return '<Cmd>' .. s .. cr end
@@ -15,8 +13,13 @@ local function scratch_buffer()
     vim.api.nvim_win_set_buf(0, vim.api.nvim_create_buf(true, true))
 end
 
-local function delete_buf() MiniBufremove.delete(0, true) end
-local function wipeout_buf() MiniBufremove.wipeout(0, true) end
+
+local function minibuf(func, one, two)
+    return function()
+        require('mini.bufremove').setup()
+        MiniBufremove[func](one, two)
+    end
+end
 
 local function select_textobject(to)
     return function()
@@ -30,14 +33,14 @@ end
 
 set(n, Leader('v'), vim.cmd.vsplit, opts({ desc = 'Split Window [V]ertically' }))
 set(n, Leader('h'), vim.cmd.split, opts({ desc = 'Split Window [H]orizontally' }))
-set(n, Leader('o'), oil.open, opts({ desc = 'Open [O]il' }))
+set(n, Leader('o'), cmd("Canola"), opts({ desc = 'Open [O]il' }))
 set(n, Leader('a'), cmd('b#'), opts({ desc = '[A]lternate Buffer' }))
 set(n, Leader('u'), cmd('Undotree'), opts({ desc = '[U]ndotree' }))
-set(n, Leader('d'), MiniBufremove.delete, opts({ desc = '[D]elete Buffer' }))
-set(n, Leader('bD'), delete_buf, opts({ desc = 'Delete! Buffer' }))
+set(n, Leader('d'), minibuf('delete'), opts({ desc = '[D]elete Buffer' }))
+set(n, Leader('bD'), minibuf('delete', 0, true), opts({ desc = 'Delete! Buffer' }))
 set(n, Leader('bs'), scratch_buffer, opts({ desc = 'Scratch Buffer' }))
-set(n, Leader('bw'), MiniBufremove.wipeout, opts({ desc = 'Wipeout Buffer' }))
-set(n, Leader('bW'), wipeout_buf, opts({ desc = 'Wipeout! Buffer' }))
+set(n, Leader('bw'), minibuf('wipeout'), opts({ desc = 'Wipeout Buffer' }))
+set(n, Leader('bW'), minibuf('wipeout', 0, true), opts({ desc = 'Wipeout! Buffer' }))
 
 set(n, tab, cmd('bnext'))
 

@@ -4,9 +4,8 @@ vim.pack.add({
     'https://github.com/nvim-mini/mini.bufremove',
     'https://github.com/nvim-mini/mini.tabline',
     'https://github.com/nvim-mini/mini.clue',
-    'https://github.com/stevearc/oil.nvim',
+    {src = 'https://github.com/barrettruth/canola.nvim', version = 'canola'}
 })
-require('mini.bufremove').setup()
 
 local miniclue = require("mini.clue")
 miniclue.setup({
@@ -45,32 +44,68 @@ vim.defer_fn(function()
     require('mini.surround').setup()
 end, 0)
 
-require('oil').setup({
-    columns = {
-        'permissions',
+
+vim.g.canola = {
+  columns = { "permissions" },
+  cursor = true,
+  hidden = {
+    enabled = false,
+  },
+  keymaps = {
+    ["-"] = {
+      callback = "actions.parent",
+      mode = "n",
     },
-    view_options = {
-        show_hidden = true,
-        is_always_hidden = function(n, _) return n == '.git' end,
+    ["<C-c>"] = false,
+    ["<C-h>"] = false,
+    ["<C-l>"] = false,
+    ["<C-p>"] = false,
+    ["<C-s>"] = false,
+    ["<C-t>"] = false,
+    ["<CR>"] = "actions.select",
+    P = {
+      callback = "actions.preview",
+      mode = "n",
+      opts = {
+        horizontal = true,
+      },
     },
-    win_options = {
-        signcolumn = 'no',
-        foldcolumn = '0',
-        colorcolumn = '',
-        spell = false,
+    _ = {
+      callback = "actions.open_cwd",
+      mode = "n",
     },
-    delete_to_trash = true,
-    use_default_keymaps = false,
-    keymaps = {
-        ['<CR>'] = 'actions.select',
-        ['P'] = { 'actions.preview', mode = 'n', opts = { horizontal = true } },
-        ['q'] = { 'actions.close', mode = 'n' },
-        ['r'] = 'actions.refresh',
-        ['-'] = { 'actions.parent', mode = 'n' },
-        ['_'] = { 'actions.open_cwd', mode = 'n' },
-        ['`'] = { 'actions.cd', mode = 'n' },
-        ['gs'] = { 'actions.change_sort', mode = 'n' },
-        ['gx'] = 'actions.open_external',
-        ['g.'] = { 'actions.toggle_hidden', mode = 'n' },
+    ["`"] = {
+      callback = "actions.cd",
+      mode = "n",
     },
-})
+    ["g."] = {
+      callback = "actions.toggle_hidden",
+      mode = "n",
+    },
+    ["g?"] = false,
+    gs = {
+      callback = "actions.change_sort",
+      mode = "n",
+    },
+    gx = "actions.open_external",
+    gy = false,
+    ["g~"] = false,
+    q = {
+      callback = "actions.close",
+      mode = "n",
+    },
+    r = "actions.refresh",
+  },
+  watch = false,
+  win = {
+    colorcolumn = "",
+    concealcursor = "nvic",
+    conceallevel = 3,
+    cursorcolumn = false,
+    foldcolumn = "0",
+    list = false,
+    signcolumn = "no",
+    spell = false,
+    wrap = false,
+  },
+}

@@ -34,7 +34,6 @@ local disabled_built_ins = {
     'matchparen',
     'shada',
     'spellfile',
-    'tarPlugin',
     'tohtml',
     'tutor',
     'fzf',
@@ -60,7 +59,6 @@ require('lam.plugins')
 require('lam.treesitter')
 require('lam.ide')
 require('lam.keybinds')
-
 
 vim.pack.add({ 'https://github.com/m4xshen/hardtime.nvim' })
 vim.pack.add({ 'https://github.com/johannesrld/cold.nvim' })
