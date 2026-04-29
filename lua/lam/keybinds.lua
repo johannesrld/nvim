@@ -3,22 +3,14 @@ vim.cmd("packadd nvim.undotree")
 local nx, xo, nv, n = { "n", "x" }, { "x", "o" }, { "n", "v" }, "n"
 
 local esc = vim.keycode("<Esc>")
-local cr = vim.keycode("<CR>")
+local carriage_return = vim.keycode("<CR>")
 local tab = vim.keycode("<Tab>")
 local set = vim.keymap.set ---@type function
 
-local function Leader(code)
-  return "<leader>" .. code
-end
-local function cmd(s)
-  return "<Cmd>" .. s .. cr
-end
-local function scratch_buffer()
-  vim.api.nvim_win_set_buf(0, vim.api.nvim_create_buf(true, true))
-end
-local function opts(options)
-  return vim.tbl_extend("force", { noremap = true, silent = true }, options)
-end
+local function Leader(code) return "<leader>" .. code end
+local function cmd(s) return "<Cmd>" .. s .. carriage_return end
+local function scratch_buffer() vim.api.nvim_win_set_buf(0, vim.api.nvim_create_buf(true, true)) end
+local function opts(options) return vim.tbl_extend("force", { noremap = true, silent = true }, options) end
 
 local function select_textobject(to)
   return function()

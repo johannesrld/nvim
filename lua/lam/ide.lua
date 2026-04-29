@@ -5,9 +5,6 @@ vim.pack.add({
 })
 
 require("blink.cmp").setup({
-  completion = {
-    accept = { auto_brackets = { blocked_filetypes = { "css" } } },
-  },
   keymap = {
     ["<CR>"] = { "accept", "fallback" },
     ["<c-CR>"] = { "cancel", "fallback" },
