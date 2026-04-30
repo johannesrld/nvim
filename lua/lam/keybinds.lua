@@ -5,18 +5,20 @@ local nx, xo, nv, n = { "n", "x" }, { "x", "o" }, { "n", "v" }, "n"
 local esc = vim.keycode("<Esc>")
 local carriage_return = vim.keycode("<CR>")
 local tab = vim.keycode("<Tab>")
-local set = vim.keymap.set ---@type function
 
+local function map(mode, keybind, command, useropts)
+  local opts = { noremap = true, silent = true }
+  if type(useropts) == "string" then
+    opts = vim.tbl_extend("force", opts, { desc = useropts })
+  elseif type(useropts) == "table" then
+    opts = vim.tbl_extend("force", opts, useropts)
+  end
+  return vim.keymap.set(mode, keybind, command, opts)
+end
 local function Leader(code) return "<leader>" .. code end
 local function cmd(s) return "<Cmd>" .. s .. carriage_return end
 local function scratch_buffer() vim.api.nvim_win_set_buf(0, vim.api.nvim_create_buf(true, true)) end
-local function opts(options) return vim.tbl_extend("force", { noremap = true, silent = true }, options) end
-
-local function select_textobject(to)
-  return function()
-    require("nvim-treesitter-textobjects.select").select_textobject(to, "textobjects")
-  end
-end
+local function textobject(to) return function() require("nvim-treesitter-textobjects.select").select_textobject(to, "textobjects") end end
 
 local function minibuf(func, one, two)
   return function()
@@ -25,46 +27,55 @@ local function minibuf(func, one, two)
   end
 end
 
-set(n, Leader("v"), vim.cmd.vsplit, opts({ desc = "Split Window [V]ertically" }))
-set(n, Leader("h"), vim.cmd.split, opts({ desc = "Split Window [H]orizontally" }))
-set(n, Leader("o"), cmd("Canola"), opts({ desc = "Open [O]il" }))
-set(n, Leader("a"), cmd("b#"), opts({ desc = "[A]lternate Buffer" }))
-set(n, Leader("u"), cmd("Undotree"), opts({ desc = "[U]ndotree" }))
-set(n, Leader("d"), minibuf("delete"), opts({ desc = "[D]elete Buffer" }))
-set(n, Leader("bD"), minibuf("delete", 0, true), opts({ desc = "Delete! Buffer" }))
-set(n, Leader("bs"), scratch_buffer, opts({ desc = "Scratch Buffer" }))
-set(n, Leader("bw"), minibuf("wipeout"), opts({ desc = "Wipeout Buffer" }))
-set(n, Leader("bW"), minibuf("wipeout", 0, true), opts({ desc = "Wipeout! Buffer" }))
+map(n, Leader("v"),  vim.cmd.vsplit,              "Split Window [V]ertically")
+map(n, Leader("h"),  vim.cmd.split,               "Split Window [H]orizontally")
+map(n, Leader("o"),  cmd("Canola"),               "Open [O]il")
+map(n, Leader("a"),  cmd("b#"),                   "[A]lternate Buffer")
+map(n, Leader("u"),  cmd("Undotree"),             "[U]ndotree")
+map(n, Leader("d"),  minibuf("delete"),           "[D]elete Buffer")
+map(n, Leader("bD"), minibuf("delete", 0, true),  "Delete! Buffer")
+map(n, Leader("bs"), scratch_buffer,              "Scratch Buffer")
+map(n, Leader("bw"), minibuf("wipeout"),          "Wipeout Buffer")
+map(n, Leader("bW"), minibuf("wipeout", 0, true), "Wipeout! Buffer")
 
-set(n, tab, cmd("bnext"))
+map(n, tab, cmd("bnext"))
 
-set(nx, "gy", '"+y', opts({ desc = "Copy to System Keyboard" }))
-set(nx, "gp", '"+p', opts({ desc = "Copy to System Keyboard" }))
-set(n, "<C-H>", "<C-w>h", opts({ desc = "Focus on left window" }))
-set(n, "<C-J>", "<C-w>j", opts({ desc = "Focus on below window" }))
-set(n, "<C-K>", "<C-w>k", opts({ desc = "Focus on above window" }))
-set(n, "<C-L>", "<C-w>l", opts({ desc = "Focus on right window" }))
+map(nx, "gy",    '"+y',    "Copy to System Keyboard")
+map(nx, "gp",    '"+p',    "Copy to System Keyboard")
+map(n,  "<C-H>", "<C-w>h", "Focus on left window")
+map(n,  "<C-J>", "<C-w>j", "Focus on below window")
+map(n,  "<C-K>", "<C-w>k", "Focus on above window")
+map(n,  "<C-L>", "<C-w>l", "Focus on right window")
 
-set(n, "[p", cmd('exe "put! " . v:register'), opts({ desc = "Paste Above" }))
-set(n, "]p", cmd('exe "put "  . v:register'), opts({ desc = "Paste Below" }))
-set(n, "yc", "yy<cmd>normal gcc<CR>p", opts({ desc = "Go to start of line" }))
-set(n, esc, "<Cmd>nohlsearch<CR>", opts({ desc = "Go to start of line" }))
-set(nv, "gh", "_", opts({ desc = "Go to start of line" }))
-set(nv, "gl", "$", opts({ desc = "Go to start of line" }))
+map(n,  "[p", cmd('exe "put! " . v:register'), "Paste Above")
+map(n,  "]p", cmd('exe "put "  . v:register'), "Paste Below")
+map(n,  "yc", "yy<cmd>normal gcc<CR>p",        "Go to start of line")
+map(n,  esc,  "<Cmd>nohlsearch<CR>",           "Go to start of line")
+map(nv, "gh", "_",                             "Go to start of line")
+map(nv, "gl", "$",                             "Go to start of line")
 
-set(xo, "am", select_textobject("@function.outer"))
-set(xo, "im", select_textobject("@function.inner"))
-set(xo, "ac", select_textobject("@class.outer"))
-set(xo, "ic", select_textobject("@class.inner"))
+map(xo, "a=", textobject("@assignment.outer"))
+map(xo, "i=", textobject("@assignment.inner"))
+map(xo, "[=", textobject("@assignment.lhs"))
+map(xo, "]=", textobject("@assignment.rhs"))
+map(xo, "am", textobject("@function.outer"))
+map(xo, "im", textobject("@function.inner"))
+map(xo, "aC", textobject("@call.outer"))
+map(xo, "iC", textobject("@call.inner"))
+map(xo, "ac", textobject("@class.outer"))
+map(xo, "ic", textobject("@class.inner"))
+map(xo, "aa", textobject("@parameter.outer"))
+map(xo, "ia", textobject("@parameter.inner"))
+map(xo, "at", textobject("@type"))
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(c)
-    set(n, Leader("lf"), vim.lsp.buf.format, opts({ buffer = c.buf, desc = "Format File" }))
-    set(n, Leader("lr"), vim.lsp.buf.rename, opts({ buffer = c.buf, desc = "Rename Symbol" }))
-    set(nx, Leader("la"), vim.lsp.buf.code_action, opts({ buffer = c.buf, desc = "View Code Action" }))
-    set(n, Leader("lR"), vim.lsp.buf.references, opts({ buffer = c.buf, desc = "View Symbol References" }))
-    set(n, Leader("li"), vim.lsp.buf.implementation, opts({ buffer = c.buf, desc = "View Implementations" }))
-    set(n, Leader("ls"), vim.lsp.buf.definition, opts({ buffer = c.buf, desc = "View Definition" }))
-    set(n, Leader("lt"), vim.lsp.buf.type_definition, opts({ buffer = c.buf, desc = "View Type Definition" }))
+    map(n,  Leader("lf"), vim.lsp.buf.format,          { buffer = c.buf, desc = "Format File" })
+    map(n,  Leader("lr"), vim.lsp.buf.rename,          { buffer = c.buf, desc = "Rename Symbol" })
+    map(nx, Leader("la"), vim.lsp.buf.code_action,     { buffer = c.buf, desc = "View Code Action" })
+    map(n,  Leader("lR"), vim.lsp.buf.references,      { buffer = c.buf, desc = "View Symbol References" })
+    map(n,  Leader("li"), vim.lsp.buf.implementation,  { buffer = c.buf, desc = "View Implementations" })
+    map(n,  Leader("ls"), vim.lsp.buf.definition,      { buffer = c.buf, desc = "View Definition" })
+    map(n,  Leader("lt"), vim.lsp.buf.type_definition, { buffer = c.buf, desc = "View Type Definition" })
   end,
 })

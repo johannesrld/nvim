@@ -42,6 +42,14 @@
       "rev": "169af955ad2ed0ffcc3d2c83e850bcc7eaac2f0e",
       "src": "https://github.com/nvim-mini/mini.tabline"
     },
+    "nvim-biscuits": {
+      "rev": "d93dcdee3a3dfd5101785447658e744f153957db",
+      "src": "https://github.com/code-biscuits/nvim-biscuits"
+    },
+    "nvim-jump": {
+      "rev": "672204397c51507d7a821bc61ba9fad7dbed4303",
+      "src": "https://github.com/yorickpeterse/nvim-jump"
+    },
     "nvim-lspconfig": {
       "rev": "b66a8ce16b141cd26576267e2d1f371d658b7bb7",
       "src": "https://github.com/neovim/nvim-lspconfig"

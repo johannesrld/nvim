@@ -2,9 +2,11 @@ vim.pack.add({
   "https://github.com/nvim-mini/mini.bracketed",
   "https://github.com/nvim-mini/mini.surround",
   "https://github.com/nvim-mini/mini.bufremove",
+  "https://github.com/yorickpeterse/nvim-jump",
   "https://github.com/nvim-mini/mini.tabline",
   "https://github.com/m4xshen/hardtime.nvim",
   "https://github.com/nvim-mini/mini.clue",
+  "https://github.com/code-biscuits/nvim-biscuits",
   { src = "https://github.com/barrettruth/canola.nvim", version = "canola" },
 })
 
@@ -22,6 +24,7 @@ miniclue.setup({
     { mode = { "i", "c" }, keys = "<C-r>" },
     { mode = "n", keys = "<C-w>" },
     { mode = "v", keys = "a" },
+    { mode = "v", keys = "i" },
     { mode = { "n", "x" }, keys = "z" },
   },
   clues = {
@@ -41,6 +44,7 @@ require("mini.tabline").setup({ use_icons = false })
 vim.defer_fn(function()
   require("mini.bracketed").setup()
   require("mini.surround").setup()
+  require("nvim-biscuits").setup({ default_config = { cursor_line_only = true, prefix_string = " 🦭 " } })
   require("hardtime").setup()
 end, 0)
 
