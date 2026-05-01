@@ -5,18 +5,18 @@ local colourcolumn = "88"
 local o = vim.opt
 
 -- General ================
-o.shell = '/usr/bin/env sh'
+o.shell = "/usr/bin/env sh"
 o.modeline = false
 o.modelines = 0
-o.path = '**16'
+o.path = "**16"
 o.report = 0
-o.keymodel = 'startsel'
+o.keymodel = "startsel"
 o.fixendofline = false
 o.iminsert = 0
 o.imsearch = 0
-o.display = 'lastline,uhex'
-o.eadirection = 'hor'
-o.cdpath = ',,'
+o.display = "lastline,uhex"
+o.eadirection = "hor"
+o.cdpath = ",,"
 o.fileencoding = "UTF-8"
 o.fileencodings = "UTF-8"
 o.fileformats = "unix"
@@ -32,39 +32,39 @@ o.updatetime = 250
 o.timeoutlen = 300
 o.synmaxcol = 200
 o.wildignore = {
-    ".git",
-    ".7z",
-    ".exe",
-    ".gif",
-    ".jpeg",
-    ".jpg",
-    ".o",
-    ".obj",
-    ".out",
-    ".pdf",
-    ".png",
-    ".pyc",
-    ".pyo",
-    ".rar",
-    ".swp",
-    ".tar",
-    ".tar.bz2",
-    ".tar.gz",
-    ".tar.xz",
-    ".tgz",
-    ".tiff",
-    ".zip",
-    ".DS_Store",
-    ".git",
-    ".vscode",
-    "=__pycache__",
+  ".git",
+  ".7z",
+  ".exe",
+  ".gif",
+  ".jpeg",
+  ".jpg",
+  ".o",
+  ".obj",
+  ".out",
+  ".pdf",
+  ".png",
+  ".pyc",
+  ".pyo",
+  ".rar",
+  ".swp",
+  ".tar",
+  ".tar.bz2",
+  ".tar.gz",
+  ".tar.xz",
+  ".tgz",
+  ".tiff",
+  ".zip",
+  ".DS_Store",
+  ".git",
+  ".vscode",
+  "=__pycache__",
 }
 o.suffixes:append({
-    ".bak",
-    ".old",
-    ".min.js",
-    ".min.css",
-    "~"
+  ".bak",
+  ".old",
+  ".min.js",
+  ".min.css",
+  "~",
 })
 
 -- UI =====================
@@ -105,7 +105,7 @@ o.showtabline = 0
 o.conceallevel = 2
 o.fillchars = {
   foldopen = " ",
-    lastline= ".",
+  lastline = ".",
   foldclose = " ",
   fold = " ",
   foldsep = " ",

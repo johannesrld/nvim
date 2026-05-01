@@ -65,4 +65,6 @@ require("lam.keybinds")
 vim.pack.add({ "https://github.com/johannesrld/cold.nvim" })
 vim.cmd.colorscheme("cold")
 
-autocmd("Update", function () vim.pack.update() end , { desc = "Update packages" })
+autocmd("Update", function()
+  vim.pack.update()
+end, { desc = "Update packages" })
