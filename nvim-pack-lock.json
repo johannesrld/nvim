@@ -6,7 +6,7 @@
       "version": "'v1.10.2'"
     },
     "canola.nvim": {
-      "rev": "040a1b18afc8e67a9fc2aea61a4ca1434a613cf1",
+      "rev": "3a2a1c8a9ce775e435c7d73f91e5df664b037878",
       "src": "https://github.com/barrettruth/canola.nvim",
       "version": "'canola'"
     },
@@ -51,7 +51,7 @@
       "src": "https://github.com/yorickpeterse/nvim-jump"
     },
     "nvim-lspconfig": {
-      "rev": "b66a8ce16b141cd26576267e2d1f371d658b7bb7",
+      "rev": "31026a13eefb20681124706a79fc1df6bf11ab27",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {

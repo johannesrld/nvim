@@ -1,8 +1,11 @@
+local autocmd = vim.api.nvim_create_user_command ---@type function
+local map = vim.keymap.set ---@type function
 local space = vim.keycode("<Space>")
 local nop = vim.keycode("<Nop>")
+
 vim.g.mapleader = space
 vim.g.maplocalleader = space
-vim.keymap.set({ "n", "v" }, space, nop, { silent = true })
+map({ "n", "v" }, space, nop, { silent = true })
 
 require("vim._core.ui2").enable({
   enabled = true,
@@ -62,4 +65,4 @@ require("lam.keybinds")
 vim.pack.add({ "https://github.com/johannesrld/cold.nvim" })
 vim.cmd.colorscheme("cold")
 
-vim.api.nvim_create_user_command("Update", vim.pack.update, { desc = "Update packages" })
+autocmd("Update", function () vim.pack.update() end , { desc = "Update packages" })
