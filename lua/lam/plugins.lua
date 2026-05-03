@@ -72,7 +72,6 @@ vim.g.canola = {
         horizontal = true,
       },
     },
-    r = "actions.refresh",
   },
   win = { colorcolumn = "" },
 }
