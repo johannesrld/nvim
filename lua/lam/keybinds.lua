@@ -37,6 +37,14 @@ map(n, Leader("bD"), minibuf("delete", 0, true),  "Delete! Buffer")
 map(n, Leader("bs"), scratch_buffer,              "Scratch Buffer")
 map(n, Leader("bw"), minibuf("wipeout"),          "Wipeout Buffer")
 map(n, Leader("bW"), minibuf("wipeout", 0, true), "Wipeout! Buffer")
+map(n, Leader("r"), function()
+  local loclist_win = vim.fn.getloclist(0, { winid = 0 }).winid
+  if loclist_win > 0 then
+    vim.cmd("lclose")
+  else
+    vim.diagnostic.setloclist({ open = true })
+  end
+end, "open diagnostics")
 
 map(n, tab, cmd("bnext"))
 
