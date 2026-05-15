@@ -1,6 +1,5 @@
 local indentwidth = 4
----@type function
-local stdpath = vim.fn.stdpath
+local stdpath = vim.fn.stdpath ---@type function
 local colourcolumn = "88"
 local o = vim.opt
 
@@ -57,15 +56,15 @@ o.wildignore = {
   ".DS_Store",
   ".git",
   ".vscode",
-  "=__pycache__",
+  "__pycache__",
 }
-o.suffixes:append({
+o.suffixes:append {
   ".bak",
   ".old",
   ".min.js",
   ".min.css",
   "~",
-})
+}
 
 -- UI =====================
 o.laststatus = 3

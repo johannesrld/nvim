@@ -6,40 +6,40 @@
       "version": "'v1.10.2'"
     },
     "canola.nvim": {
-      "rev": "a978e8fa32ec171f57e0decb61ab85000ad648ff",
+      "rev": "3838f1380e9aeea0597a80beb6ab28da73e38525",
       "src": "https://github.com/barrettruth/canola.nvim",
       "version": "'canola'"
-    },
-    "cold.nvim": {
-      "rev": "f05880a618d39976e06f9c24de8b013db4258885",
-      "src": "https://github.com/johannesrld/cold.nvim"
     },
     "hardtime.nvim": {
       "rev": "b4e431934af1fe224a3a801f632c008278cb7628",
       "src": "https://github.com/m4xshen/hardtime.nvim"
     },
     "mason.nvim": {
-      "rev": "cb8445f8ce85d957416c106b780efd51c6298f89",
+      "rev": "8e921c2b68571e978db5d4d3fef9c9a7f8755473",
       "src": "https://github.com/williamboman/mason.nvim"
     },
+    "melange-nvim": {
+      "rev": "97834e31fcd09efd207dcd19373c58c0749faeda",
+      "src": "https://github.com/johannesrld/melange-nvim"
+    },
     "mini.bracketed": {
-      "rev": "efb969a6a9583a5d48bfbe36363769351e38f967",
+      "rev": "d94d51dcee625723aaaf8d38174b48522eaf9131",
       "src": "https://github.com/nvim-mini/mini.bracketed"
     },
     "mini.bufremove": {
-      "rev": "8603490905fdfa31943cf2ede7ef4475e3dbac9a",
+      "rev": "4cfbb201b2760da79ca6e1a00e9f67cbc99cbb8f",
       "src": "https://github.com/nvim-mini/mini.bufremove"
     },
     "mini.clue": {
-      "rev": "43bd6cf1c3ccdea46d403c32dbc4629fa6afa09d",
+      "rev": "f6978fb031023ee0b0aeb2abdb44abb87577bf38",
       "src": "https://github.com/nvim-mini/mini.clue"
     },
     "mini.surround": {
-      "rev": "2715e04bea3ec9244f15b421dc5b18c0fe326210",
+      "rev": "990ce30f724d08e79670107de6b915a3f1bb9a9b",
       "src": "https://github.com/nvim-mini/mini.surround"
     },
     "mini.tabline": {
-      "rev": "169af955ad2ed0ffcc3d2c83e850bcc7eaac2f0e",
+      "rev": "5c32522e128ba02e78d091ab2d5c6972f673c440",
       "src": "https://github.com/nvim-mini/mini.tabline"
     },
     "nvim-biscuits": {
@@ -51,7 +51,7 @@
       "src": "https://github.com/yorickpeterse/nvim-jump"
     },
     "nvim-lspconfig": {
-      "rev": "31026a13eefb20681124706a79fc1df6bf11ab27",
+      "rev": "8f7e64066e2641d5e7d494962a9c7051e3d38dd5",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {

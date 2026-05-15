@@ -1,10 +1,10 @@
 ---@type function
-vim.cmd("packadd nvim.undotree")
+vim.cmd.packadd "nvim.undotree"
 local nx, xo, nv, n = { "n", "x" }, { "x", "o" }, { "n", "v" }, "n"
 
-local esc = vim.keycode("<Esc>")
-local carriage_return = vim.keycode("<CR>")
-local tab = vim.keycode("<Tab>")
+local esc = vim.keycode "<Esc>"
+local carriage_return = vim.keycode "<CR>"
+local tab = vim.keycode "<Tab>"
 
 local function map(mode, keybind, command, useropts)
   local opts = { noremap = true, silent = true }
@@ -15,6 +15,7 @@ local function map(mode, keybind, command, useropts)
   end
   return vim.keymap.set(mode, keybind, command, opts)
 end
+
 local function Leader(code) return "<leader>" .. code end
 local function cmd(s) return "<Cmd>" .. s .. carriage_return end
 local function scratch_buffer() vim.api.nvim_win_set_buf(0, vim.api.nvim_create_buf(true, true)) end
@@ -40,13 +41,13 @@ map(n, Leader("bW"), minibuf("wipeout", 0, true), "Wipeout! Buffer")
 map(n, Leader("r"), function()
   local loclist_win = vim.fn.getloclist(0, { winid = 0 }).winid
   if loclist_win > 0 then
-    vim.cmd("lclose")
+    vim.cmd.lclose()
   else
     vim.diagnostic.setloclist({ open = true })
   end
 end, "open diagnostics")
 
-map(n, tab, cmd("bnext"))
+map(n, tab, cmd "bnext" )
 
 map(nx, "gy",    '"+y',    "Copy to System Keyboard")
 map(nx, "gp",    '"+p',    "Copy to System Keyboard")
@@ -55,10 +56,10 @@ map(n,  "<C-J>", "<C-w>j", "Focus on below window")
 map(n,  "<C-K>", "<C-w>k", "Focus on above window")
 map(n,  "<C-L>", "<C-w>l", "Focus on right window")
 
-map(n,  "[p", cmd('exe "put! " . v:register'), "Paste Above")
-map(n,  "]p", cmd('exe "put "  . v:register'), "Paste Below")
+map(n,  "[p", cmd 'exe "put! " . v:register',  "Paste Above")
+map(n,  "]p", cmd 'exe "put "  . v:register',  "Paste Below")
 map(n,  "yc", "yy<cmd>normal gcc<CR>p",        "Go to start of line")
-map(n,  esc,  "<Cmd>nohlsearch<CR>",           "Go to start of line")
+map(n,  esc,  cmd "nohlsearch",                "Go to start of line")
 map(nv, "gh", "_",                             "Go to start of line")
 map(nv, "gl", "$",                             "Go to start of line")
 
