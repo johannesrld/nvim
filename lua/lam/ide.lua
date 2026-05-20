@@ -5,6 +5,7 @@ vim.pack.add {
 }
 local lsp = vim.lsp
 local blink = require "blink.cmp"
+local mason, registry = require "mason", require "mason-registry"
 
 blink.setup {
   keymap = {
@@ -16,16 +17,14 @@ blink.setup {
   signature = { enabled = true },
 }
 
-require("mason").setup()
-
 local capabilities = lsp.protocol.make_client_capabilities()
 capabilities = blink.get_lsp_capabilities(capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-
 lsp.config("*", { capabilities = capabilities })
 
-local installedPacks = require("mason-registry").get_installed_packages()
-lsp.enable(vim.iter(installedPacks):fold({}, function(acc, pack)
-  table.insert(acc, pack.spec.neovim and pack.spec.neovim.lspconfig)
-  return acc
+mason.setup()
+local packs = vim.iter(registry.get_installed_packages())
+lsp.enable(packs:fold({}, function(a, pack)
+  table.insert(a, pack.spec.neovim and pack.spec.neovim.lspconfig)
+  return a
 end))

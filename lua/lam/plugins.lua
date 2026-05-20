@@ -2,17 +2,15 @@ vim.pack.add {
   "https://github.com/nvim-mini/mini.bracketed",
   "https://github.com/nvim-mini/mini.surround",
   "https://github.com/nvim-mini/mini.bufremove",
-  "https://github.com/yorickpeterse/nvim-jump",
   "https://github.com/nvim-mini/mini.tabline",
-  "https://github.com/m4xshen/hardtime.nvim",
   "https://github.com/nvim-mini/mini.clue",
-  "https://github.com/code-biscuits/nvim-biscuits",
   { src = "https://github.com/barrettruth/canola.nvim", version = "canola" },
 }
 
 vim.g.canola = {
   columns = { "permissions" },
   hidden = { enabled = false },
+  delete = { recursive = true },
   keymaps = {
     ["-"] = {
       callback = "actions.parent",
@@ -64,14 +62,12 @@ clue.setup {
     clue.gen_clues.windows(),
     clue.gen_clues.z(),
   },
-  window = { delay = 1 },
+  window = { delay = 1, config = { width = 50 } },
 }
 
-require("mini.tabline").setup({ use_icons = false })
+require("mini.tabline").setup { use_icons = false }
 
 vim.defer_fn(function()
   require("mini.bracketed").setup()
   require("mini.surround").setup()
-  require("hardtime").setup()
 end, 0)
-

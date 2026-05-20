@@ -5,8 +5,6 @@ local o = vim.opt
 
 -- General ================
 o.shell = "/usr/bin/env sh"
-o.modeline = false
-o.modelines = 0
 o.path = "**16"
 o.report = 0
 o.keymodel = "startsel"
@@ -26,7 +24,7 @@ o.writebackup = false
 o.backup = false
 o.swapfile = false
 o.undofile = true
-o.undodir = stdpath("data") .. "/undo"
+o.undodir = stdpath "data" .. "/undo"
 o.updatetime = 250
 o.timeoutlen = 300
 o.synmaxcol = 200
@@ -68,11 +66,11 @@ o.suffixes:append {
 
 -- UI =====================
 o.laststatus = 3
-o.cmdheight = 0
 o.breakindent = true
 o.colorcolumn = colourcolumn
 o.list = true
 o.listchars = {
+  eol = "~",
   tab = "  ",
   extends = "·",
   precedes = "·",
@@ -85,14 +83,14 @@ o.numberwidth = 3
 o.pumheight = 10
 o.pumwidth = 10
 o.ruler = false
-o.shortmess:append({
+o.shortmess:append {
   a = true,
   W = true,
   c = true,
   C = true,
   s = true,
   I = true,
-})
+}
 o.showmode = false
 o.signcolumn = "yes:2"
 o.splitbelow = true
@@ -137,7 +135,7 @@ o.virtualedit = "block"
 o.autowrite = true
 o.scrolloff = 2147483647
 o.sidescrolloff = 8
-o.scrolloffpad = 1
+o.scrolloffpad = 3
 o.whichwrap = ""
-o.iskeyword:append("-")
+o.iskeyword:append "-"
 o.statusline = "[%{mode()}] %f %m%h %= %l:%c | %L | %p%%"
