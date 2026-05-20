@@ -18,6 +18,10 @@
       "src": "https://github.com/barrettruth/canola.nvim",
       "version": "'canola'"
     },
+    "custom-nvim-queries": {
+      "rev": "fb39ddc727bb9e95cfe5a13148ff0d9d920390313bd31694b8ad28ab8a2ec928",
+      "src": "https://codeberg.org/jrld/custom-nvim-queries"
+    },
     "hardtime.nvim": {
       "rev": "b4e431934af1fe224a3a801f632c008278cb7628",
       "src": "https://github.com/m4xshen/hardtime.nvim"
@@ -96,6 +100,10 @@
     "vim-plan9": {
       "rev": "8263b2459ca48bc9dca6dad8fa34a28935426193",
       "src": "https://github.com/lunacookies/vim-plan9"
+    },
+    "vim-python-pep8-indent": {
+      "rev": "60ba5e11a61618c0344e2db190210145083c91f8",
+      "src": "https://github.com/Vimjas/vim-python-pep8-indent"
     }
   }
 }

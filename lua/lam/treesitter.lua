@@ -1,6 +1,7 @@
 vim.pack.add {
   { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
   { src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
+  "https://codeberg.org/jrld/custom-nvim-queries"
 }
 local contains = vim.tbl_contains ---@type function
 local disabled_indents = { "python" }
