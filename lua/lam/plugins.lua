@@ -1,10 +1,11 @@
+
 vim.pack.add {
-  "https://github.com/nvim-mini/mini.bracketed",
-  "https://github.com/nvim-mini/mini.surround",
-  "https://github.com/nvim-mini/mini.bufremove",
-  "https://github.com/nvim-mini/mini.tabline",
-  "https://github.com/nvim-mini/mini.clue",
-  { src = "https://github.com/barrettruth/canola.nvim", version = "canola" },
+  gh "nvim-mini/mini.bracketed",
+  gh "nvim-mini/mini.surround",
+  gh "nvim-mini/mini.bufremove",
+  gh "nvim-mini/mini.tabline",
+  gh "nvim-mini/mini.clue",
+  { src = gh "barrettruth/canola.nvim", version = "canola" },
 }
 
 vim.g.canola = {

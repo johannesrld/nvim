@@ -117,6 +117,7 @@ o.completeopt = {
 }
 
 -- Editing ================
+o.grepprg = "rg --vimgrep -uu --smart-case --hidden"
 o.startofline = true
 o.confirm = true
 o.autoindent = true

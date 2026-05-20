@@ -1,7 +1,7 @@
 vim.pack.add {
-  "https://github.com/williamboman/mason.nvim",
-  "https://github.com/neovim/nvim-lspconfig",
-  { src = "https://github.com/saghen/blink.cmp", version = "v1.10.2" },
+  gh "williamboman/mason.nvim",
+  gh "neovim/nvim-lspconfig",
+  { src = gh "saghen/blink.cmp", version = "v1.10.2" },
 }
 local lsp = vim.lsp
 local blink = require "blink.cmp"

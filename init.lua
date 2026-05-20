@@ -1,15 +1,11 @@
 vim.loader.enable(true)
 
-local group = vim.api.nvim_create_augroup("BufferDecor", {})
-local autocmd = vim.api.nvim_create_autocmd
-local map = vim.keymap.set ---@type function
 local space = vim.keycode "<Space>"
-local nop = vim.keycode "<Nop>"
 local g, o = vim.g, vim.opt
 
 g.mapleader = space
 g.maplocalleader = space
-map("", space, nop, { silent = true })
+vim.keymap.set("", space, "<Nop>", { silent = true })
 
 o.modeline = false
 o.modelines = 0
@@ -18,13 +14,7 @@ o.shada = ""
 g.no_plugin_maps = true
 
 require("vim._core.ui2").enable {
-  msg = {
-    targets = {
-      default = "msg",
-      progress = "cmd",
-      list_cmd = "cmd",
-    },
-  },
+  msg = { targets = { default = "msg", progress = "cmd", list_cmd = "cmd" } },
 }
 
 for _, plugin in ipairs {
@@ -64,11 +54,15 @@ for _, plugin in ipairs {
   vim.g["loaded_" .. plugin] = 0
 end
 
+function _G.gh(path)
+  return "https://github.com/" .. path
+end
+
 require "lam.options"
 require "lam.plugins"
 require "lam.treesitter"
 require "lam.ide"
 require "lam.keybinds"
 
-vim.pack.add { "https://github.com/johannesrld/melange-nvim" }
+vim.pack.add { gh "johannesrld/melange-nvim" }
 vim.cmd.colorscheme "melange"
