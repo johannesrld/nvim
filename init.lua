@@ -1,7 +1,7 @@
 vim.loader.enable(true)
 
-local space = vim.keycode "<Space>"
-local g, o = vim.g, vim.opt
+const space = vim.keycode "<Space>"
+const g, o = vim.g, vim.opt
 
 g.mapleader = ';'
 g.maplocalleader = ';'
