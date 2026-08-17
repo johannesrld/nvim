@@ -1,7 +1,11 @@
-const indentwidth = 4
-const stdpath = vim.fn.stdpath --- @type function
-const colourcolumn = "88"
-const o = vim.opt
+const
+indentwidth = 4
+const
+stdpath = vim.fn.stdpath --- @type function
+const
+colourcolumn = "88"
+const
+o = vim.opt
 
 -- General ================
 o.mouse = ""
@@ -57,26 +61,14 @@ o.wildignore = {
   ".vscode";
   "__pycache__";
 }
-o.suffixes:append {
-  ".bak";
-  ".old";
-  ".min.js";
-  ".min.css";
-  "~";
-}
+o.suffixes:append { ".bak"; ".old"; ".min.js"; ".min.css"; "~"; }
 
 -- UI =====================
 o.laststatus = 3
 o.breakindent = true
 o.colorcolumn = colourcolumn
 o.list = true
-o.listchars = {
-  eol = "~";
-  tab = "  ";
-  extends = "·";
-  precedes = "·";
-  nbsp = "␣";
-}
+o.listchars = { eol = "~"; tab = "  "; extends = "·"; precedes = "·"; nbsp = "␣"; }
 o.inccommand = "split"
 o.number = true
 o.relativenumber = true
@@ -84,14 +76,7 @@ o.numberwidth = 3
 o.pumheight = 10
 o.pumwidth = 10
 o.ruler = false
-o.shortmess:append {
-  a = true;
-  W = true;
-  c = true;
-  C = true;
-  s = true;
-  I = true;
-}
+o.shortmess:append { a = true; W = true; c = true; C = true; s = true; I = true; }
 o.showmode = false
 o.signcolumn = "yes:2"
 o.splitbelow = true
@@ -110,12 +95,7 @@ o.fillchars = {
   diff = "╱";
   eob = " ";
 }
-o.completeopt = {
-  "menu";
-  "menuone";
-  "noinsert";
-  "popup";
-}
+o.completeopt = { "menu"; "menuone"; "noinsert"; "popup"; }
 
 -- Editing ================
 o.grepprg = "rg --vimgrep -uu --smart-case --hidden"

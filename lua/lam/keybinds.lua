@@ -12,7 +12,7 @@ const function map(mode, keybind, command, useropts)
   if type(useropts) == "string" then
     opts = vim.tbl_extend("force", opts, { desc = useropts; })
   else
-    opts = vim.tbl_extend("force", opts, useropts or {})
+    opts = vim.tbl_extend("force", opts, useropts ?? {})
   end
   return vim.keymap.set(mode, keybind, command, opts)
 end

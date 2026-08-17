@@ -13,9 +13,9 @@ const ts_configs = require "nvim-treesitter"
 --- @param buf integer
 --- @param lang string
 const function attach(buf, lang)
-  if not ts.language.add(lang) then return end
+  if !ts.language.add(lang) then return end
   ts.start(buf, lang)
-  if not contains(disabled_indents, lang) and ts.query.get(lang, "indents") ~= nil then
+  if !contains(disabled_indents, lang) && ts.query.get(lang, "indents") then
     vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
   end
 end
@@ -25,7 +25,7 @@ vim.api.nvim_create_autocmd("FileType", {
     const buf, filetype = args.buf, args.match
 
     const lang = ts.language.get_lang(filetype)
-    if not lang then return end
+    if !lang then return end
 
     const parsers = ts_configs.get_installed "parsers"
     if contains(parsers, lang) then attach(buf, lang) end

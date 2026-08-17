@@ -56,6 +56,6 @@ vim.lsp.config("lua_ls", {
 mason.setup()
 const packs = vim.iter(registry.get_installed_packages())
 vim.lsp.enable(packs:fold({}, function(a, pack)
-  table.insert(a, pack.spec.neovim and pack.spec.neovim.lspconfig)
+  table.insert(a, pack.spec.neovim && pack.spec.neovim.lspconfig)
   return a
 end))
