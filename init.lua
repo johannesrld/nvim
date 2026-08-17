@@ -3,9 +3,10 @@ vim.loader.enable(true)
 local space = vim.keycode "<Space>"
 local g, o = vim.g, vim.opt
 
-g.mapleader = space
-g.maplocalleader = space
-vim.keymap.set("", space, "<Nop>", { silent = true })
+g.mapleader = ';'
+g.maplocalleader = ';'
+vim.keymap.set('', space, "<Nop>", { silent = true })
+vim.keymap.set('', ';', "<Nop>", { silent = true })
 
 o.modeline = false
 o.modelines = 0
@@ -54,9 +55,7 @@ for _, plugin in ipairs {
   vim.g["loaded_" .. plugin] = 0
 end
 
-function _G.gh(path)
-  return "https://github.com/" .. path
-end
+function _G.gh(path) return "https://github.com/" .. path end
 
 require "lam.options"
 require "lam.plugins"
