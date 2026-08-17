@@ -3,8 +3,8 @@ vim.pack.add {
   gh "neovim/nvim-lspconfig";
   { src = gh "saghen/blink.cmp"; version = "v1.10.2"; };
 }
-local blink = require "blink.cmp"
-local mason, registry = require "mason", require "mason-registry"
+const blink = require "blink.cmp"
+const mason, registry = require "mason", require "mason-registry"
 
 blink.setup {
   keymap = {

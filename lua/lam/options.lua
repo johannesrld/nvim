@@ -1,11 +1,7 @@
-const
-indentwidth = 4
-const
-stdpath = vim.fn.stdpath --- @type function
-const
-colourcolumn = "88"
-const
-o = vim.opt
+const indentwidth = 4
+const stdpath = vim.fn.stdpath --- @type function
+const colourcolumn = "88"
+const o = vim.opt
 
 -- General ================
 o.mouse = ""
