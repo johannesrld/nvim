@@ -1,16 +1,18 @@
 vim.pack.add {
-  { src = gh "nvim-treesitter/nvim-treesitter", version = "main" },
-  { src = gh "nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
-  "https://codeberg.org/jrld/custom-nvim-queries"
+  { src = gh "nvim-treesitter/nvim-treesitter";             version = "main"; };
+  { src = gh "nvim-treesitter/nvim-treesitter-textobjects"; version = "main"; };
+  "https://codeberg.org/jrld/custom-nvim-queries";
 }
-local contains = vim.tbl_contains ---@type function
-local disabled_indents = { "python" }
-local ts = vim.treesitter
-local ts_configs = require "nvim-treesitter"
 
----@param buf integer
----@param lang string
-local function attach(buf, lang)
+vim.treesitter.language.add("lua", { path = "/Users/jrld/projects/ts-lua/parser.dylib"; })
+const contains = vim.tbl_contains --- @type function
+const disabled_indents = { "python"; }
+const ts = vim.treesitter
+const ts_configs = require "nvim-treesitter"
+
+--- @param buf integer
+--- @param lang string
+const function attach(buf, lang)
   if not ts.language.add(lang) then return end
   ts.start(buf, lang)
   if not contains(disabled_indents, lang) and ts.query.get(lang, "indents") ~= nil then
@@ -19,13 +21,13 @@ local function attach(buf, lang)
 end
 
 vim.api.nvim_create_autocmd("FileType", {
-  callback = function(args)
-    local buf, filetype = args.buf, args.match
+  callback = args->do
+    const buf, filetype = args.buf, args.match
 
-    local lang = ts.language.get_lang(filetype)
+    const lang = ts.language.get_lang(filetype)
     if not lang then return end
 
-    local parsers = ts_configs.get_installed "parsers"
+    const parsers = ts_configs.get_installed "parsers"
     if contains(parsers, lang) then attach(buf, lang) end
   end,
 })

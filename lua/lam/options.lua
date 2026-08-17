@@ -1,9 +1,10 @@
-local indentwidth = 4
-local stdpath = vim.fn.stdpath ---@type function
-local colourcolumn = "88"
-local o = vim.opt
+const indentwidth = 4
+const stdpath = vim.fn.stdpath --- @type function
+const colourcolumn = "88"
+const o = vim.opt
 
 -- General ================
+o.mouse = ""
 o.shell = "/usr/bin/env sh"
 o.path = "**16"
 o.report = 0
@@ -29,39 +30,39 @@ o.updatetime = 250
 o.timeoutlen = 300
 o.synmaxcol = 200
 o.wildignore = {
-  ".git",
-  ".7z",
-  ".exe",
-  ".gif",
-  ".jpeg",
-  ".jpg",
-  ".o",
-  ".obj",
-  ".out",
-  ".pdf",
-  ".png",
-  ".pyc",
-  ".pyo",
-  ".rar",
-  ".swp",
-  ".tar",
-  ".tar.bz2",
-  ".tar.gz",
-  ".tar.xz",
-  ".tgz",
-  ".tiff",
-  ".zip",
-  ".DS_Store",
-  ".git",
-  ".vscode",
-  "__pycache__",
+  ".git";
+  ".7z";
+  ".exe";
+  ".gif";
+  ".jpeg";
+  ".jpg";
+  ".o";
+  ".obj";
+  ".out";
+  ".pdf";
+  ".png";
+  ".pyc";
+  ".pyo";
+  ".rar";
+  ".swp";
+  ".tar";
+  ".tar.bz2";
+  ".tar.gz";
+  ".tar.xz";
+  ".tgz";
+  ".tiff";
+  ".zip";
+  ".DS_Store";
+  ".git";
+  ".vscode";
+  "__pycache__";
 }
 o.suffixes:append {
-  ".bak",
-  ".old",
-  ".min.js",
-  ".min.css",
-  "~",
+  ".bak";
+  ".old";
+  ".min.js";
+  ".min.css";
+  "~";
 }
 
 -- UI =====================
@@ -70,11 +71,11 @@ o.breakindent = true
 o.colorcolumn = colourcolumn
 o.list = true
 o.listchars = {
-  eol = "~",
-  tab = "  ",
-  extends = "·",
-  precedes = "·",
-  nbsp = "␣",
+  eol = "~";
+  tab = "  ";
+  extends = "·";
+  precedes = "·";
+  nbsp = "␣";
 }
 o.inccommand = "split"
 o.number = true
@@ -84,12 +85,12 @@ o.pumheight = 10
 o.pumwidth = 10
 o.ruler = false
 o.shortmess:append {
-  a = true,
-  W = true,
-  c = true,
-  C = true,
-  s = true,
-  I = true,
+  a = true;
+  W = true;
+  c = true;
+  C = true;
+  s = true;
+  I = true;
 }
 o.showmode = false
 o.signcolumn = "yes:2"
@@ -101,19 +102,19 @@ o.wrap = false
 o.showtabline = 0
 o.conceallevel = 2
 o.fillchars = {
-  foldopen = " ",
-  lastline = ".",
-  foldclose = " ",
-  fold = " ",
-  foldsep = " ",
-  diff = "╱",
-  eob = " ",
+  foldopen = " ";
+  lastline = ".";
+  foldclose = " ";
+  fold = " ";
+  foldsep = " ";
+  diff = "╱";
+  eob = " ";
 }
 o.completeopt = {
-  "menu",
-  "menuone",
-  "noinsert",
-  "popup",
+  "menu";
+  "menuone";
+  "noinsert";
+  "popup";
 }
 
 -- Editing ================

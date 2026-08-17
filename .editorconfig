@@ -5,5 +5,16 @@ insert_final_newline = true
 charset = utf-8
 
 [*.lua]
+indent_width = 2
 indent_size = 2
 indent_style = space
+quote_style = double
+continuation_indent = 4
+max_line_length = 88
+end_of_line = lf
+table_separator_style = semicolon
+trailing_table_separator = always
+call_arg_parentheses = remove
+space_after_comment_dash = true
+space_around_math_operator = false
+end_statement_with_semicolon = same_line
