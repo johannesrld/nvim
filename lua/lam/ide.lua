@@ -1,12 +1,26 @@
 vim.pack.add {
   gh "williamboman/mason.nvim";
   gh "neovim/nvim-lspconfig";
+  gh "saghen/blink.lib";
   { src = gh "saghen/blink.cmp"; version = "v1.10.2"; };
+  { src = gh "saghen/blink.pairs"; version = vim.version.range "*"; };
 }
-const blink = require "blink.cmp"
+const pairs = require('blink.pairs')
+pairs.download():pwait(6000)
+const cmp = require "blink.cmp"
 const mason, registry = require "mason", require "mason-registry"
 
-blink.setup {
+vim.defer_fn(_->do
+  pairs.setup {
+    mappings = {
+      pairs = {
+        ['|'] = '|'
+      }
+    }
+  }
+end, 0)
+
+cmp.setup {
   keymap = {
     ["<CR>"] = { "accept"; "fallback"; };
     ["<c-CR>"] = { "cancel"; "fallback"; };
@@ -17,7 +31,7 @@ blink.setup {
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = blink.get_lsp_capabilities(capabilities)
+capabilities = cmp.get_lsp_capabilities(capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 vim.lsp.config("*", { capabilities = capabilities; })
 vim.lsp.config("lua_ls", {
@@ -53,9 +67,7 @@ vim.lsp.config("lua_ls", {
   };
 })
 
+
 mason.setup()
 const packs = vim.iter(registry.get_installed_packages())
-vim.lsp.enable(packs:fold({}, function(a, pack)
-  table.insert(a, pack.spec.neovim && pack.spec.neovim.lspconfig)
-  return a
-end))
+vim.lsp.enable(packs:map(p->p.spec.neovim && p.spec.neovim.lspconfig):totable())

@@ -1,54 +1,27 @@
 {
   "plugins": {
-    "acme-colors": {
-      "rev": "c2ae949144fc9d38cf16d9369b567c8918cf2a82",
-      "src": "https://github.com/plan9-for-vimspace/acme-colors"
-    },
-    "acme.nvim": {
-      "rev": "bee75f69289bb82e06263d8f2d403f183cf9c4d4",
-      "src": "https://gitlab.com/__tpb/acme.nvim"
-    },
-    "aerial.nvim": {
-      "rev": "28fe6e822ae344544c379d60fcb13c9519a1f08a",
-      "src": "https://github.com/stevearc/aerial.nvim"
-    },
     "blink.cmp": {
       "rev": "78336bc89ee5365633bcf754d93df01678b5c08f",
       "src": "https://github.com/saghen/blink.cmp",
       "version": "'v1.10.2'"
+    },
+    "blink.lib": {
+      "rev": "c8fdc12c8a2fab6cf786dd7141a283f8079f902b",
+      "src": "https://github.com/saghen/blink.lib"
+    },
+    "blink.pairs": {
+      "rev": "aad9046bc4670dc91301cd62a6948feb36c55f4a",
+      "src": "https://github.com/saghen/blink.pairs",
+      "version": ">=0.0.0"
     },
     "canola.nvim": {
       "rev": "d7c349fd0ffc3d6e8eceefdf66af66cb1ab42826",
       "src": "https://github.com/barrettruth/canola.nvim",
       "version": "'canola'"
     },
-    "ccc.nvim": {
-      "rev": "9d1a256e006decc574789dfc7d628ca11644d4c2",
-      "src": "https://github.com/uga-rosa/ccc.nvim"
-    },
     "custom-nvim-queries": {
       "rev": "fb39ddc727bb9e95cfe5a13148ff0d9d920390313bd31694b8ad28ab8a2ec928",
       "src": "https://codeberg.org/jrld/custom-nvim-queries"
-    },
-    "hardtime.nvim": {
-      "rev": "244753782b945def87472d8f4e9e6a9d4ec18689",
-      "src": "https://github.com/m4xshen/hardtime.nvim"
-    },
-    "haskell-tools.nvim": {
-      "rev": "a584050ea1583ea5b64bbd02a820239937e9b579",
-      "src": "https://github.com/MrcJkb/haskell-tools.nvim"
-    },
-    "haskell-vim": {
-      "rev": "f35d02204b4813d1dbe8b0e98cc39701a4b8e15e",
-      "src": "https://github.com/neovimhaskell/haskell-vim"
-    },
-    "image.nvim": {
-      "rev": "88351f1f7d9dbae286e671ce3690a49660dd8a5c",
-      "src": "https://github.com/3rd/image.nvim"
-    },
-    "image_preview.nvim": {
-      "rev": "d015f9c707916735768d19b8659fc6d33bdccf92",
-      "src": "https://github.com/adelarsq/image_preview.nvim"
     },
     "mason.nvim": {
       "rev": "2a6940af80375532e5e9e7c1f2fc6319a1b7a69d",
@@ -78,14 +51,6 @@
       "rev": "525b27e98de7cd2a6012d99f45b4fc10676e00e5",
       "src": "https://github.com/nvim-mini/mini.tabline"
     },
-    "nvim-biscuits": {
-      "rev": "d93dcdee3a3dfd5101785447658e744f153957db",
-      "src": "https://github.com/code-biscuits/nvim-biscuits"
-    },
-    "nvim-jump": {
-      "rev": "f58eb5a36c414c19965e1c4d5dfb74d5a1f21ede",
-      "src": "https://github.com/yorickpeterse/nvim-jump"
-    },
     "nvim-lspconfig": {
       "rev": "fbaef6156f9ad65790931ab543ab1dfec57bbec7",
       "src": "https://github.com/neovim/nvim-lspconfig"
@@ -100,25 +65,9 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
       "version": "'main'"
     },
-    "precognition.nvim": {
-      "rev": "201da44c95c634ae9d99414ec3cf8fc582fb323b",
-      "src": "https://github.com/tris203/precognition.nvim"
-    },
-    "vacme": {
-      "rev": "2f0b284b5bc1c9dd5b7f0b89ac880959e61b0be4",
-      "src": "https://github.com/overvale/vacme"
-    },
-    "vim-plan9": {
-      "rev": "8263b2459ca48bc9dca6dad8fa34a28935426193",
-      "src": "https://github.com/lunacookies/vim-plan9"
-    },
     "vim-python-pep8-indent": {
       "rev": "60ba5e11a61618c0344e2db190210145083c91f8",
       "src": "https://github.com/Vimjas/vim-python-pep8-indent"
-    },
-    "zen-mode.nvim": {
-      "rev": "8564ce6d29ec7554eb9df578efa882d33b3c23a7",
-      "src": "https://github.com/folke/zen-mode.nvim"
     }
   }
 }

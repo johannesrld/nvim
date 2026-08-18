@@ -67,7 +67,7 @@ clue.setup {
 
 require "mini.tabline".setup { use_icons = false; }
 
-vim.defer_fn(||->do
+vim.defer_fn(_->do
   require("mini.bracketed").setup()
   require("mini.surround").setup()
 end, 0)

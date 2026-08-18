@@ -21,8 +21,8 @@ const function attach(buf, lang)
 end
 
 vim.api.nvim_create_autocmd("FileType", {
-  callback = args->do
-    const buf, filetype = args.buf, args.match
+  callback = a->do
+    const buf, filetype = a.buf, a.match
 
     const lang = ts.language.get_lang(filetype)
     if !lang then return end
