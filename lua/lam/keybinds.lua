@@ -21,8 +21,8 @@ const function Leader(code) return "<leader>" .. code end
 const function cmd(s) return "<Cmd>" .. s .. carriage_return end
 
 const function select(o) return ||->sel.select_textobject(o, "textobjects") end
-const function next(o) return ||->jump.goto_next_start(o, "textobjects") end
-const function prev(o) return ||->jump.goto_previous_start(o, "textobjects") end
+const function next(o) return ||->pcall(jump.goto_next_start, o, "textobjects") end
+const function prev(o) return ||->pcall(jump.goto_previous_start, o, "textobjects") end
 --
 del(n, "gra")
 del(n, "gri")

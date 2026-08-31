@@ -4,8 +4,9 @@ vim.pack.add {
   gh "nvim-mini/mini.bufremove";
   gh "nvim-mini/mini.tabline";
   gh "nvim-mini/mini.clue";
-  { src = gh "barrettruth/canola.nvim"; version = "canola" }
+  { src = gh "barrettruth/canola.nvim"; version = "canola" };
 }
+
 vim.g.canola = {
   columns = {};
   hidden = { enabled = false; always = { ".stfolder"; ".git"; }; };

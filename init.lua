@@ -61,5 +61,5 @@ require "lam.treesitter"
 require "lam.ide"
 require "lam.keybinds"
 
-vim.pack.add { gh "johannesrld/melange-nvim"; }
+vim.pack.add { gh "johannesrld/no-clown-fiesta.nvim"; gh "johannesrld/melange-nvim"; gh "johannesrld/gruv9"; gh "WeiTing1991/suannhai.nvim" }
 vim.cmd.colorscheme "melange"

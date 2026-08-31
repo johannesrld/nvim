@@ -67,7 +67,6 @@ vim.lsp.config("lua_ls", {
   };
 })
 
-
 mason.setup()
 const packs = vim.iter(registry.get_installed_packages())
 vim.lsp.enable(packs:map(p->p.spec.neovim && p.spec.neovim.lspconfig):totable())

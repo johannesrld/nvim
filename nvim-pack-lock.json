@@ -23,6 +23,10 @@
       "rev": "fb39ddc727bb9e95cfe5a13148ff0d9d920390313bd31694b8ad28ab8a2ec928",
       "src": "https://codeberg.org/jrld/custom-nvim-queries"
     },
+    "gruv9": {
+      "rev": "7f9b2ee9826134db7569ab14a21247bb1a8644f9",
+      "src": "https://github.com/johannesrld/gruv9"
+    },
     "mason.nvim": {
       "rev": "2a6940af80375532e5e9e7c1f2fc6319a1b7a69d",
       "src": "https://github.com/williamboman/mason.nvim"
@@ -51,12 +55,16 @@
       "rev": "525b27e98de7cd2a6012d99f45b4fc10676e00e5",
       "src": "https://github.com/nvim-mini/mini.tabline"
     },
+    "no-clown-fiesta.nvim": {
+      "rev": "e318ce87375e3b810ab4eb3da16837e79fcd7971",
+      "src": "https://github.com/johannesrld/no-clown-fiesta.nvim"
+    },
     "nvim-lspconfig": {
-      "rev": "fbaef6156f9ad65790931ab543ab1dfec57bbec7",
+      "rev": "16286347bdba1333c7d124d9de9fe6630731b2b2",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
-      "rev": "074aa4422bf029908338e855d0c0f71470a971bb",
+      "rev": "19071296d3d643b48615ee574a20e8a03ac40872",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
@@ -64,6 +72,22 @@
       "rev": "898ee307df58f854d11cd7edd06472574d48014e",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
       "version": "'main'"
+    },
+    "parinfer-rust": {
+      "rev": "0d334950099cd30a8e1ca520026f8da9ea1382fa",
+      "src": "https://github.com/eraserhd/parinfer-rust"
+    },
+    "suannhai.nvim": {
+      "rev": "378aaf55ef667ac3ff1d013f5bb0ecf75d8aa1b1",
+      "src": "https://github.com/WeiTing1991/suannhai.nvim"
+    },
+    "treesitter-kanata": {
+      "rev": "76658aa31e4eecf5bc054c514f126df5bcc3d183",
+      "src": "https://github.com/pbcdev210/treesitter-kanata"
+    },
+    "true-zen.nvim": {
+      "rev": "2b9e210e0d1a735e1fa85ec22190115dffd963aa",
+      "src": "https://github.com/pocco81/true-zen.nvim"
     },
     "vim-python-pep8-indent": {
       "rev": "60ba5e11a61618c0344e2db190210145083c91f8",
