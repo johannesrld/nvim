@@ -12,7 +12,7 @@ const ts_configs = require "nvim-treesitter"
 
 --- @param buf integer
 --- @param lang string
-const function attach(buf, lang)
+const attach = |buf, lang|->do
   if !ts.language.add(lang) then return end
   ts.start(buf, lang)
   if !contains(disabled_indents, lang) && ts.query.get(lang, "indents") then

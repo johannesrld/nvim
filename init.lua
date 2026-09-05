@@ -52,7 +52,7 @@ for _, plugin in ipairs {
   vim.g["loaded_" .. plugin] = 0
 end
 
-function _G.gh(path) return "https://github.com/" .. path end
+_G.gh = |path|->"https://github.com/" .. path
 
 require "lam.options"
 require "lam.plugins"
