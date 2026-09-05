@@ -5,7 +5,6 @@ g.mapleader = ";"
 g.maplocalleader = ";"
 vim.keymap.set("", space, "<Nop>", { silent = true; })
 vim.keymap.set("", ";", "<Nop>", { silent = true; })
-
 o.modeline = false
 o.modelines = 0
 o.shadafile = "NONE"
@@ -61,5 +60,5 @@ require "lam.treesitter"
 require "lam.ide"
 require "lam.keybinds"
 
-vim.pack.add { gh "johannesrld/no-clown-fiesta.nvim"; gh "johannesrld/melange-nvim"; gh "johannesrld/gruv9"; gh "WeiTing1991/suannhai.nvim" }
+vim.pack.add { gh "johannesrld/melange-nvim"; gh "WeiTing1991/suannhai.nvim"; }
 vim.cmd.colorscheme "melange"

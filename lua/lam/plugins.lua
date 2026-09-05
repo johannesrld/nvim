@@ -1,6 +1,5 @@
 vim.pack.add {
   gh "nvim-mini/mini.bracketed";
-  gh "nvim-mini/mini.surround";
   gh "nvim-mini/mini.bufremove";
   gh "nvim-mini/mini.tabline";
   gh "nvim-mini/mini.clue";
@@ -68,7 +67,4 @@ clue.setup {
 
 require "mini.tabline".setup { use_icons = false; }
 
-vim.defer_fn(_->do
-  require("mini.bracketed").setup()
-  require("mini.surround").setup()
-end, 0)
+vim.defer_fn(_->require("mini.bracketed").setup(), 0)

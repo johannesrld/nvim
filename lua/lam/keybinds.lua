@@ -1,29 +1,32 @@
 const lsp = vim.lsp
-const nxo, nx, xo, nv, n = { "n"; "x"; "o"; }, { "n"; "x"; }, { "x"; "o"; }, { "n"; "v"; }, "n"
+const nxo = { "n"; "x"; "o"; }
+const nx = { "n"; "x"; }
+const xo = { "x"; "o"; }
+const nv = { "n"; "v"; }
+const n = "n"
+const match = string.match
 
-const carriage_return = vim.keycode "<CR>"
 const sel = require "nvim-treesitter-textobjects.select"
-const jump = require "nvim-treesitter-textobjects.move"
+const mv = require "nvim-treesitter-textobjects.move"
 vim.cmd.packadd "nvim.undotree"
 
 const del = vim.keymap.del --- @type function
-const function map(mode, keybind, command, useropts)
+const map = |mode, keybind, command, useropts|->do
   local opts = { noremap = true; silent = true; }
   if type(useropts) == "string" then
-    opts = vim.tbl_extend("force", opts, { desc = useropts; })
+    opts.desc = useropts
   else
-    opts = vim.tbl_extend("force", opts, useropts ?? {})
+    opts = vim.tbl_deep_extend("force", opts, useropts ?? {})
   end
   return vim.keymap.set(mode, keybind, command, opts)
 end
-const function Leader(code) return "<leader>" .. code end
 
-const function cmd(s) return "<Cmd>" .. s .. carriage_return end
+const lead = c->"<leader>" .. c
+const cmd = c->"<Cmd>" .. c .. "<CR>"
+const select = o->_->sel.select_textobject(o, "textobjects")
+const next = o->_->pcall(mv.goto_next_start, o, "textobjects")
+const prev = o->_-> pcall(mv.goto_previous_start, o, "textobjects")
 
-const function select(o) return ||->sel.select_textobject(o, "textobjects") end
-const function next(o) return ||->pcall(jump.goto_next_start, o, "textobjects") end
-const function prev(o) return ||->pcall(jump.goto_previous_start, o, "textobjects") end
---
 del(n, "gra")
 del(n, "gri")
 del(n, "grn")
@@ -34,7 +37,7 @@ del(n, "grx")
 map(n, "<Esc>", cmd "nohlsearch")
 map(n, "<Tab>", cmd "bnext")
 map(n, "<S-Tab>", cmd "bprevious")
-vim.keymap.set("n", "i", ||->vim.fn.getline("."):match "^%s*$" ? '"_cc' : 'i', { expr = true })
+map(n, "i", _->match(vim.fn.getline("."), "^%s*$") ? '"_cc' : "i", { expr = true; })
 
 map(nx, "gy", '"+y', "Copy to System Keyboard")
 map(nx, "gp", '"+p', "Copy to System Keyboard")
@@ -72,22 +75,21 @@ map(nxo, "[c", prev "@class.outer")
 map(nxo, "[a", prev "@parameter.outer")
 map(nxo, "[\\", cmd "lua MiniBracketed.diagnostic('backward')")
 
-map(n, Leader "d", vim.cmd.bdelete, "Close Buffer")
-map(n, Leader "v", vim.cmd.vsplit, "Split Window [V]ertically")
-map(n, Leader "h", vim.cmd.split, "Split Window [H]orizontally")
-map(n, Leader "o", cmd "Canola", "Open [O]il")
-map(n, Leader "a", cmd "b#", "[A]lternate Buffer")
-map(n, Leader "u", cmd "Undotree", "[U]ndotree")
+map(n, lead "d", vim.cmd.bdelete, "Close Buffer")
+map(n, lead "v", vim.cmd.vsplit, "Split Window [V]ertically")
+map(n, lead "h", vim.cmd.split, "Split Window [H]orizontally")
+map(n, lead "o", cmd "Canola", "Open [O]il")
+map(n, lead "a", cmd "b#", "[A]lternate Buffer")
+map(n, lead "u", cmd "Undotree", "[U]ndotree")
 
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(c)
+vim.api.nvim_create_autocmd("LspAttach", {callback = c->do
     const b = c.buf
-    map(n, Leader "lf", lsp.buf.format, { buffer = b; desc = "Format File"; })
-    map(n, Leader "lr", lsp.buf.rename, { buffer = b; desc = "Rename Symbol"; })
-    map(nx, Leader "la", lsp.buf.code_action, { buffer = b; desc = "View Code Action"; })
-    map(n, Leader "lR", lsp.buf.references, { buffer = b; desc = "View Symbol References"; })
-    map(n, Leader "li", lsp.buf.implementation, { buffer = b; desc = "View Implementations"; })
-    map(n, Leader "ls", lsp.buf.definition, { buffer = b; desc = "View Definition"; })
-    map(n, Leader "lt", lsp.buf.type_definition, { buffer = b; desc = "View Type Definition"; })
+    map(n, lead "lf", lsp.buf.format, { buffer = b; desc = "Format File"; })
+    map(n, lead "lr", lsp.buf.rename, { buffer = b; desc = "Rename Symbol"; })
+    map(nx, lead "la", lsp.buf.code_action, { buffer = b; desc = "View Code Action"; })
+    map(n, lead "lR", lsp.buf.references, { buffer = b; desc = "View Symbol References"; })
+    map(n, lead "li", lsp.buf.implementation, { buffer = b; desc = "View Implementations"; })
+    map(n, lead "ls", lsp.buf.definition, { buffer = b; desc = "View Definition"; })
+    map(n, lead "lt", lsp.buf.type_definition, { buffer = b; desc = "View Type Definition"; })
   end;
 })

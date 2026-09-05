@@ -16,7 +16,7 @@ const function attach(buf, lang)
   if !ts.language.add(lang) then return end
   ts.start(buf, lang)
   if !contains(disabled_indents, lang) && ts.query.get(lang, "indents") then
-    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    vim.bo.indentexpr = ts_configs.indentexpr
   end
 end
 
