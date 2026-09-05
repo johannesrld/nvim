@@ -12,7 +12,7 @@ local cmp = require "blink.cmp"
 pairs.build():pwait(6000)
 cmp.build():pwait(6000)
 local mason, registry = require "mason", require "mason-registry"
-vim.defer_fn(_->pairs.setup(), 0)
+vim.defer_fn(_->pairs.setup { highlights = { enabled = false } }, 0)
 
 cmp.setup {
   keymap = {
