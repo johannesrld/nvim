@@ -12,17 +12,18 @@ local cmp = require "blink.cmp"
 pairs.build():pwait(6000)
 cmp.build():pwait(6000)
 local mason, registry = require "mason", require "mason-registry"
-vim.defer_fn(_->pairs.setup { highlights = { enabled = false } }, 0)
-
-cmp.setup {
-  keymap = {
-    ["<CR>"] = { "accept"; "fallback"; };
-    ["<c-CR>"] = { "cancel"; "fallback"; };
-    ["<c-j>"] = { "select_next"; "fallback"; };
-    ["<c-k>"] = { "select_prev"; "fallback"; };
-  };
-  signature = { enabled = true; };
-}
+vim.defer_fn(_->do
+  pairs.setup { highlights = { enabled = false; }; }
+  cmp.setup {
+    keymap = {
+      ["<CR>"] = { "accept"; "fallback"; };
+      ["<c-CR>"] = { "cancel"; "fallback"; };
+      ["<c-j>"] = { "select_next"; "fallback"; };
+      ["<c-k>"] = { "select_prev"; "fallback"; };
+    };
+    signature = { enabled = true; };
+  }
+end, 0)
 
 local capabilities = cmp.get_lsp_capabilities(lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
