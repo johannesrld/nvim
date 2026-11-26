@@ -1,10 +1,4 @@
-vim.pack.add {
-  gh "nvim-mini/mini.bracketed";
-  gh "nvim-mini/mini.bufremove";
-  gh "nvim-mini/mini.tabline";
-  gh "nvim-mini/mini.clue";
-  { src = gh "barrettruth/canola.nvim"; version = "canola" };
-}
+vim.cmd.packadd "nvim.undotree"
 
 vim.g.canola = {
   columns = {};
@@ -67,4 +61,4 @@ clue.setup {
 
 require "mini.tabline".setup { use_icons = false; }
 
-vim.defer_fn(_->require("mini.bracketed").setup(), 0)
+vim.defer_fn(_->require("mini.bracketed").setup { comment = { suffix = "" } }, 0)

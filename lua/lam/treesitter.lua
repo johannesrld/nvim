@@ -1,10 +1,3 @@
-vim.pack.add {
-  { src = gh "nvim-treesitter/nvim-treesitter";             version = "main"; };
-  { src = gh "nvim-treesitter/nvim-treesitter-textobjects"; version = "main"; };
-  "https://codeberg.org/jrld/custom-nvim-queries";
-}
-
-vim.treesitter.language.add("lua", { path = "/Users/jrld/projects/ts-lua/parser.dylib"; })
 const contains = vim.tbl_contains --- @type function
 const disabled_indents = { "python"; }
 const ts = vim.treesitter
@@ -16,7 +9,7 @@ const attach = |buf, lang|->do
   if !ts.language.add(lang) then return end
   ts.start(buf, lang)
   if !contains(disabled_indents, lang) && ts.query.get(lang, "indents") then
-    vim.bo.indentexpr = ts_configs.indentexpr
+    vim.bo[buf].indentexpr = ts_configs.indentexpr
   end
 end
 

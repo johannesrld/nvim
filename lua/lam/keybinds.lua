@@ -4,78 +4,58 @@ const nx = { "n"; "x"; }
 const xo = { "x"; "o"; }
 const nv = { "n"; "v"; }
 const n = "n"
-const match = string.match
 
 const sel = require "nvim-treesitter-textobjects.select"
 const mv = require "nvim-treesitter-textobjects.move"
-vim.cmd.packadd "nvim.undotree"
 
-const del = vim.keymap.del --- @type function
-const map = |mode, keybind, command, useropts|->do
-  local opts = { noremap = true; silent = true; }
-  if type(useropts) == "string" then
-    opts.desc = useropts
-  else
-    opts = vim.tbl_deep_extend("force", opts, useropts ?? {})
-  end
-  return vim.keymap.set(mode, keybind, command, opts)
-end
+const map = |mode, keybind, command, useropts|->
+  vim.keymap.set(mode, keybind, command, type(useropts) == "string"
+    ? { noremap = true; silent = true; desc = useropts; }
+    : vim.tbl_deep_extend("force", { noremap = true; silent = true; }, useropts ?? {}))
 
-const lead = c->"<leader>" .. c
-const cmd = c->"<Cmd>" .. c .. "<CR>"
-const select = o->_->sel.select_textobject(o, "textobjects")
-const next = o->_->pcall(mv.goto_next_start, o, "textobjects")
-const prev = o->_-> pcall(mv.goto_previous_start, o, "textobjects")
-
-del(n, "gra")
-del(n, "gri")
-del(n, "grn")
-del(n, "grr")
-del(n, "grt")
-del(n, "grx")
+const lead = |c|->"<leader>" .. c
+const cmd = |c|->"<Cmd>" .. c .. "<CR>"
+const select = |o|->|_|->sel.select_textobject(o, "textobjects")
+const tsnext = |o|->|_|->pcall(mv.goto_next_start, o, "textobjects")
+const prev = |o|->|_|-> pcall(mv.goto_previous_start, o, "textobjects")
 
 map(n, "<Esc>", cmd "nohlsearch")
 map(n, "<Tab>", cmd "bnext")
 map(n, "<S-Tab>", cmd "bprevious")
-map(n, "i", _->match(vim.fn.getline("."), "^%s*$") ? '"_cc' : "i", { expr = true; })
 
 map(nx, "gy", '"+y', "Copy to System Keyboard")
-map(nx, "gp", '"+p', "Copy to System Keyboard")
-map(n, "<C-H>", "<C-w>h", "Focus on left window")
-map(n, "<C-J>", "<C-w>j", "Focus on below window")
-map(n, "<C-K>", "<C-w>k", "Focus on above window")
-map(n, "<C-L>", "<C-w>l", "Focus on right window")
+map(nx, "gp", '"+p', "Paste from System Keyboard")
 
 map(n, "[p", cmd 'exe "put! " . v:register', "Paste Above")
 map(n, "]p", cmd 'exe "put "  . v:register', "Paste Below")
 map(n, "yc", "yy<cmd>normal gcc<CR>p", "Duplicate line and comment")
-map(nv, "gh", "_", "Go to start of line")
-map(nv, "gl", "$", "Go to end of line")
 
-map(xo, "a=", select "@assignment.outer")
-map(xo, "i=", select "@assignment.inner")
-map(xo, "[=", select "@assignment.lhs")
-map(xo, "]=", select "@assignment.rhs")
-map(xo, "am", select "@function.outer")
-map(xo, "im", select "@function.inner")
-map(xo, "aC", select "@call.outer")
-map(xo, "iC", select "@call.inner")
-map(xo, "ac", select "@class.outer")
-map(xo, "ic", select "@class.inner")
-map(xo, "aa", select "@parameter.outer")
-map(xo, "ia", select "@parameter.inner")
-map(xo, "at", select "@type")
+vim.iter({
+  ["a="] = "@assignment.outer";
+  ["i="] = "@assignment.inner";
+  ["[="] = "@assignment.lhs";
+  ["]="] = "@assignment.rhs";
+  ["am"] = "@function.outer";
+  ["im"] = "@function.inner";
+  ["aC"] = "@call.outer";
+  ["iC"] = "@call.inner";
+  ["ac"] = "@class.outer";
+  ["ic"] = "@class.inner";
+  ["aa"] = "@parameter.outer";
+  ["ia"] = "@parameter.inner";
+  ["at"] = "@type";
+}):each(|k, v|->map(xo, k, select(v)))
 
 map(nxo, "]\\", cmd "lua MiniBracketed.diagnostic('forward')")
-map(nxo, "]]", next "@function.outer")
-map(nxo, "]c", next "@class.outer")
-map(nxo, "]a", next "@parameter.outer")
+map(nxo, "]]", tsnext "@function.outer")
+map(nxo, "]c", tsnext "@class.outer")
+map(nxo, "]a", tsnext "@parameter.outer")
 map(nxo, "[[", prev "@function.outer")
 map(nxo, "[c", prev "@class.outer")
 map(nxo, "[a", prev "@parameter.outer")
 map(nxo, "[\\", cmd "lua MiniBracketed.diagnostic('backward')")
 
-map(n, lead "d", vim.cmd.bdelete, "Close Buffer")
+map(n, lead "d", _->require("mini.bufremove").delete(), "Close Buffer")
 map(n, lead "v", vim.cmd.vsplit, "Split Window [V]ertically")
 map(n, lead "h", vim.cmd.split, "Split Window [H]orizontally")
 map(n, lead "o", cmd "Canola", "Open [O]il")

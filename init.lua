@@ -6,14 +6,8 @@ g.maplocalleader = ";"
 vim.keymap.set("", space, "<Nop>", { silent = true; })
 vim.keymap.set("", ";", "<Nop>", { silent = true; })
 o.modeline = false
-o.modelines = 0
 o.shadafile = "NONE"
-o.shada = ""
 g.no_plugin_maps = true
-
-require "vim._core.ui2".enable {
-  msg = { targets = { default = "msg"; progress = "cmd"; list_cmd = "cmd"; }; };
-}
 
 for _, plugin in ipairs {
   "2html_plugin";
@@ -38,7 +32,6 @@ for _, plugin in ipairs {
   "vimballPlugin";
   "zip";
   "zipPlugin";
-  "matchparen";
   "shada";
   "spellfile";
   "tohtml";
@@ -52,13 +45,32 @@ for _, plugin in ipairs {
   vim.g["loaded_" .. plugin] = 0
 end
 
-_G.gh = |path|->"https://github.com/" .. path
+vim.api.nvim_create_autocmd("PackChanged", {
+  callback = ev->do
+    require("blink.pairs").build():pwait(6000)
+  end
+})
+const gh = path->"https://github.com/" .. path
+vim.pack.add {
+  gh "williamboman/mason.nvim";
+  gh "neovim/nvim-lspconfig";
+  gh "saghen/blink.lib";
+  gh "saghen/blink.cmp";
+  gh "saghen/blink.pairs";
+  gh "nvim-mini/mini.bracketed";
+  gh "nvim-mini/mini.bufremove";
+  gh "nvim-mini/mini.tabline";
+  gh "nvim-mini/mini.clue";
+  { src = gh "barrettruth/canola.nvim"; version = "canola" };
+  { src = gh "nvim-treesitter/nvim-treesitter";             version = "main"; };
+  { src = gh "nvim-treesitter/nvim-treesitter-textobjects"; version = "main"; };
+  "https://codeberg.org/jrld/custom-nvim-queries";
+  "https://github.com/Vimjas/vim-python-pep8-indent"
+}
 
 require "lam.options"
 require "lam.plugins"
 require "lam.treesitter"
 require "lam.ide"
 require "lam.keybinds"
-
-vim.pack.add { gh "johannesrld/melange-nvim"; gh "WeiTing1991/suannhai.nvim"; }
-vim.cmd.colorscheme "melange"
+vim.cmd.colorscheme "cend"
